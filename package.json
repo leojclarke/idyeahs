@@ -1,10 +1,10 @@
 {
-  "name": "your-project-name",
+  "name": "idyeahs",
   "version": "0.1.0",
   "author": {
-    "name": "your name",
-    "email": "your@email.de",
-    "url": "https://your-domain.de"
+    "name": "Leo Clarke",
+    "email": "leojclarke@gmail.com",
+    "url": "https://github.com/leojclarke/idyeahs"
   },
   "private": true,
   "scripts": {

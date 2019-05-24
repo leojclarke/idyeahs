@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Tag from './Tag'
 
 const IdeaContainer = styled.div`
   padding: 20px;
@@ -13,11 +14,12 @@ const IdeaText = styled.p`
   font-size: 0.8em;
 `
 
-export default function IdeaEntry({ title, text }) {
+export default function IdeaPost({ title, text }) {
   return (
     <IdeaContainer>
       <IdeaTitle>{title}</IdeaTitle>
       <IdeaText>{text}</IdeaText>
+      <Tag category="sales" />
     </IdeaContainer>
   )
 }

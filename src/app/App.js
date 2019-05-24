@@ -4,31 +4,40 @@ import styled from 'styled-components'
 import GlobalStyles from '../misc/GlobalStyles'
 import Header from './Header'
 import Footer from './Footer'
-import IdeasList from './IdeasEntriesList'
+import IdeasFeed from './IdeasFeed'
 
 const Grid = styled.div`
   display: grid;
   height: 100vh;
   grid-template-rows: 80px auto 70px;
 `
-
 export default function App() {
-  // const [ideas, setIdeas] = useState([
-  //   {
-  //     title: 'My Great Idea',
-  //     text: 'lorum ipsum blah',
-  //   },
-  //   {
-  //     title: 'My Other Great Idea',
-  //     text: 'lorum ipsumsöl asüdifj asoifh asoüdfigh blah',
-  //   },
-  // ])
+  const ideas = [
+    {
+      title: 'My Great Idea',
+      text: 'Everything Begins With An Idea',
+    },
+    {
+      title: 'My Other Great Idea',
+      text:
+        'No Matter What People Tell You, Words And Ideas Can Change The World',
+    },
+    {
+      title: 'My Great Idea',
+      text: 'Everything Begins With An Idea',
+    },
+    {
+      title: 'My Other Great Idea',
+      text:
+        'No Matter What People Tell You, Words And Ideas Can Change The World',
+    },
+  ]
 
   return (
     <Grid>
       <GlobalStyles />
       <Header />
-      <IdeasList />
+      <IdeasFeed posts={ideas} />
       <Footer />
     </Grid>
   )
