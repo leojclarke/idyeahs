@@ -20,6 +20,7 @@ export default function IdeaPost({ title, text }) {
       <IdeaTitle>{title}</IdeaTitle>
       <IdeaText>{text}</IdeaText>
       <Tag category="sales" />
+      <Tag category="logistics" />
     </IdeaContainer>
   )
 }
