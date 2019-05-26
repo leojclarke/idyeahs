@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import IdeaPost from './IdeaPost'
 
@@ -32,12 +32,25 @@ const StyledButton = styled.button`
   font-size: 1.3em;
 `
 
+const StyledForm = styled.form``
+
 export default function IdeasFeed({ posts }) {
+  function onPost(event) {
+    event.preventDefault()
+    const form = event.target
+    const title = form.title.value
+    const text = form.description.value
+    handlePost(title, text)
+    form.reset()
+  }
+
   return (
     <IdeasList>
-      <StyledInput />
-      <StyledTextArea />
-      <StyledButton>SUBMIT IDEA</StyledButton>
+      <StyledForm onSubmit={onPost}>
+        <StyledInput />
+        <StyledTextArea />
+        <StyledButton>SUBMIT IDEA</StyledButton>
+      </StyledForm>
       {posts.map(post => (
         <IdeaPost
           key={post.id}
