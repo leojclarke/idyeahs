@@ -15,9 +15,9 @@ $color5: rgba(125, 21, 56, 1);
 
   body {
     margin: 0;
-    padding: 20px;
+    padding: 0;
     font-family: sans-serif;
-    color: white;
-    background: rgba(127, 183, 190, 1);
-  }
+    color: darkslategray;
+    background: #fff;
+}
 `
