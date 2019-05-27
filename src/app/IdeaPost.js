@@ -14,13 +14,12 @@ const IdeaText = styled.p`
   font-size: 0.8em;
 `
 
-export default function IdeaPost({ title, text }) {
+export default function IdeaPost({ title, text, tags }) {
   return (
     <IdeaContainer>
       <IdeaTitle>{title}</IdeaTitle>
       <IdeaText>{text}</IdeaText>
-      <Tag category="sales" />
-      <Tag category="logistics" />
+      {tags && tags.map(tag => <Tag key={tag} tag={tag} />)}
     </IdeaContainer>
   )
 }

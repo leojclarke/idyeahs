@@ -40,26 +40,57 @@ const StyledForm = styled.form`
   display: grid;
 `
 
-export default function IdeasFeed({ posts }) {
+export default function IdeasFeed({ posts, onSubmitIdea }) {
+  function splitToArray(tagString) {
+    return tagString.split(',').map(tag => tag.trim())
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.target
+    onSubmitIdea({
+      title: form.title.value,
+      text: form.text.value,
+      tags: splitToArray(form.tags.value),
+    })
+  }
+
   return (
     <IdeasList>
-      <StyledForm>
+      <StyledForm onSubmit={handleSubmit}>
         <StyledLabel>
           title
-          <StyledInput />
+          <StyledInput
+            name="title"
+            placeholder="My idea title is..."
+            type="text"
+          />
         </StyledLabel>
         <StyledLabel>
           idea
-          <StyledTextArea />
+          <StyledTextArea
+            name="text"
+            placeholder="My idea title is..."
+            type="textarea"
+          />
+        </StyledLabel>
+        <StyledLabel>
+          tags
+          <StyledInput
+            name="tags"
+            placeholder="production, sales, logistics,..."
+            type="text"
+          />
         </StyledLabel>
         <StyledButton>SUBMIT IDEA</StyledButton>
       </StyledForm>
+
       {posts.map(post => (
         <IdeaPost
           key={post.id}
           title={post.title}
           text={post.text}
-          category={post.category}
+          tags={post.tags}
         />
       ))}
     </IdeasList>
