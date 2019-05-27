@@ -6,12 +6,21 @@ import GlobalStyles from '../misc/GlobalStyles'
 import Header from './Header'
 import Footer from './Footer'
 import IdeasFeed from './IdeasFeed'
+import IdeaForm from './IdeaForm'
 
 const Grid = styled.div`
   display: grid;
   height: 100vh;
   grid-template-rows: 80px auto 70px;
 `
+
+const GridArea = styled.div`
+  display: grid;
+  padding: 10px 10px;
+  color: white;
+  overflow: scroll;
+`
+
 export default function App() {
   const [ideas, setIdeas] = useState([
     {
@@ -25,7 +34,7 @@ export default function App() {
       title: 'My Other Great Idea',
       text:
         'No Matter What People Tell You, Words And Ideas Can Change The World',
-      tags: ['events'],
+      tags: ['events', 'logistics', 'boom'],
     },
   ])
 
@@ -37,7 +46,10 @@ export default function App() {
     <Grid>
       <GlobalStyles />
       <Header />
-      <IdeasFeed posts={ideas} onSubmitIdea={onSubmitIdea} />
+      <GridArea>
+        <IdeaForm onSubmitIdea={onSubmitIdea} />
+        <IdeasFeed posts={ideas} />
+      </GridArea>
       <Footer />
     </Grid>
   )
