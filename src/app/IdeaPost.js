@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Tag from './Tag'
 
-const IdeaContainer = styled.div`
+const IdeaContainer = styled.section`
   padding: 20px;
   margin: 10px 0px;
   background: rebeccapurple;

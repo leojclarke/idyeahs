@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Heading = styled.div`
+const Heading = styled.header`
   background: rgba(127, 183, 190, 1);
 `
 const Title = styled.h1`

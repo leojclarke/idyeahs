@@ -8,7 +8,12 @@ const IdeasList = styled.div`
   color: white;
   overflow: scroll;
 `
-
+const StyledLabel = styled.label`
+  display: grid;
+  margin: 0 0 5px 0;
+  font-size: 0.6em;
+  color: rebeccapurple;
+`
 const StyledInput = styled.input`
   margin: 0 0 5px 0;
   padding: 5px;
@@ -39,8 +44,14 @@ export default function IdeasFeed({ posts }) {
   return (
     <IdeasList>
       <StyledForm>
-        <StyledInput />
-        <StyledTextArea />
+        <StyledLabel>
+          title
+          <StyledInput />
+        </StyledLabel>
+        <StyledLabel>
+          idea
+          <StyledTextArea />
+        </StyledLabel>
         <StyledButton>SUBMIT IDEA</StyledButton>
       </StyledForm>
       {posts.map(post => (
