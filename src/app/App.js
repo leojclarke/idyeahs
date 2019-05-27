@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
-import { setLocal, getLocal } from './services'
 
 import GlobalStyles from '../misc/GlobalStyles'
 import Header from './Header'
@@ -14,24 +13,32 @@ const Grid = styled.div`
   grid-template-rows: 80px auto 70px;
 `
 export default function App() {
-  const [ideas, setIdeas] = useState(getLocal('ideas') || [''])
-
-  function handlePost(title, text) {
-    const newPost = {
-      title: title,
-      text: text,
-    }
-    setIdeas([...ideas, newPost])
-  }
-
-  useEffect(() => setLocal('ideas'))
+  const ideas = [
+    {
+      title: 'My Great Idea',
+      text: 'Everything Begins With An Idea',
+    },
+    {
+      title: 'My Other Great Idea',
+      text:
+        'No Matter What People Tell You, Words And Ideas Can Change The World',
+    },
+    {
+      title: 'My Great Idea',
+      text: 'Everything Begins With An Idea',
+    },
+    {
+      title: 'My Other Great Idea',
+      text:
+        'No Matter What People Tell You, Words And Ideas Can Change The World',
+    },
+  ]
 
   return (
     <Grid>
       <GlobalStyles />
       <Header />
-      <IdeasFeed />
-      <form onSubmit={handlePost} />
+      <IdeasFeed posts={ideas} />
       <Footer />
     </Grid>
   )
