@@ -1,5 +1,5 @@
 import React from 'react';
-import IdeaPost from './IdeaPost';
+import IdeaPost from '../ideas/IdeaPost';
 
 export default function IdeasFeed({ posts }) {
   return (
