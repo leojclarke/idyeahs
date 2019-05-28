@@ -32,6 +32,7 @@ const StyledButton = styled.button`
 `;
 const StyledForm = styled.form`
   display: grid;
+  grid-template-rows: 50px 100px 50px 50px;
 `;
 
 export default function IdeaForm({ onSubmit, history }) {
