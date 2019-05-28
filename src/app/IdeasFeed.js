@@ -1,17 +1,17 @@
-import React from 'react'
-import IdeaPost from './IdeaPost'
+import React from 'react';
+import IdeaPost from './IdeaPost';
 
 export default function IdeasFeed({ posts }) {
   return (
     <section>
       {posts.map(post => (
         <IdeaPost
-          key={post.id}
+          key={post.title}
           title={post.title}
           text={post.text}
           tags={post.tags}
         />
       ))}
     </section>
-  )
+  );
 }
