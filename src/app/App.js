@@ -6,8 +6,8 @@ import { getLocal, setLocal } from './services';
 import GlobalStyles from '../misc/GlobalStyles';
 import Header from './Header';
 import Footer from './Footer';
-import IdeasFeed from './main/ideas/IdeasFeed';
-import IdeaForm from './main/ideas/CreateIdea';
+import IdeasFeed from './ideas/IdeasFeed';
+import IdeaForm from './ideas/CreateIdea';
 
 const Grid = styled.div`
   display: grid;

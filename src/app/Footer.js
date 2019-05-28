@@ -17,15 +17,24 @@ const StyledFooter = styled.footer`
   font-size: 1.3rem;
 `;
 
+const StyledNavLink = styled(NavLink)`
+  align-items: center;
+  color: rebeccapurple;
+  font-size: 1.4rem;
+  &.active:focus {
+    color: white;
+  }
+`;
+
 export default function Footer() {
   return (
     <StyledFooter>
-      <NavLink to="/ideas">
+      <StyledNavLink to="/ideas">
         <FontAwesomeIcon icon="lightbulb" />
-      </NavLink>
-      <NavLink to="/ideas/add">
+      </StyledNavLink>
+      <StyledNavLink to="/ideas/add">
         <FontAwesomeIcon icon="plus" />
-      </NavLink>
+      </StyledNavLink>
     </StyledFooter>
   );
 }

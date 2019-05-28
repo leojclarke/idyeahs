@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Tag from '../ideas/Tag';
+import Tag from './Tag';
 
 const IdeaContainer = styled.section`
   padding: 20px;
