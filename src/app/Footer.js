@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faPlus, faLightbulb);
 
 const StyledFooter = styled.footer`
   display: grid;
@@ -15,8 +20,12 @@ const StyledFooter = styled.footer`
 export default function Footer() {
   return (
     <StyledFooter>
-      <NavLink to="/ideas">IDEAS</NavLink>
-      <NavLink to="/ideas/add">ADD IDEA</NavLink>
+      <NavLink to="/ideas">
+        <FontAwesomeIcon icon="lightbulb" />
+      </NavLink>
+      <NavLink to="/ideas/add">
+        <FontAwesomeIcon icon="plus" />
+      </NavLink>
     </StyledFooter>
   );
 }

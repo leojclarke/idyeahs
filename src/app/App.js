@@ -19,7 +19,7 @@ const GridArea = styled.div`
   display: grid;
   padding: 10px 10px;
   color: white;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export default function App() {
