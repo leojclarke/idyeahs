@@ -1,44 +1,61 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
-import styled from 'styled-components'
-import GlobalStyles from '../misc/GlobalStyles'
-import Header from './Header'
-import Footer from './Footer'
-import IdeasFeed from './IdeasFeed'
+import styled from 'styled-components';
+import uid from 'uid';
+import { getLocal, setLocal } from './services';
+import GlobalStyles from '../misc/GlobalStyles';
+import Header from './Header';
+import Footer from './Footer';
+import IdeasFeed from './IdeasFeed';
+import IdeaForm from './IdeaForm';
 
 const Grid = styled.div`
   display: grid;
   height: 100vh;
   grid-template-rows: 80px auto 70px;
-`
+`;
+
+const GridArea = styled.div`
+  display: grid;
+  padding: 10px 10px;
+  color: white;
+  overflow: scroll;
+`;
+
 export default function App() {
-  const ideas = [
-    {
-      title: 'My Great Idea',
-      text: 'Everything Begins With An Idea',
-    },
-    {
-      title: 'My Other Great Idea',
-      text:
-        'No Matter What People Tell You, Words And Ideas Can Change The World',
-    },
-    {
-      title: 'My Great Idea',
-      text: 'Everything Begins With An Idea',
-    },
-    {
-      title: 'My Other Great Idea',
-      text:
-        'No Matter What People Tell You, Words And Ideas Can Change The World',
-    },
-  ]
+  const [ideas, setIdeas] = useState(
+    getLocal('ideas') || [
+      {
+        id: uid(),
+        title: 'My Great Idea',
+        text: 'Everything Begins With An Idea',
+        tags: ['sales'],
+      },
+      {
+        id: uid(),
+        title: 'My Other Great Idea',
+        text:
+          'No Matter What People Tell You, Words And Ideas Can Change The World',
+        tags: ['events', 'logistics', 'boom'],
+      },
+    ]
+  );
+
+  useEffect(() => setLocal('ideas', ideas), [ideas]);
+
+  function onSubmitIdea(newIdea) {
+    setIdeas([newIdea, ...ideas]);
+  }
 
   return (
     <Grid>
       <GlobalStyles />
       <Header />
-      <IdeasFeed posts={ideas} />
+      <GridArea>
+        <IdeaForm onSubmitIdea={onSubmitIdea} />
+        <IdeasFeed posts={ideas} />
+      </GridArea>
       <Footer />
     </Grid>
-  )
+  );
 }
