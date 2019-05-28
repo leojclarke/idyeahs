@@ -24,7 +24,7 @@ const StyledTextArea = styled.textarea`
   border: 1px solid lightslategray;
 `;
 const StyledButton = styled.button`
-  margin: 0 0 5px 0;
+  margin-bottom: 5px;
   padding: 5px;
   background: rgba(218, 204, 62, 1);
   color: white;

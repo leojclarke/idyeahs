@@ -6,7 +6,7 @@ export default function IdeasFeed({ posts }) {
     <section>
       {posts.map(post => (
         <IdeaPost
-          key={post.title}
+          key={Math.random()}
           title={post.title}
           text={post.text}
           tags={post.tags}
