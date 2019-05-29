@@ -8,6 +8,11 @@ const Heading = styled.header`
 const Title = styled.h1`
   color: white;
   text-align: center;
+  &.:link,
+  .:hover,
+  .:visited {
+    color: white;
+    text-decoration: none;
   }
 `;
 

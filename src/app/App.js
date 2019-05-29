@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
@@ -8,6 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
 import IdeasFeed from './ideas/IdeasFeed';
+import IdeaDetails from './ideas/IdeaDetails';
 import IdeaForm from './ideas/CreateIdea';
 
 const Grid = styled.div`
@@ -57,41 +58,53 @@ export default function App() {
 
   return (
     <Router>
-      <Grid>
-        <GlobalStyles />
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <>
-              <Header title={'IDYEAHS'} />
-              <Home />
-            </>
-          )}
-        />
+      <Switch>
+        <Grid>
+          <GlobalStyles />
 
-        <Route
-          exact
-          path="/ideas"
-          render={() => (
-            <>
-              <Header title={'Ideas'} />
-              <IdeasFeed posts={ideas} />
-            </>
-          )}
-        />
-        <Route
-          exact
-          path="/ideas/add"
-          render={props => (
-            <>
-              <Header title={'Add Idea'} />
-              <IdeaForm onSubmit={handleSubmit} history={props.history} />
-            </>
-          )}
-        />
-        <Footer />
-      </Grid>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <>
+                <Header title={'IDYEAHS'} />
+                <Home />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/ideas"
+            render={() => (
+              <>
+                <Header title={'Ideas'} />
+                <IdeasFeed posts={ideas} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/ideas/add"
+            render={props => (
+              <>
+                <Header title={'Add Idea'} />
+                <IdeaForm onSubmit={handleSubmit} history={props.history} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/ideas/details/:id"
+            render={props => (
+              <>
+                <Header title={'IdeasDetails'} />
+                <IdeaDetails posts={ideas} {...props} />
+              </>
+            )}
+          />
+          <Footer />
+        </Grid>
+      </Switch>
     </Router>
   );
 }
