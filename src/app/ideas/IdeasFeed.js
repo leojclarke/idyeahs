@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import IdeaPost from './IdeaPost';
 
 const StyledSection = styled.div`
-  position: relative;
+  display: grid;
+  padding: 10px;
+  overflow: scroll;
 `;
 
 export default function IdeasFeed({ posts }) {

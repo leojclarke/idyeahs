@@ -11,15 +11,9 @@ import IdeaForm from './ideas/CreateIdea';
 
 const Grid = styled.div`
   display: grid;
-  height: 100vh;
   grid-template-rows: 80px auto 70px;
-`;
-
-const GridArea = styled.div`
-  display: grid;
-  padding: 10px 10px;
+  height: 100vh;
   color: white;
-  overflow-y: scroll;
 `;
 
 export default function App() {
@@ -64,21 +58,26 @@ export default function App() {
     <Router>
       <Grid>
         <GlobalStyles />
-        <Header />
-        <GridArea>
-          <Route
-            exact
-            path="/ideas"
-            render={() => <IdeasFeed posts={ideas} />}
-          />
-          <Route
-            exact
-            path="/ideas/add"
-            render={props => (
+        <Route
+          exact
+          path="/ideas"
+          render={() => (
+            <>
+              <Header title={'Ideas'} />
+              <IdeasFeed posts={ideas} />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/ideas/add"
+          render={props => (
+            <>
+              <Header title={'Add Idea'} />
               <IdeaForm onSubmit={handleSubmit} history={props.history} />
-            )}
-          />
-        </GridArea>
+            </>
+          )}
+        />
         <Footer />
       </Grid>
     </Router>

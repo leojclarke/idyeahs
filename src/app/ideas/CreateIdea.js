@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 const StyledLabel = styled.label`
   display: grid;
-  margin: 0 0 5px 0;
+  padding-bottom: 5px;
   font-size: 0.6em;
   color: rebeccapurple;
 `;
+
 const StyledInput = styled.input`
   margin: 0 0 5px 0;
   padding: 5px;
@@ -18,7 +19,7 @@ const StyledInput = styled.input`
 const StyledTextArea = styled.textarea`
   margin: 0 0 5px 0;
   padding: 5px;
-  height: 80px;
+  height: 160px;
   font-size: 1.3em;
   border: 1px solid lightslategray;
 `;
@@ -32,7 +33,8 @@ const StyledButton = styled.button`
 `;
 const StyledForm = styled.form`
   display: grid;
-  grid-template-rows: 50px 100px 50px 50px;
+  grid-template-rows: 60px 180px 60px 60px;
+  padding: 10px;
 `;
 
 export default function IdeaForm({ onSubmit, history }) {
