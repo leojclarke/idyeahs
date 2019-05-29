@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
 import GlobalStyles from '../misc/GlobalStyles';
 import Header from './Header';
 import Footer from './Footer';
-import IdeasFeed from './IdeasFeed';
-import IdeaForm from './IdeaForm';
+import IdeasFeed from './ideas/IdeasFeed';
+import IdeaForm from './ideas/CreateIdea';
 
 const Grid = styled.div`
   display: grid;
-  height: 100vh;
   grid-template-rows: 80px auto 70px;
-`;
-
-const GridArea = styled.div`
-  display: grid;
-  padding: 10px 10px;
+  height: 100vh;
   color: white;
-  overflow: scroll;
 `;
 
 export default function App() {
@@ -43,19 +37,49 @@ export default function App() {
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
 
-  function onSubmitIdea(newIdea) {
+  function splitToArray(tagString) {
+    return tagString.split(',').map(tag => tag.trim());
+  }
+
+  function handleSubmit(event, history) {
+    event.preventDefault();
+    const form = event.target;
+    const newIdea = {
+      id: uid(),
+      title: form.title.value,
+      text: form.text.value,
+      tags: splitToArray(form.tags.value),
+    };
     setIdeas([newIdea, ...ideas]);
+    history.push('/ideas');
   }
 
   return (
-    <Grid>
-      <GlobalStyles />
-      <Header />
-      <GridArea>
-        <IdeaForm onSubmitIdea={onSubmitIdea} />
-        <IdeasFeed posts={ideas} />
-      </GridArea>
-      <Footer />
-    </Grid>
+    <Router>
+      <Grid>
+        <GlobalStyles />
+        <Route
+          exact
+          path="/ideas"
+          render={() => (
+            <>
+              <Header title={'Ideas'} />
+              <IdeasFeed posts={ideas} />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/ideas/add"
+          render={props => (
+            <>
+              <Header title={'Add Idea'} />
+              <IdeaForm onSubmit={handleSubmit} history={props.history} />
+            </>
+          )}
+        />
+        <Footer />
+      </Grid>
+    </Router>
   );
 }

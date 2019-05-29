@@ -1,9 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import IdeaPost from './IdeaPost';
+
+const StyledSection = styled.div`
+  display: grid;
+  padding: 10px;
+  overflow: scroll;
+`;
 
 export default function IdeasFeed({ posts }) {
   return (
-    <section>
+    <StyledSection>
       {posts.map(post => (
         <IdeaPost
           key={Math.random()}
@@ -12,6 +19,6 @@ export default function IdeasFeed({ posts }) {
           tags={post.tags}
         />
       ))}
-    </section>
+    </StyledSection>
   );
 }
