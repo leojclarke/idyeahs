@@ -6,6 +6,7 @@ import { getLocal, setLocal } from './services';
 import GlobalStyles from '../misc/GlobalStyles';
 import Header from './Header';
 import Footer from './Footer';
+import Home from './Home';
 import IdeasFeed from './ideas/IdeasFeed';
 import IdeaForm from './ideas/CreateIdea';
 
@@ -58,6 +59,17 @@ export default function App() {
     <Router>
       <Grid>
         <GlobalStyles />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <>
+              <Header title={'IDYEAHS'} />
+              <Home />
+            </>
+          )}
+        />
+
         <Route
           exact
           path="/ideas"
