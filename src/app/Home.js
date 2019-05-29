@@ -14,13 +14,16 @@ const Home = styled.div`
   align-content: center;
   justify-items: center;
 `;
+const StyledNavLink = styled(NavLink)`
+  color: rgb(218, 204, 62);
+`;
 
 export default function HomePage() {
   return (
     <Home>
-      <NavLink to="/ideas/add">
+      <StyledNavLink to="/ideas/add">
         <FontAwesomeIcon icon="lightbulb" size="10x" />
-      </NavLink>
+      </StyledNavLink>
     </Home>
   );
 }

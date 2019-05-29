@@ -16,9 +16,11 @@ const IdeaContainer = styled.section`
   overflow: scroll;
   background: lightslategray;
 `;
+
 const IdeaTitle = styled.h2`
   font-size: 1.2rem;
 `;
+
 const IdeaText = styled.p`
   font-size: 1rem;
   line-height: 1.8rem;

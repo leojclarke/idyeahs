@@ -12,7 +12,7 @@ const StyledFooter = styled.footer`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-content: center;
-  background: rgba(127, 183, 190, 1);
+  background: rgba(127, 183, 190, 0.8);
   color: white;
   font-size: 1.3rem;
 `;
