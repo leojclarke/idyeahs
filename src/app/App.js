@@ -24,7 +24,7 @@ export default function App() {
         id: uid(),
         title: 'My Great Idea',
         text: 'Everything Begins With An Idea',
-        tags: ['sales'],
+        tags: ['sales', 'boom'],
       },
       {
         id: uid(),
@@ -35,6 +35,8 @@ export default function App() {
       },
     ]
   );
+
+  const [filteredTags, setFilteredTags] = useState('');
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
 
@@ -53,6 +55,14 @@ export default function App() {
     };
     setIdeas([newIdea, ...ideas]);
     history.push('/ideas');
+  }
+
+  function handleTagClick(event, tag) {
+    setFilteredTags([...filteredTags, tag]);
+  }
+
+  function resetFilter() {
+    setFilteredTags('');
   }
 
   return (
@@ -76,7 +86,12 @@ export default function App() {
           render={() => (
             <>
               <Header title={'Ideas'} />
-              <IdeasFeed posts={ideas} />
+              <IdeasFeed
+                posts={ideas}
+                tagFilter={filteredTags}
+                handleTagClick={handleTagClick}
+                resetFilter={resetFilter}
+              />
             </>
           )}
         />
@@ -90,6 +105,7 @@ export default function App() {
             </>
           )}
         />
+
         <Footer />
       </Grid>
     </Router>
