@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -25,6 +26,16 @@ const StyledTag = styled.span`
   font-size: 0.7em;
 `;
 
+const IdeaDetailsLink = styled(NavLink)`
+  color: white;
+  text-decoration: none;
+  &.link,
+  .visited,
+  .hover,
+  .active {
+  }
+`;
+
 export default function IdeasFeed({
   posts,
   tagFilter,
@@ -44,13 +55,15 @@ export default function IdeasFeed({
       {posts
         .filter(post => post.tags.toString().includes(tagFilter))
         .map(post => (
-          <IdeaPost
-            key={post.id}
-            title={post.title}
-            text={post.text}
-            tags={post.tags}
-            handleTagClick={handleTagClick}
-          />
+          <IdeaDetailsLink to={`/ideas/details/${post.id}`} key={Math.random()}>
+            <IdeaPost
+              key={post.id}
+              title={post.title}
+              text={post.text}
+              tags={post.tags}
+              handleTagClick={handleTagClick}
+            />
+          </IdeaDetailsLink>
         ))}
     </StyledSection>
   );

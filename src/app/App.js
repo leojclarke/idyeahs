@@ -8,6 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
 import IdeasFeed from './ideas/IdeasFeed';
+import IdeaDetails from './ideas/IdeaDetails';
 import IdeaForm from './ideas/CreateIdea';
 
 const Grid = styled.div`
@@ -69,6 +70,7 @@ export default function App() {
     <Router>
       <Grid>
         <GlobalStyles />
+
         <Route
           exact
           path="/"
@@ -79,7 +81,6 @@ export default function App() {
             </>
           )}
         />
-
         <Route
           exact
           path="/ideas"
@@ -105,7 +106,16 @@ export default function App() {
             </>
           )}
         />
-
+        <Route
+          exact
+          path="/ideas/details/:id"
+          render={props => (
+            <>
+              <Header title={'IdeasDetails'} />
+              <IdeaDetails posts={ideas} {...props} />
+            </>
+          )}
+        />
         <Footer resetFilter={resetFilter} />
       </Grid>
     </Router>
