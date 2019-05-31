@@ -20,7 +20,7 @@ export default function IdeaPost({ title, text, tags }) {
     <IdeaContainer>
       <IdeaTitle>{title}</IdeaTitle>
       <IdeaText>{text}</IdeaText>
-      {tags && tags.map(tag => <Tag key={tag} tag={tag} />)}
+      {tags && tags.map(tag => <Tag key={tag} tagName={tag} />)}
     </IdeaContainer>
   );
 }

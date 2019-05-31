@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Tag from './Tag';
+import { findIdeaByIndex } from '../utils';
 
 library.add(faTimes);
 
@@ -39,11 +40,6 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export default function IdeaDetails({ match, posts }) {
-  function findIdeaByIndex(id, posts) {
-    const ideaIndex = posts.map(idea => idea.id).indexOf(id);
-    return ideaIndex;
-  }
-
   const ideaId = findIdeaByIndex(match.params.id, posts);
 
   const { title, text, tags } = posts[ideaId];
@@ -54,7 +50,7 @@ export default function IdeaDetails({ match, posts }) {
         <FontAwesomeIcon icon="times" />
       </StyledNavLink>
       <div>
-        {tags && tags.map(tag => <Tag key={tag} tag={tag} />)}
+        {tags && tags.map(tag => <Tag key={tag} tagName={tag} />)}
         <IdeaTitle>{title}</IdeaTitle>
         <IdeaText>{text}</IdeaText>
       </div>

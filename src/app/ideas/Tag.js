@@ -8,6 +8,6 @@ const StyledTag = styled.span`
   border-radius: 2px;
   font-size: 0.7em;
 `;
-export default function Tag({ tag }) {
-  return <StyledTag>{tag}</StyledTag>;
+export default function Tag({ tagName }) {
+  return <StyledTag>{tagName}</StyledTag>;
 }
