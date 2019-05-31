@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
@@ -25,7 +25,7 @@ export default function App() {
         id: uid(),
         title: 'My Great Idea',
         text: 'Everything Begins With An Idea',
-        tags: ['sales'],
+        tags: ['sales', 'boom'],
       },
       {
         id: uid(),
@@ -36,6 +36,8 @@ export default function App() {
       },
     ]
   );
+
+  const [filteredTags, setFilteredTags] = useState('');
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
 
@@ -56,55 +58,66 @@ export default function App() {
     history.push('/ideas');
   }
 
+  function handleTagClick(tag) {
+    setFilteredTags([...filteredTags, tag]);
+  }
+
+  function resetFilter() {
+    setFilteredTags('');
+  }
+
   return (
     <Router>
-      <Switch>
-        <Grid>
-          <GlobalStyles />
+      <Grid>
+        <GlobalStyles />
 
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <>
-                <Header title={'IDYEAHS'} />
-                <Home />
-              </>
-            )}
-          />
-          <Route
-            exact
-            path="/ideas"
-            render={() => (
-              <>
-                <Header title={'Ideas'} />
-                <IdeasFeed posts={ideas} />
-              </>
-            )}
-          />
-          <Route
-            exact
-            path="/ideas/add"
-            render={props => (
-              <>
-                <Header title={'Add Idea'} />
-                <IdeaForm onSubmit={handleSubmit} history={props.history} />
-              </>
-            )}
-          />
-          <Route
-            exact
-            path="/ideas/details/:id"
-            render={props => (
-              <>
-                <Header title={'IdeasDetails'} />
-                <IdeaDetails posts={ideas} {...props} />
-              </>
-            )}
-          />
-          <Footer />
-        </Grid>
-      </Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <>
+              <Header title={'IDYEAHS'} />
+              <Home />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/ideas"
+          render={() => (
+            <>
+              <Header title={'Ideas'} />
+              <IdeasFeed
+                posts={ideas}
+                tagFilter={filteredTags}
+                handleTagClick={handleTagClick}
+                resetFilter={resetFilter}
+              />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/ideas/add"
+          render={props => (
+            <>
+              <Header title={'Add Idea'} />
+              <IdeaForm onSubmit={handleSubmit} history={props.history} />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/ideas/details/:id"
+          render={props => (
+            <>
+              <Header title={'IdeasDetails'} />
+              <IdeaDetails posts={ideas} {...props} />
+            </>
+          )}
+        />
+        <Footer resetFilter={resetFilter} />
+      </Grid>
     </Router>
   );
 }

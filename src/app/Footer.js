@@ -12,7 +12,7 @@ const StyledFooter = styled.footer`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-content: center;
-  background: rgba(127, 183, 190, 0.8);
+  background: #7fb7be;
   color: white;
   font-size: 1.3rem;
 `;
@@ -26,10 +26,10 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function Footer() {
+export default function Footer({ resetFilter }) {
   return (
     <StyledFooter>
-      <StyledNavLink to="/ideas">
+      <StyledNavLink to="/ideas" onClick={resetFilter}>
         <FontAwesomeIcon icon="lightbulb" />
       </StyledNavLink>
       <StyledNavLink to="/ideas/add">
