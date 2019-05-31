@@ -57,7 +57,7 @@ export default function App() {
     history.push('/ideas');
   }
 
-  function handleTagClick(event, tag) {
+  function handleTagClick(tag) {
     setFilteredTags([...filteredTags, tag]);
   }
 

@@ -11,7 +11,7 @@ const StyledLabel = styled.label`
 const StyledInput = styled.input`
   margin: 0 0 5px 0;
   padding: 5px;
-  border: 1px solid lightslategray;
+  border: 1px solid rebeccapurple;
   font-size: 1.3em;
   line-height: 1.6rem;
 `;
@@ -21,14 +21,14 @@ const StyledTextArea = styled.textarea`
   padding: 5px;
   height: 160px;
   font-size: 1.3em;
-  border: 1px solid lightslategray;
+  border: 1px solid rebeccapurple;
 `;
 const StyledButton = styled.button`
   margin-bottom: 5px;
   padding: 5px;
   background: rgba(218, 204, 62, 1);
   color: white;
-  border: 1px solid lightslategray;
+  border: 1px solid rgba(218, 204, 62, 1);
   font-size: 1.3em;
 `;
 const StyledForm = styled.form`

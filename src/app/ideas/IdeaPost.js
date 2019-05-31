@@ -22,7 +22,7 @@ export default function IdeaPost({ title, text, tags, handleTagClick }) {
 
       {tags &&
         tags.map(tag => (
-          <Tag key={tag} tag={tag} handleTagClick={handleTagClick} />
+          <Tag key={tag} tagName={tag} handleTagClick={handleTagClick} />
         ))}
     </IdeaContainer>
   );
