@@ -26,10 +26,10 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function Footer() {
+export default function Footer({ resetFilter }) {
   return (
     <StyledFooter>
-      <StyledNavLink to="/ideas">
+      <StyledNavLink to="/ideas" onClick={resetFilter}>
         <FontAwesomeIcon icon="lightbulb" />
       </StyledNavLink>
       <StyledNavLink to="/ideas/add">
