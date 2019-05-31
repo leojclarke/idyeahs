@@ -18,8 +18,9 @@ const StyledFloatingButton = styled.span`
   text-align: center;
   font-size: 1.2rem;
   line-height: 60px;
-  background: rgba(218, 204, 62, 1);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background: #7d1538;
+  box-shadow: 0 14px 28px rgba(12, 32, 42, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
 `;
 
 export default function AddButton() {

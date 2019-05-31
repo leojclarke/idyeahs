@@ -4,12 +4,12 @@ import styled from 'styled-components';
 const StyledTag = styled.span`
   padding: 3px 6px;
   margin: 0px 5px 0px 0px;
-  background: rgba(127, 183, 190, 1);
+  background: #7fb7be;
   border-radius: 2px;
   font-size: 0.7em;
 `;
-export default function Tag({ tag, handleTagClick }) {
+export default function Tag({ tagName, handleTagClick }) {
   return (
-    <StyledTag onClick={event => handleTagClick(event, tag)}>{tag}</StyledTag>
+    <StyledTag onClick={() => handleTagClick(tagName)}>{tagName}</StyledTag>
   );
 }

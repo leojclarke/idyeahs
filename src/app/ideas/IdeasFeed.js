@@ -18,8 +18,8 @@ const FilterTitle = styled.div`
 
 const StyledTag = styled.span`
   padding: 3px 6px;
-  margin: 0px 5px 0px 0px;
-  background: rgba(127, 183, 190, 1);
+  margin-right: 5px;
+  background: #7fb7be;
   color: white;
   border-radius: 2px;
   font-size: 0.7em;
@@ -31,13 +31,12 @@ export default function IdeasFeed({
   handleTagClick,
   resetFilter,
 }) {
-  console.log(tagFilter);
   return (
     <StyledSection>
       {tagFilter && (
         <FilterTitle>
-          {tagFilter.map(tag => (
-            <StyledTag>{tag}</StyledTag>
+          {tagFilter.map(tagName => (
+            <StyledTag>{tagName}</StyledTag>
           ))}
           <FontAwesomeIcon icon="times" onClick={resetFilter} />
         </FilterTitle>
