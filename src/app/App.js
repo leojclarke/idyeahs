@@ -106,7 +106,7 @@ export default function App() {
           )}
         />
 
-        <Footer />
+        <Footer resetFilter={resetFilter} />
       </Grid>
     </Router>
   );

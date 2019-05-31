@@ -35,23 +35,15 @@ export default function IdeasFeed({
   return (
     <StyledSection>
       {tagFilter && (
-        // ((
-        //   <FilterTitle>
-        //     {tagFilter.map(tag => (
-        //       <StyledTag>{tag}</StyledTag>
-        //     ))}
-        //     <FontAwesomeIcon icon="times" onClick={resetFilter} />
-        //   </FilterTitle>
-        // ) &&
-
         <FilterTitle>
-          <StyledTag>{tagFilter}</StyledTag>
-
+          {tagFilter.map(tag => (
+            <StyledTag>{tag}</StyledTag>
+          ))}
           <FontAwesomeIcon icon="times" onClick={resetFilter} />
         </FilterTitle>
       )}
       {posts
-        .filter(post => post.tags.toString().match(tagFilter))
+        .filter(post => post.tags.toString().includes(tagFilter))
         .map(post => (
           <IdeaPost
             key={post.id}
