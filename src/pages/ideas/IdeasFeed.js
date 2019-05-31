@@ -47,7 +47,7 @@ export default function IdeasFeed({
       {tagFilter && (
         <FilterTitle>
           {tagFilter.map(tagName => (
-            <StyledTag>{tagName}</StyledTag>
+            <StyledTag key={tagName.id}>{tagName}</StyledTag>
           ))}
           <FontAwesomeIcon icon="times" onClick={resetFilter} />
         </FilterTitle>

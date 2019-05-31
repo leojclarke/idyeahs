@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
 import GlobalStyles from '../misc/GlobalStyles';
-import Header from './Header';
-import Footer from './Footer';
-import Home from './Home';
-import IdeasFeed from './ideas/IdeasFeed';
-import IdeaDetails from './ideas/IdeaDetails';
-import IdeaForm from './ideas/CreateIdea';
+
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Home from '../pages/home/Home';
+import IdeasFeed from '../pages/ideas/IdeasFeed';
+import IdeaDetails from '../pages/ideas/IdeaDetails';
+import IdeaForm from '../pages/ideas/CreateIdea';
 
 const Grid = styled.div`
   display: grid;
@@ -112,7 +113,7 @@ export default function App() {
           render={props => (
             <>
               <Header title={'IdeasDetails'} />
-              <IdeaDetails posts={ideas} {...props} />
+              <IdeaDetails posts={ideas} resetFilter={resetFilter} {...props} />
             </>
           )}
         />
