@@ -10,6 +10,7 @@ import Home from './Home';
 import IdeasFeed from './ideas/IdeasFeed';
 import IdeaDetails from './ideas/IdeaDetails';
 import IdeaForm from './ideas/CreateIdea';
+import UserLogin from './UserLogin';
 
 const Grid = styled.div`
   display: grid;
@@ -38,8 +39,11 @@ export default function App() {
   );
 
   const [filteredTags, setFilteredTags] = useState('');
+  const [user, setUser] = useState(getLocal('user') || null);
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
+
+  useEffect(() => setLocal('user', user), [user]);
 
   function splitToArray(tagString) {
     return tagString.split(',').map(tag => tag.trim());
@@ -62,9 +66,17 @@ export default function App() {
     setFilteredTags([...filteredTags, tag]);
   }
 
+  function handleUserLogin(event, history) {
+    event.preventDefault();
+    setUser(event.target.username.value);
+    history.push('/');
+  }
+
   function resetFilter() {
     setFilteredTags('');
   }
+
+  console.log(user);
 
   return (
     <Router>
@@ -111,8 +123,22 @@ export default function App() {
           path="/ideas/details/:id"
           render={props => (
             <>
-              <Header title={'IdeasDetails'} />
+              <Header title={'Ideas Details'} />
               <IdeaDetails posts={ideas} {...props} />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/login"
+          render={props => (
+            <>
+              <Header title={'User Login'} />
+              <UserLogin
+                onSubmit={handleUserLogin}
+                history={props.history}
+                username={user}
+              />
             </>
           )}
         />
