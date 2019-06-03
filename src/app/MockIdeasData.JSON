@@ -1,7 +1,8 @@
 [{
   "id": "",
   "title": "My Great Idea",
-  "text": "Everything Begins With An Idea."
+  "text": "Everything Begins With An Idea.",
+  "areas": ["sales", "production"]
 },
 {
   "id": "",
