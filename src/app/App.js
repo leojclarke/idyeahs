@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
 import GlobalStyles from '../misc/GlobalStyles';
+import ideaEntries from './MockIdeasData';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
@@ -11,6 +12,9 @@ import IdeasFeed from './ideas/IdeasFeed';
 import IdeaDetails from './ideas/IdeaDetails';
 import IdeaForm from './ideas/CreateIdea';
 
+let mockIdeas = ideaEntries;
+
+console.log(mockIdeas);
 const Grid = styled.div`
   display: grid;
   grid-template-rows: 80px auto 70px;
@@ -19,23 +23,7 @@ const Grid = styled.div`
 `;
 
 export default function App() {
-  const [ideas, setIdeas] = useState(
-    getLocal('ideas') || [
-      {
-        id: uid(),
-        title: 'My Great Idea',
-        text: 'Everything Begins With An Idea',
-        tags: ['sales', 'boom'],
-      },
-      {
-        id: uid(),
-        title: 'My Other Great Idea',
-        text:
-          'No Matter What People Tell You, Words And Ideas Can Change The World',
-        tags: ['events', 'logistics', 'boom'],
-      },
-    ]
-  );
+  const [ideas, setIdeas] = useState(getLocal('ideas') || mockIdeas);
 
   const [filteredTags, setFilteredTags] = useState('');
 
