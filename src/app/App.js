@@ -60,12 +60,9 @@ export default function App() {
     const form = [target.res.value, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     const newCounter = counter + 1;
     setCounter(newCounter);
-    const responsesSum = responses.map((num, idx) =>
-      ((Number(num) + Number(form[idx])) / newCounter).toFixed(2)
+    const responsesSum = responses.map((number, index) =>
+      ((number + form[index]) / newCounter).toFixed(2)
     );
-
-    // const newValue = Number(responses[0]) + Number(form.res.value);
-    // const newResponses = [newValue, ...responses];
     setResponses(responsesSum);
     history.push('/feedback');
   }

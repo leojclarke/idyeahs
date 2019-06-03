@@ -14,13 +14,12 @@ const StyledFooter = styled.footer`
   align-content: center;
   background: #7fb7be;
   color: white;
-  font-size: 1.3rem;
 `;
 
 const StyledNavLink = styled(NavLink)`
   align-items: center;
   color: rebeccapurple;
-  font-size: 1.4rem;
+  font-size: 2rem;
   &.active:focus {
     color: white;
   }
