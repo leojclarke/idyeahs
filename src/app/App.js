@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import BarChart from './BarChart';
 import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
@@ -149,6 +150,16 @@ export default function App() {
                 onSubmit={handleFeedbackSubmit}
                 history={props.history}
               />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/barchart"
+          render={() => (
+            <>
+              <Header title={'BarChart'} />
+              <BarChart />
             </>
           )}
         />
