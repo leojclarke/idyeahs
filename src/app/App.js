@@ -11,10 +11,13 @@ import Home from './Home';
 import IdeasFeed from './ideas/IdeasFeed';
 import IdeaDetails from './ideas/IdeaDetails';
 import IdeaForm from './ideas/CreateIdea';
+import GallupTwelveQuestions from './Gallup12Questions';
+
+import FeedbackResultsPage from './FeedbackResults';
+import FeedbackForm from './FeedbackForm';
 
 let mockIdeas = ideaEntries;
 
-console.log(mockIdeas);
 const Grid = styled.div`
   display: grid;
   grid-template-rows: 80px auto 70px;
@@ -24,16 +27,21 @@ const Grid = styled.div`
 
 export default function App() {
   const [ideas, setIdeas] = useState(getLocal('ideas') || mockIdeas);
-
   const [filteredTags, setFilteredTags] = useState('');
+  const [responses, setResponses] = useState(
+    getLocal('responses') || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  );
+  const [counter, setCounter] = useState(getLocal('counter') || 0);
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
+  useEffect(() => setLocal('responses', responses), [responses]);
+  useEffect(() => setLocal('counter', counter), [counter]);
 
   function splitToArray(tagString) {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleSubmit(event, history) {
+  function handleIdeaSubmit(event, history) {
     event.preventDefault();
     const form = event.target;
     const newIdea = {
@@ -44,6 +52,22 @@ export default function App() {
     };
     setIdeas([newIdea, ...ideas]);
     history.push('/ideas');
+  }
+
+  function handleFeedbackSubmit(event, history) {
+    event.preventDefault();
+    const { target } = event;
+    const form = [target.res.value, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const newCounter = counter + 1;
+    setCounter(newCounter);
+    const responsesSum = responses.map((num, idx) =>
+      ((Number(num) + Number(form[idx])) / newCounter).toFixed(2)
+    );
+
+    // const newValue = Number(responses[0]) + Number(form.res.value);
+    // const newResponses = [newValue, ...responses];
+    setResponses(responsesSum);
+    history.push('/feedback');
   }
 
   function handleTagClick(tag) {
@@ -90,7 +114,7 @@ export default function App() {
           render={props => (
             <>
               <Header title={'Add Idea'} />
-              <IdeaForm onSubmit={handleSubmit} history={props.history} />
+              <IdeaForm onSubmit={handleIdeaSubmit} history={props.history} />
             </>
           )}
         />
@@ -101,6 +125,33 @@ export default function App() {
             <>
               <Header title={'IdeasDetails'} />
               <IdeaDetails posts={ideas} {...props} />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/feedback"
+          render={() => (
+            <>
+              <Header title={'Feedback'} />
+              <FeedbackResultsPage
+                responses={responses}
+                questions={GallupTwelveQuestions}
+              />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/feedback/add"
+          render={props => (
+            <>
+              <Header title={'AddFeedback'} />
+              <FeedbackForm
+                questions={GallupTwelveQuestions}
+                onSubmit={handleFeedbackSubmit}
+                history={props.history}
+              />
             </>
           )}
         />

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb, faComment } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlus, faLightbulb);
+library.add(faLightbulb, faComment);
 
 const StyledFooter = styled.footer`
   display: grid;
@@ -32,8 +32,8 @@ export default function Footer({ resetFilter }) {
       <StyledNavLink to="/ideas" onClick={resetFilter}>
         <FontAwesomeIcon icon="lightbulb" />
       </StyledNavLink>
-      <StyledNavLink to="/ideas/add">
-        <FontAwesomeIcon icon="plus" />
+      <StyledNavLink to="/feedback" onClick={resetFilter}>
+        <FontAwesomeIcon icon="comment" />
       </StyledNavLink>
     </StyledFooter>
   );
