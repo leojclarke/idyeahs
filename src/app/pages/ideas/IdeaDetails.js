@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import Tag from './Tag';
-import { findIdeaByIndex } from '../utils';
+import { findIdeaByIndex } from '../../utils';
 
 library.add(faTimes);
 

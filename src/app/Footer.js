@@ -3,13 +3,17 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLightbulb, faComment } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLightbulb,
+  faComment,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faLightbulb, faComment);
+library.add(faLightbulb, faUser, faComment);
 
 const StyledFooter = styled.footer`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-content: center;
   background: #7fb7be;
@@ -33,6 +37,9 @@ export default function Footer({ resetFilter }) {
       </StyledNavLink>
       <StyledNavLink to="/feedback" onClick={resetFilter}>
         <FontAwesomeIcon icon="comment" />
+      </StyledNavLink>
+      <StyledNavLink to="/login">
+        <FontAwesomeIcon icon="user" />
       </StyledNavLink>
     </StyledFooter>
   );

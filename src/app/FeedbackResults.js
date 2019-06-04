@@ -13,7 +13,7 @@ export default function FeedbackResultsPage({ responses, questions, counter }) {
     <FeedbackResponses>
       {questions.map(question => (
         <FeedbackQuestion
-          key={question.id}
+          key={question.question_id}
           questionNumber={question.question_id + 1}
           question={question.question_text_en}
           result={responses}
