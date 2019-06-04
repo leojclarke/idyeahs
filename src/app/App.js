@@ -58,11 +58,11 @@ export default function App() {
   function handleFeedbackSubmit(event, history) {
     event.preventDefault();
     const { target } = event;
-    const form = [target.res.value, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const form = [target.res.value, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     const newCounter = counter + 1;
     setCounter(newCounter);
-    const responsesSum = responses.map((number, index) =>
-      ((number + form[index]) / newCounter).toFixed(2)
+    const responsesSum = responses.map(
+      (number, index) => Number(number) + Number(form[index])
     );
     setResponses(responsesSum);
     history.push('/feedback');
@@ -134,6 +134,7 @@ export default function App() {
               <Header title={'Feedback'} />
               <FeedbackResultsPage
                 responses={responses}
+                counter={counter}
                 questions={GallupTwelveQuestions}
               />
             </>

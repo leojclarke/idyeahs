@@ -14,7 +14,7 @@ const FeedbackResponses = styled.section`
   overflow: scroll;
 `;
 
-export default function FeedbackResultsPage({ responses, questions }) {
+export default function FeedbackResultsPage({ responses, questions, counter }) {
   return (
     <FeedbackResponses>
       {questions.map(question => (
@@ -22,7 +22,7 @@ export default function FeedbackResultsPage({ responses, questions }) {
           key={question.id}
           questionNumber={question.question_id + 1}
           question={question.question_text_en}
-          result={responses[question.question_id]}
+          result={(responses[question.question_id] / counter).toFixed(2)}
         />
       ))}
     </FeedbackResponses>
