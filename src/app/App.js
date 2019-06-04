@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import BarChart from './BarChart';
 import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
@@ -30,7 +29,7 @@ export default function App() {
   const [ideas, setIdeas] = useState(getLocal('ideas') || mockIdeas);
   const [filteredTags, setFilteredTags] = useState('');
   const [responses, setResponses] = useState(
-    getLocal('responses') || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    getLocal('responses') || Array(12).fill(0)
   );
   const [counter, setCounter] = useState(getLocal('counter') || 0);
 
@@ -58,7 +57,9 @@ export default function App() {
   function handleFeedbackSubmit(event, history) {
     event.preventDefault();
     const { target } = event;
-    const form = [target.res.value, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const form = Array(12)
+      .fill(0)
+      .fill(target.res.value, 0, 1);
     const newCounter = counter + 1;
     setCounter(newCounter);
     const responsesSum = responses.map(
@@ -145,22 +146,12 @@ export default function App() {
           path="/feedback/add"
           render={props => (
             <>
-              <Header title={'AddFeedback'} />
+              <Header title={'Add Feedback'} />
               <FeedbackForm
                 questions={GallupTwelveQuestions}
                 onSubmit={handleFeedbackSubmit}
                 history={props.history}
               />
-            </>
-          )}
-        />
-        <Route
-          exact
-          path="/barchart"
-          render={() => (
-            <>
-              <Header title={'BarChart'} />
-              <BarChart />
             </>
           )}
         />

@@ -1,75 +1,88 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledQuestion = styled.div`
+const StyledForm = styled.form`
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 150px 60px;
+  padding: 10px;
+`;
+
+const StyledQuestionContainer = styled.div`
+  display: grid;
+  grid-template-rows: 90px 40px;
+  padding: 0px 5px;
+  margin-bottom: 20px;
   color: rebeccapurple;
+  border: 0.5px dashed rebeccapurple;
+`;
+
+const StyledQuestion = styled.h3`
+  color: rebeccapurple;
+  border-bottom: 0.5px solid rebeccapurple;
 `;
 
 const StyledResponse = styled.div`
   display: flex;
-  margin-bottom: 20px;
   color: rebeccapurple;
   font-size: 0.6rem;
 `;
 
 const StyledButton = styled.button`
+  display: flex;
   margin-bottom: 5px;
   padding: 5px;
-  background: rgba(218, 204, 62, 1);
+  background: #dacc3e;
+  justify-content: center;
   color: white;
-  border: 1px solid rgba(218, 204, 62, 1);
+  border: 1px solid #dacc3e;
   font-size: 1.3em;
-`;
-
-const StyledForm = styled.form`
-  padding: 10px;
 `;
 
 export default function FeedbackForm({ questions, onSubmit, history }) {
   return (
     <StyledForm onSubmit={event => onSubmit(event, history)}>
-      <StyledQuestion>
-        Q{questions[0].question_id + 1}. {questions[0].question_text_en}
-      </StyledQuestion>
-      <StyledResponse>
-        <div>
-          <label>
-            <input type="radio" name="res" value="1" />
-            strongly disagree
-          </label>
-        </div>
+      <StyledQuestionContainer>
+        <StyledQuestion>
+          Q{questions[0].question_id + 1}. {questions[0].question_text_en}
+        </StyledQuestion>
+        <StyledResponse>
+          <div>
+            <label>
+              <input type="radio" name="res" value="1" />
+              strongly disagree
+            </label>
+          </div>
 
-        <div>
-          <label>
-            <input type="radio" name="res" value="2" />
-            disagree
-          </label>
-        </div>
+          <div>
+            <label>
+              <input type="radio" name="res" value="2" />
+              disagree
+            </label>
+          </div>
 
-        <div>
-          <label>
-            <input type="radio" name="res" value="3" defaultChecked={true} />
-            neutral
-          </label>
-        </div>
+          <div>
+            <label>
+              <input type="radio" name="res" value="3" defaultChecked={true} />
+              neutral
+            </label>
+          </div>
 
-        <div>
-          <label>
-            <input type="radio" name="res" value="4" />
-            agree
-          </label>
-        </div>
+          <div>
+            <label>
+              <input type="radio" name="res" value="4" />
+              agree
+            </label>
+          </div>
 
-        <div>
-          <label>
-            <input type="radio" name="res" value="5" />
-            strongly agree
-          </label>
-        </div>
-      </StyledResponse>
-      <StyledButton>SUBMIT IDEA</StyledButton>
+          <div>
+            <label>
+              <input type="radio" name="res" value="5" />
+              strongly agree
+            </label>
+          </div>
+        </StyledResponse>
+      </StyledQuestionContainer>
+      <StyledButton>Add Feedback</StyledButton>
     </StyledForm>
   );
 }

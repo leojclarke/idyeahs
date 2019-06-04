@@ -15,13 +15,21 @@ const Result = styled.p`
   font-size: 0.8em;
 `;
 
-export function FeedbackQuestion({ questionNumber, question, result }) {
+export function FeedbackQuestion({
+  questionNumber,
+  question,
+  index,
+  result,
+  counter,
+}) {
   return (
     <FeedbackContainer>
       <QuestionTitle>
         Q{questionNumber}. {question}
       </QuestionTitle>
-      <Result>{result}</Result>
+      <Result>
+        {counter !== 0 ? (result[index] / counter).toFixed(2) : 'No Result'}
+      </Result>
     </FeedbackContainer>
   );
 }
