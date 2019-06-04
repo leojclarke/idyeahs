@@ -89,7 +89,7 @@ export default function App() {
           render={() => (
             <>
               <Header title={'IDYEAHS'} />
-              <Home />
+              <Home user={user} />
             </>
           )}
         />

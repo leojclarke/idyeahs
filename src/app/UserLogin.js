@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledLabel = styled.label`
   display: grid;
   padding-bottom: 5px;
-  font-size: 0.6em;
+  font-size: 0.6rem;
   color: rebeccapurple;
 `;
 
@@ -15,10 +15,10 @@ const Grid = styled.div`
 `;
 
 const StyledInput = styled.input`
-  margin: 0 0 5px 0;
+  margin-bottom: 5px;
   padding: 5px;
   border: 1px solid rebeccapurple;
-  font-size: 1.3em;
+  font-size: 0.9rem;
   line-height: 1.6rem;
 `;
 
@@ -39,12 +39,11 @@ const StyledLoginStatus = styled.div`
   display: grid;
   align-content: top;
   padding-bottom: 5px;
-  font-size: 1em;
+  font-size: 1rem;
   color: rebeccapurple;
 `;
 
 export default function UserLogin({ onSubmit, history, username }) {
-  console.log(username);
   return (
     <Grid>
       <StyledForm onSubmit={event => onSubmit(event, history)}>
