@@ -47,7 +47,7 @@ export default function IdeasFeed({
       {tagFilter && (
         <FilterTitle>
           {tagFilter.map(tagName => (
-            <StyledTag>{tagName}</StyledTag>
+            <StyledTag key={tagName.id}>{tagName}</StyledTag>
           ))}
           <FontAwesomeIcon icon="times" onClick={resetFilter} />
         </FilterTitle>
@@ -55,7 +55,7 @@ export default function IdeasFeed({
       {posts
         .filter(post => post.tags.toString().includes(tagFilter))
         .map(post => (
-          <IdeaDetailsLink to={`/ideas/details/${post.id}`} key={Math.random()}>
+          <IdeaDetailsLink to={`/ideas/details/${post.id}`} key={post.id}>
             <IdeaPost
               key={post.id}
               title={post.title}

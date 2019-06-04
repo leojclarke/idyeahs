@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,3 +33,8 @@ export default function AddButton() {
     </StyledFloatingButton>
   );
 }
+
+AddButton.propTypes = {
+  handlePublish: PropTypes.func,
+  history: PropTypes.object,
+};

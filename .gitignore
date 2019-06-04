@@ -4,6 +4,7 @@
 .cache
 .vscode
 .docz
+package-lock.json
 
 # dependencies
 /node_modules

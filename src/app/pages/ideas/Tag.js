@@ -10,6 +10,8 @@ const StyledTag = styled.span`
 `;
 export default function Tag({ tagName, handleTagClick }) {
   return (
-    <StyledTag onClick={() => handleTagClick(tagName)}>{tagName}</StyledTag>
+    <StyledTag onClick={() => handleTagClick(tagName)} key={tagName.id}>
+      {tagName}
+    </StyledTag>
   );
 }
