@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import uid from 'uid';
 import { getLocal, setLocal } from './services';
-import GlobalStyles from '../misc/GlobalStyles';
+import GlobalStyles from './misc/GlobalStyles';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
-import IdeasFeed from './ideas/IdeasFeed';
-import IdeaDetails from './ideas/IdeaDetails';
-import IdeaForm from './ideas/CreateIdea';
+import IdeasFeed from './pages/ideas/IdeasFeed';
+import IdeaDetails from './pages/ideas/IdeaDetails';
+import IdeaForm from './pages/ideas/CreateIdea';
 import UserLogin from './UserLogin';
 
 const Grid = styled.div`
@@ -75,8 +75,6 @@ export default function App() {
   function resetFilter() {
     setFilteredTags('');
   }
-
-  console.log(user);
 
   return (
     <Router>

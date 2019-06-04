@@ -9,7 +9,6 @@ const Heading = styled.header`
 const Title = styled.h1`
   color: white;
   text-align: center;
-  }
 `;
 
 const StyledNavLink = styled(NavLink)`
