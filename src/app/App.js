@@ -42,9 +42,9 @@ export default function App() {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleIdeaSubmit(event, date, history) {
+  function handleIdeaSubmit(event, date, username, history) {
     event.preventDefault();
-    console.log(date);
+    console.log('user:', username);
     const form = event.target;
     const newIdea = {
       id: uid(),
@@ -52,6 +52,7 @@ export default function App() {
       text: form.text.value,
       tags: splitToArray(form.tags.value),
       timestamp: date,
+      username: username,
     };
     setIdeas([newIdea, ...ideas]);
     history.push('/ideas');
@@ -122,7 +123,11 @@ export default function App() {
           render={props => (
             <>
               <Header title={'Add Idea'} />
-              <IdeaForm onSubmit={handleIdeaSubmit} history={props.history} />
+              <IdeaForm
+                onSubmit={handleIdeaSubmit}
+                username={user}
+                history={props.history}
+              />
             </>
           )}
         />

@@ -72,6 +72,7 @@ export default function IdeaPost({
   text,
   tags,
   timestamp,
+  username,
   handleTagClick,
 }) {
   console.log('timestamp:', timestamp);
@@ -87,8 +88,8 @@ export default function IdeaPost({
         <IdeaTitle>{title}</IdeaTitle>
         <IdeaText>{text}</IdeaText>
         <IdeaBottom>
-          <UserAvatar>L</UserAvatar>
-          <IdeaUsername>UserName</IdeaUsername>
+          <UserAvatar>{username && username.charAt(0)}</UserAvatar>
+          <IdeaUsername>{username}</IdeaUsername>
           <IdeaTimestamp>{timestamp}</IdeaTimestamp>
         </IdeaBottom>
       </IdeaContainer>

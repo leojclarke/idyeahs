@@ -15,7 +15,7 @@ const StyledForm = styled.form`
   padding: 10px;
 `;
 
-export default function IdeaForm({ onSubmit, history }) {
+export default function IdeaForm({ onSubmit, history, username }) {
   const [date, setDate] = useState(moment().format('Do MMM YYYY, HH:MM a'));
 
   return (
@@ -23,7 +23,7 @@ export default function IdeaForm({ onSubmit, history }) {
       id="createIdea"
       onSubmit={event => {
         setDate(date);
-        onSubmit(event, date, history);
+        onSubmit(event, date, username, history);
       }}
     >
       <Label

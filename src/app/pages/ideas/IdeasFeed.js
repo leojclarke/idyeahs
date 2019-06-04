@@ -62,6 +62,7 @@ export default function IdeasFeed({
               text={post.text}
               tags={post.tags}
               timestamp={post.timestamp}
+              username={post.username}
               handleTagClick={handleTagClick}
             />
           </IdeaDetailsLink>
