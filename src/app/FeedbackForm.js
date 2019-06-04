@@ -47,7 +47,7 @@ export default function FeedbackForm({ questions, onSubmit, history }) {
       onSubmit={event => {
         onSubmit(event, history);
         event.persist();
-        console.log('Form result: ', event.res);
+        console.log('Form result: ', event);
       }}
     >
       {questions.map(question => (
@@ -58,22 +58,14 @@ export default function FeedbackForm({ questions, onSubmit, history }) {
           <StyledResponse>
             <div>
               <label>
-                <input
-                  type="radio"
-                  name={'res'[question.question_id]}
-                  value="1"
-                />
+                <input type="radio" name={question.question_id} value="1" />
                 strongly disagree
               </label>
             </div>
 
             <div>
               <label>
-                <input
-                  type="radio"
-                  name={'res'[question.question_id]}
-                  value="2"
-                />
+                <input type="radio" name={question.question_id} value="2" />
                 disagree
               </label>
             </div>
@@ -82,7 +74,7 @@ export default function FeedbackForm({ questions, onSubmit, history }) {
               <label>
                 <input
                   type="radio"
-                  name={'res'[question.question_id]}
+                  name={question.question_id}
                   value="3"
                   defaultChecked={true}
                 />
@@ -92,22 +84,14 @@ export default function FeedbackForm({ questions, onSubmit, history }) {
 
             <div>
               <label>
-                <input
-                  type="radio"
-                  name={'res'[question.question_id]}
-                  value="4"
-                />
+                <input type="radio" name={question.question_id} value="4" />
                 agree
               </label>
             </div>
 
             <div>
               <label>
-                <input
-                  type="radio"
-                  name={'res'[question.question_id]}
-                  value="5"
-                />
+                <input type="radio" name={question.question_id} value="5" />
                 strongly agree
               </label>
             </div>
