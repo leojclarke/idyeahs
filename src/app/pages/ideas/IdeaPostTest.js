@@ -29,7 +29,7 @@ const IdeaTitle = styled.h2`
 `;
 const IdeaText = styled.p`
   padding: 5px;
-  line-height: 1.7rem;
+  line-height: 2rem;
   font-size: 0.8rem;
 `;
 
