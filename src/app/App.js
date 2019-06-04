@@ -11,6 +11,10 @@ import IdeasFeed from './pages/ideas/IdeasFeed';
 import IdeaDetails from './pages/ideas/IdeaDetails';
 import IdeaForm from './pages/ideas/CreateIdea';
 import UserLogin from './UserLogin';
+import mockIdeas from './MockIdeasData';
+import GallupTwelveQuestions from './Gallup12Questions';
+import FeedbackResultsPage from './FeedbackResults';
+import FeedbackForm from './FeedbackForm';
 
 const Grid = styled.div`
   display: grid;
@@ -20,28 +24,17 @@ const Grid = styled.div`
 `;
 
 export default function App() {
-  const [ideas, setIdeas] = useState(
-    getLocal('ideas') || [
-      {
-        id: uid(),
-        title: 'My Great Idea',
-        text: 'Everything Begins With An Idea',
-        tags: ['sales', 'boom'],
-      },
-      {
-        id: uid(),
-        title: 'My Other Great Idea',
-        text:
-          'No Matter What People Tell You, Words And Ideas Can Change The World',
-        tags: ['events', 'logistics', 'boom'],
-      },
-    ]
-  );
-
+  const [ideas, setIdeas] = useState(getLocal('ideas') || mockIdeas);
   const [filteredTags, setFilteredTags] = useState('');
+  const [responses, setResponses] = useState(
+    getLocal('responses') || Array(12).fill(0)
+  );
+  const [counter, setCounter] = useState(getLocal('counter') || 0);
   const [user, setUser] = useState(getLocal('user') || null);
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
+  useEffect(() => setLocal('responses', responses), [responses]);
+  useEffect(() => setLocal('counter', counter), [counter]);
 
   useEffect(() => setLocal('user', user), [user]);
 
@@ -49,7 +42,7 @@ export default function App() {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleSubmit(event, history) {
+  function handleIdeaSubmit(event, history) {
     event.preventDefault();
     const form = event.target;
     const newIdea = {
@@ -60,6 +53,21 @@ export default function App() {
     };
     setIdeas([newIdea, ...ideas]);
     history.push('/ideas');
+  }
+
+  function handleFeedbackSubmit(event, history) {
+    event.preventDefault();
+    const { target } = event;
+    const form = Array(12)
+      .fill(0)
+      .fill(target.res.value, 0, 1);
+    const newCounter = counter + 1;
+    setCounter(newCounter);
+    const responsesSum = responses.map(
+      (number, index) => Number(number) + Number(form[index])
+    );
+    setResponses(responsesSum);
+    history.push('/feedback');
   }
 
   function handleTagClick(tag) {
@@ -112,7 +120,7 @@ export default function App() {
           render={props => (
             <>
               <Header title={'Add Idea'} />
-              <IdeaForm onSubmit={handleSubmit} history={props.history} />
+              <IdeaForm onSubmit={handleIdeaSubmit} history={props.history} />
             </>
           )}
         />
@@ -123,6 +131,34 @@ export default function App() {
             <>
               <Header title={'Ideas Details'} />
               <IdeaDetails posts={ideas} {...props} />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/feedback"
+          render={() => (
+            <>
+              <Header title={'Feedback'} />
+              <FeedbackResultsPage
+                responses={responses}
+                counter={counter}
+                questions={GallupTwelveQuestions}
+              />
+            </>
+          )}
+        />
+        <Route
+          exact
+          path="/feedback/add"
+          render={props => (
+            <>
+              <Header title={'Add Feedback'} />
+              <FeedbackForm
+                questions={GallupTwelveQuestions}
+                onSubmit={handleFeedbackSubmit}
+                history={props.history}
+              />
             </>
           )}
         />
