@@ -42,14 +42,16 @@ export default function App() {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleIdeaSubmit(event, history) {
+  function handleIdeaSubmit(event, date, history) {
     event.preventDefault();
+    console.log(date);
     const form = event.target;
     const newIdea = {
       id: uid(),
       title: form.title.value,
       text: form.text.value,
       tags: splitToArray(form.tags.value),
+      timestamp: date,
     };
     setIdeas([newIdea, ...ideas]);
     history.push('/ideas');

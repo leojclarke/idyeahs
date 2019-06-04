@@ -61,6 +61,7 @@ export default function IdeasFeed({
               title={post.title}
               text={post.text}
               tags={post.tags}
+              timestamp={post.timestamp}
               handleTagClick={handleTagClick}
             />
           </IdeaDetailsLink>
