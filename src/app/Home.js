@@ -18,12 +18,26 @@ const StyledNavLink = styled(NavLink)`
   color: rgb(218, 204, 62);
 `;
 
-export default function HomePage() {
+const StyledLoginStatus = styled.div`
+  display: grid;
+  justify-items: center;
+  padding: 20px;
+  font-size: 1rem;
+  color: rebeccapurple;
+`;
+
+export default function HomePage({ user }) {
   return (
     <Home>
       <StyledNavLink to="/ideas/add">
         <FontAwesomeIcon icon="lightbulb" size="10x" />
       </StyledNavLink>
+      {user && (
+        <StyledLoginStatus>
+          logged in as:
+          <h2>{user}</h2>
+        </StyledLoginStatus>
+      )}
     </Home>
   );
 }

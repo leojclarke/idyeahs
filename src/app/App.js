@@ -68,7 +68,6 @@ export default function App() {
 
   function handleUserLogin(event, history) {
     event.preventDefault();
-
     setUser(event.target.username.value);
     history.push('/');
   }
@@ -76,8 +75,6 @@ export default function App() {
   function resetFilter() {
     setFilteredTags('');
   }
-
-  console.log(user);
 
   return (
     <Router>
@@ -90,7 +87,7 @@ export default function App() {
           render={() => (
             <>
               <Header title={'IDYEAHS'} />
-              <Home />
+              <Home user={user} />
             </>
           )}
         />
