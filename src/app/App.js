@@ -58,9 +58,8 @@ export default function App() {
   function handleFeedbackSubmit(event, history) {
     event.preventDefault();
     const { target } = event;
-    const form = Array(12)
-      .fill(0)
-      .fill(target.res.value, 0, 1);
+    console.log('Feedback Event: ', target.res);
+    const form = Array(target);
     const newCounter = counter + 1;
     setCounter(newCounter);
     const responsesSum = responses.map(
