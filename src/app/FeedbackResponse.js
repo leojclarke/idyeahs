@@ -28,6 +28,7 @@ export function FeedbackQuestion({
         Q{questionNumber}. {question}
       </QuestionTitle>
       <Result>
+        Result:{' '}
         {counter !== 0 ? (result[index] / counter).toFixed(2) : 'No Result'}
       </Result>
     </FeedbackContainer>

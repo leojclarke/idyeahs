@@ -14,7 +14,7 @@ import UserLogin from './UserLogin';
 import mockIdeas from './MockIdeasData';
 import GallupTwelveQuestions from './Gallup12Questions';
 import FeedbackResultsPage from './FeedbackResults';
-import FeedbackForm from './FeedbackForm';
+import FeedbackForm from './FeedbackFormStyledRadioButtons';
 
 const Grid = styled.div`
   display: grid;
@@ -31,6 +31,7 @@ export default function App() {
   );
   const [counter, setCounter] = useState(getLocal('counter') || 0);
   const [user, setUser] = useState(getLocal('user') || null);
+  const [isSelected, setSelected] = useState('');
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
   useEffect(() => setLocal('responses', responses), [responses]);
@@ -55,18 +56,20 @@ export default function App() {
     history.push('/ideas');
   }
 
-  function handleFeedbackSubmit(event, history) {
-    event.preventDefault();
-    const { target } = event;
-    console.log('Feedback Event: ', target.res);
-    const form = Array(target);
+  function handleFeedbackSubmit(answers, history) {
     const newCounter = counter + 1;
     setCounter(newCounter);
     const responsesSum = responses.map(
-      (number, index) => Number(number) + Number(form[index])
+      (number, index) => Number(number) + Number(answers[index])
     );
     setResponses(responsesSum);
     history.push('/feedback');
+  }
+
+  function handleOptionChange(event) {
+    setSelected({
+      selectedOption: event.target.value,
+    });
   }
 
   function handleTagClick(tag) {
@@ -155,7 +158,9 @@ export default function App() {
               <Header title={'Add Feedback'} />
               <FeedbackForm
                 questions={GallupTwelveQuestions}
-                onSubmit={handleFeedbackSubmit}
+                handleSubmit={handleFeedbackSubmit}
+                onChange={handleOptionChange}
+                isSelected={isSelected}
                 history={props.history}
               />
             </>
