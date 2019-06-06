@@ -14,7 +14,7 @@ import UserLogin from './UserLogin';
 import mockIdeas from './MockIdeasData';
 import GallupTwelveQuestions from './Gallup12Questions';
 import FeedbackResultsPage from './FeedbackResults';
-import FeedbackForm from './FeedbackFormStyledRadioButtons';
+import FeedbackForm from './FeedbackForm';
 
 const Grid = styled.div`
   display: grid;
@@ -88,9 +88,8 @@ export default function App() {
 
   return (
     <Router>
+      <GlobalStyles />
       <Grid>
-        <GlobalStyles />
-
         <Route
           exact
           path="/"
@@ -150,6 +149,7 @@ export default function App() {
             </>
           )}
         />
+
         <Route
           exact
           path="/feedback/add"
@@ -159,8 +159,6 @@ export default function App() {
               <FeedbackForm
                 questions={GallupTwelveQuestions}
                 handleSubmit={handleFeedbackSubmit}
-                onChange={handleOptionChange}
-                isSelected={isSelected}
                 history={props.history}
               />
             </>
