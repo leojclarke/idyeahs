@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, ButtonGroup } from 'react-bootstrap';
 
 const Grid = styled.div`
   display: grid;
@@ -136,7 +135,6 @@ export default function FeedbackForm({ questions, handleSubmit, history }) {
                 name={`q-${question.id + 1}`}
                 id={`radio-${question.id + 'b'}`}
                 value="2"
-                defaultChecked={true}
               />
               <label htmlFor={`radio-${question.id + 'b'}`}>2</label>
               <input
@@ -144,6 +142,7 @@ export default function FeedbackForm({ questions, handleSubmit, history }) {
                 name={`q-${question.id + 1}`}
                 id={`radio-${question.id + 'c'}`}
                 value="3"
+                defaultChecked={true}
               />
               <label htmlFor={`radio-${question.id + 'c'}`}>3</label>
               <input
