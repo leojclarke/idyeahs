@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Label from '../../components/Label';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
 import SubmitButton from '../../components/SubmitButton';
+
+moment.locale('de');
 
 const StyledForm = styled.form`
   display: grid;
@@ -12,9 +15,17 @@ const StyledForm = styled.form`
   padding: 10px;
 `;
 
-export default function IdeaForm({ onSubmit, history }) {
+export default function IdeaForm({ onSubmit, history, username }) {
+  const [date, setDate] = useState(moment().format('Do MMM YYYY, HH:MM a'));
+
   return (
-    <StyledForm id="createIdea" onSubmit={event => onSubmit(event, history)}>
+    <StyledForm
+      id="createIdea"
+      onSubmit={event => {
+        setDate(date);
+        onSubmit(event, date, username, history);
+      }}
+    >
       <Label
         form={'createIdea'}
         content={
