@@ -58,16 +58,11 @@ export default function App() {
     history.push('/ideas');
   }
 
-  function handleFeedbackSubmit(event, history) {
-    event.preventDefault();
-    const { target } = event;
-    const form = Array(12)
-      .fill(0)
-      .fill(target.res.value, 0, 1);
+  function handleFeedbackSubmit(answers, history) {
     const newCounter = counter + 1;
     setCounter(newCounter);
     const responsesSum = responses.map(
-      (number, index) => Number(number) + Number(form[index])
+      (number, index) => Number(number) + Number(answers[index])
     );
     setResponses(responsesSum);
     history.push('/feedback');
@@ -89,9 +84,8 @@ export default function App() {
 
   return (
     <Router>
+      <GlobalStyles />
       <Grid>
-        <GlobalStyles />
-
         <Route
           exact
           path="/"
@@ -155,6 +149,7 @@ export default function App() {
             </>
           )}
         />
+
         <Route
           exact
           path="/feedback/add"
@@ -163,7 +158,7 @@ export default function App() {
               <Header title={'Add Feedback'} />
               <FeedbackForm
                 questions={GallupTwelveQuestions}
-                onSubmit={handleFeedbackSubmit}
+                handleFeedbackSubmit={handleFeedbackSubmit}
                 history={props.history}
               />
             </>
@@ -176,7 +171,7 @@ export default function App() {
             <>
               <Header title={'User Login'} />
               <UserLogin
-                onSubmit={handleUserLogin}
+                handleLogin={handleUserLogin}
                 history={props.history}
                 username={user}
               />

@@ -43,10 +43,10 @@ const StyledLoginStatus = styled.div`
   color: rebeccapurple;
 `;
 
-export default function UserLogin({ onSubmit, history, username }) {
+export default function UserLogin({ handleLogin, history, username }) {
   return (
     <Grid>
-      <StyledForm onSubmit={event => onSubmit(event, history)}>
+      <StyledForm onSubmit={event => handleLogin(event, history)}>
         <StyledLabel>
           user login
           <StyledInput
