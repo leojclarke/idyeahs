@@ -31,7 +31,6 @@ export default function App() {
   );
   const [counter, setCounter] = useState(getLocal('counter') || 0);
   const [user, setUser] = useState(getLocal('user') || null);
-  const [isSelected, setSelected] = useState('');
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
   useEffect(() => setLocal('responses', responses), [responses]);
@@ -64,12 +63,6 @@ export default function App() {
     );
     setResponses(responsesSum);
     history.push('/feedback');
-  }
-
-  function handleOptionChange(event) {
-    setSelected({
-      selectedOption: event.target.value,
-    });
   }
 
   function handleTagClick(tag) {
@@ -158,7 +151,7 @@ export default function App() {
               <Header title={'Add Feedback'} />
               <FeedbackForm
                 questions={GallupTwelveQuestions}
-                handleSubmit={handleFeedbackSubmit}
+                handleFeedbackSubmit={handleFeedbackSubmit}
                 history={props.history}
               />
             </>
@@ -171,7 +164,7 @@ export default function App() {
             <>
               <Header title={'User Login'} />
               <UserLogin
-                onSubmit={handleUserLogin}
+                handleLogin={handleUserLogin}
                 history={props.history}
                 username={user}
               />

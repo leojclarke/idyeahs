@@ -16,7 +16,7 @@ const StyledForm = styled.form`
 
 const StyledQuestionContainer = styled.div`
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: repeat(3, auto);
   padding: 10px;
   color: rebeccapurple;
   background: #efefef;
@@ -79,11 +79,11 @@ const StyledRadioButtons = styled.div`
 
 const StyledLegend = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   font-size: 0.7rem;
   margin: 0;
-  padding: 5px 0 5px 0;
+  padding: 5px 0;
   color: #a2a2a2;
 
   div:first-child {
@@ -113,21 +113,23 @@ const StyledButton = styled.button`
   font-size: 1.3em;
 `;
 
-export default function FeedbackForm({ questions, handleSubmit, history }) {
+export default function FeedbackForm({
+  questions,
+  handleFeedbackSubmit,
+  history,
+}) {
   function handleFormSubmit(event, questions, history) {
     event.preventDefault();
     const form = event.target;
     const answers = questions.map(
       question => form[`q-${question.id + 1}`].value
     );
-    console.log('Answers:', answers);
-    handleSubmit(answers, history);
+    handleFeedbackSubmit(answers, history);
   }
 
   return (
     <Grid>
       <StyledForm
-        id="addFeedback"
         onSubmit={event => handleFormSubmit(event, questions, history)}
       >
         {questions.map(question => (

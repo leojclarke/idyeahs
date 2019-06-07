@@ -12,7 +12,6 @@ const Heading = styled.header`
 
 const Title = styled.h1`
   display: grid;
-
   color: white;
   text-align: center;
 `;
