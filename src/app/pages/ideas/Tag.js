@@ -8,7 +8,7 @@ const StyledTag = styled.span`
   border-radius: 2px;
   font-size: 0.7em;
 `;
-export default function Tag({ tagName, handleTagClick }) {
+export default function Tag({ tagName, onTagClick: handleTagClick }) {
   return (
     <StyledTag onClick={() => handleTagClick(tagName)} key={tagName.id}>
       {tagName}

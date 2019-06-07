@@ -39,7 +39,7 @@ const IdeaDetailsLink = styled(NavLink)`
 export default function IdeasFeed({
   posts,
   tagFilter,
-  handleTagClick,
+  onTagClick,
   resetFilter,
 }) {
   return (
@@ -63,7 +63,7 @@ export default function IdeasFeed({
               tags={post.tags}
               timestamp={post.timestamp}
               username={post.username}
-              handleTagClick={handleTagClick}
+              onTagClick={onTagClick}
             />
           </IdeaDetailsLink>
         ))}

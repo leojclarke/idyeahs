@@ -105,7 +105,7 @@ export default function App() {
               <IdeasFeed
                 posts={ideas}
                 tagFilter={filteredTags}
-                handleTagClick={handleTagClick}
+                onTagClick={handleTagClick}
                 resetFilter={resetFilter}
               />
             </>

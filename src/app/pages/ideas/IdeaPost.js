@@ -73,7 +73,7 @@ export default function IdeaPost({
   tags,
   timestamp,
   username,
-  handleTagClick,
+  onTagClick,
 }) {
   console.log('timestamp:', timestamp);
   return (
@@ -82,7 +82,7 @@ export default function IdeaPost({
         <IdeaTags>
           {tags &&
             tags.map(tag => (
-              <Tag key={tag} tagName={tag} handleTagClick={handleTagClick} />
+              <Tag key={tag} tagName={tag} onTagClick={onTagClick} />
             ))}
         </IdeaTags>
         <IdeaTitle>{title}</IdeaTitle>
