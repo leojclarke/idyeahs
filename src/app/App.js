@@ -2,18 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import uid from 'uid';
-import { getLocal, setLocal } from './services';
-import GlobalStyles from './misc/GlobalStyles';
-import Header from './Header';
-import Home from './Home';
-import IdeasFeed from './pages/ideas/IdeasFeed';
-import IdeaDetails from './pages/ideas/IdeaDetails';
-import IdeaForm from './pages/ideas/CreateIdea';
-import UserLogin from './UserLogin';
-import mockIdeas from './MockIdeasData';
-import GallupTwelveQuestions from './Gallup12Questions';
-import FeedbackResultsPage from './FeedbackResults';
-import FeedbackForm from './FeedbackForm';
+import { getLocal, setLocal } from '../utils/services';
+import GlobalStyles from '../misc/GlobalStyles';
+import mockIdeas from '../data/MockIdeasData';
+import Home from '../pages/home/Home';
 
 const Grid = styled.div`
   display: grid;
@@ -94,7 +86,7 @@ export default function App() {
             </>
           )}
         />
-        <Route
+        {/* <Route
           exact
           path="/ideas"
           render={() => (
@@ -175,7 +167,7 @@ export default function App() {
               />
             </>
           )}
-        />
+        /> */}
       </Grid>
     </Router>
   );
