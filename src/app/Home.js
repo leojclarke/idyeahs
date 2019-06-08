@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { useSpring, animated } from 'react-spring';
+
 import GlobalStyles from './misc/GlobalStyles';
 import logo from '../img/logo.png';
+
+const props = useSpring({ opacity: 1, from: { opacity: 0 } });
 
 const Home = styled.div`
   display: grid;
@@ -22,7 +26,9 @@ export default function HomePage() {
   return (
     <Home>
       <GlobalStyles />
-      <Logo src={logo} />
+      <animated.div style={props}>
+        <Logo src={logo} />
+      </animated.div>
     </Home>
   );
 }
