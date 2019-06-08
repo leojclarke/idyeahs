@@ -5,7 +5,6 @@ import uid from 'uid';
 import { getLocal, setLocal } from './services';
 import GlobalStyles from './misc/GlobalStyles';
 import Header from './Header';
-import Footer from './Footer';
 import Home from './Home';
 import IdeasFeed from './pages/ideas/IdeasFeed';
 import IdeaDetails from './pages/ideas/IdeaDetails';
@@ -18,7 +17,7 @@ import FeedbackForm from './FeedbackForm';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 80px auto 70px;
+  grid-template-rows: auto;
   height: 100vh;
   color: white;
 `;
@@ -91,7 +90,6 @@ export default function App() {
           path="/"
           render={() => (
             <>
-              <Header title={'IDYEAHS'} />
               <Home user={user} />
             </>
           )}
@@ -178,7 +176,6 @@ export default function App() {
             </>
           )}
         />
-        <Footer resetFilter={resetFilter} />
       </Grid>
     </Router>
   );

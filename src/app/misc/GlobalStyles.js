@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 
@@ -13,3 +13,7 @@ export default createGlobalStyle`
     color: #2E2D24;
     background: #fff;
 }`;
+
+export const Logo = styled.img`
+  width: 200px;
+`;
