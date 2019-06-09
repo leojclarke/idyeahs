@@ -13,23 +13,42 @@ const StyledFloatingButton = styled.span`
   width: 60px;
   height: 60px;
   position: absolute;
-  top: 20%;
-  right: 1%;
+  top: 89%;
+  right: 4%;
   border-radius: 50%;
   text-align: center;
   font-size: 1.2rem;
   line-height: 60px;
-  background: #7d1538;
-  box-shadow: 0 14px 28px rgba(12, 32, 42, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.22);
+  background: #efc311;
+  color: white;
+  box-shadow: 0 14px 28px rgba(19, 22, 52, 0.25),
+    0 10px 10px rgba(12, 23, 45, 0.22);
+`;
+
+const Link = styled(NavLink)`
+  text-decoration: none;
+  color: white;
+
+  .active.focus,
+  .active:focus,
+  .focus,
+  .focus:active,
+  :active:focus,
+  :focus {
+    outline: 0;
+    outline-offset: 0;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 `;
 
 export default function AddButton() {
   return (
     <StyledFloatingButton>
-      <NavLink to="/ideas/add">
-        <FontAwesomeIcon icon="plus" />
-      </NavLink>
+      <Link to="/">
+        <FontAwesomeIcon icon={faPlus} size="lg" />
+      </Link>
     </StyledFloatingButton>
   );
 }

@@ -12,6 +12,7 @@ import IdeaPost from './IdeaPost';
 import style from './IdeasFeed.scss';
 import leo from '../../img/leo.jpg';
 import macready from '../../img/macready.jpg';
+import AddButton from '../../components/FAB';
 
 const Grid = styled.div`
   display: grid;
@@ -94,6 +95,7 @@ export default function IdeasFeed() {
         <div class="heading">
           <NavLink to="/">
             <Avatar src={leo} />
+            <AddButton />
           </NavLink>
           <div class="page-title">Heading</div>
         </div>
