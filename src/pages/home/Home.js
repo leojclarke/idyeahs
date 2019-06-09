@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import GlobalStyles from '../../misc/GlobalStyles';
 import { useSpring, animated } from 'react-spring';
 import logo from '../../img/logo.png';
@@ -29,6 +30,10 @@ const Logo = styled(animated.img)`
 
 const SignUpButton = styled(SubmitButton)``;
 
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+`;
+
 export default function Home() {
   const logoFadeIn = useSpring({
     opacity: 1,
@@ -45,8 +50,12 @@ export default function Home() {
       <GlobalStyles />
       <Logo src={logo} style={logoFadeIn} />
       <ButtonContainer>
-        <SubmitButton value="Log in" />
-        <SignUpButton style={signup} value="Sign up" />
+        <StyledNavLink to="/login">
+          <SubmitButton value="Log in" />
+        </StyledNavLink>
+        <StyledNavLink to="/signup">
+          <SignUpButton style={signup} value="Sign up" />
+        </StyledNavLink>
       </ButtonContainer>
     </HomeGrid>
   );

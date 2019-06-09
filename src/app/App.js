@@ -6,6 +6,8 @@ import { getLocal, setLocal } from '../utils/services';
 import GlobalStyles from '../misc/GlobalStyles';
 import mockIdeas from '../data/MockIdeasData';
 import Home from '../pages/home/Home';
+import UserLogin from '../pages/login/UserLogin';
+import SignUp from '../pages/signup/SignUp';
 
 const Grid = styled.div`
   display: grid;
@@ -63,7 +65,13 @@ export default function App() {
     setFilteredTags([...filteredTags, tag]);
   }
 
-  function handleUserLogin(event, history) {
+  function handleLogin(event, history) {
+    event.preventDefault();
+    setUser(event.target.username.value);
+    history.push('/');
+  }
+
+  function handleSignUp(event, history) {
     event.preventDefault();
     setUser(event.target.username.value);
     history.push('/');
@@ -77,15 +85,22 @@ export default function App() {
     <Router>
       <GlobalStyles />
       <Grid>
+        <Route exact path="/" render={() => <Home user={user} />} />
         <Route
           exact
-          path="/"
-          render={() => (
-            <>
-              <Home user={user} />
-            </>
+          path="/login"
+          render={props => (
+            <UserLogin onLogin={handleLogin} history={props.history} />
           )}
         />
+        <Route
+          exact
+          path="/signup"
+          render={props => (
+            <SignUp onSubmit={handleSignUp} history={props.history} />
+          )}
+        />
+
         {/* <Route
           exact
           path="/ideas"

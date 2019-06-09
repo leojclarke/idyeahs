@@ -16,7 +16,7 @@ library.add(faTimes, faArrowRight, faArrowLeft);
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 150px auto;
+  grid-template-rows: 120px 140px auto;
   padding: 10px;
   align-items: start;
   justify-items: center;
@@ -32,6 +32,10 @@ const Header = styled.header`
   justify-items: left;
 `;
 
+const Greeting = styled.div`
+  padding: 10px;
+`;
+
 const StyledForm = styled.form`
   display: grid;
   grid-template-rows: auto;
@@ -41,15 +45,27 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
 `;
 
-export default function UserLogin({ onLogin: handleLogin, history }) {
+const InlineLogo = styled.span`
+  font-family: Rubik;
+  letter-spacing: 0.1em;
+`;
+
+export default function Signup({ onLogin: handleLogin, history }) {
   return (
     <Grid>
       <Header>
         <StyledNavLink to="/">
           <Icon icon={faArrowLeft} />
         </StyledNavLink>
-        <h1>LOG IN</h1>
+        <h1>SIGN UP</h1>
       </Header>
+      <Greeting>
+        <p>
+          Hey, thank you for joining the <InlineLogo>IDYEAHS</InlineLogo>{' '}
+          community!
+        </p>
+        <p>Please fill out the details below to register your account.</p>
+      </Greeting>
       <StyledForm id="login" onSubmit={event => handleLogin(event, history)}>
         <Label
           form="login"
@@ -69,6 +85,9 @@ export default function UserLogin({ onLogin: handleLogin, history }) {
           }
           label="Enter your password"
         />
+        <Input name="password" placeholder="Password..." type="option" />
+        <Input name="password" placeholder="Password..." type="option" />
+
         <SubmitButton value="Log in" />
       </StyledForm>
     </Grid>

@@ -10,6 +10,11 @@ const StyledButton = styled.button`
   border-radius: 3px;
   border: 1px solid #6558f5;
   font-size: 17px;
+  text-decoration: none;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export default function SubmitButton({ value, style }) {
