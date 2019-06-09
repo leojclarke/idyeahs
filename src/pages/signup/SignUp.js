@@ -8,9 +8,9 @@ import {
   faArrowRight,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import SubmitButton from '../../components/form/SubmitButton';
 import Input from '../../components/form/Input';
 import Label from '../../components/form/Label';
+import Select from 'react-select';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
 
@@ -30,6 +30,18 @@ const Header = styled.header`
   width: 100%;
   align-items: left;
   justify-items: left;
+  color: #6558f5;
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  justify-content: flex-end;
+  color: #6558f5;
+  div {
+    padding-right: 10px;
+  }
 `;
 
 const Greeting = styled.div`
@@ -38,10 +50,13 @@ const Greeting = styled.div`
 
 const StyledForm = styled.form`
   display: grid;
+  width: 100%;
   grid-template-rows: auto;
 `;
 
 const StyledNavLink = styled(NavLink)`
+  display: flex;
+  align-items: baseline;
   text-decoration: none;
 `;
 
@@ -49,6 +64,37 @@ const InlineLogo = styled.span`
   font-family: Rubik;
   letter-spacing: 0.1em;
 `;
+
+const roles = [
+  { value: 'helpdesk-agent', label: 'helpdesk-agent' },
+  { value: 'manager', label: 'manager' },
+  { value: 'service-technician', label: 'service technician' },
+];
+
+const departments = [
+  { value: 'helpdesk', label: 'helpdesk' },
+  { value: 'sales', label: 'sales' },
+  { value: 'projects', label: 'projects' },
+];
+
+const customStyle = {
+  control: styles => ({ ...styles, backgroundColor: 'white' }),
+  container: styles => ({
+    ...styles,
+    marginBottom: '10px',
+    padding: '5px',
+    borderRadius: '3px',
+    border: '1px solid #6558f5',
+    fontSize: '0.8em',
+    lineHeight: '1.6rem',
+    color: 'darkslategrey',
+  }),
+  placeholder: styles => ({
+    ...styles,
+    color: 'lightslategray',
+    fontSize: '0.8rem',
+  }),
+};
 
 export default function Signup({ onLogin: handleLogin, history }) {
   return (
@@ -85,11 +131,27 @@ export default function Signup({ onLogin: handleLogin, history }) {
           }
           label="Enter your password"
         />
-        <Input name="password" placeholder="Password..." type="option" />
-        <Input name="password" placeholder="Password..." type="option" />
-
-        <SubmitButton value="Log in" />
+        <Select
+          options={roles}
+          styles={customStyle}
+          name="role"
+          placeholder="role"
+          label="role"
+        />
+        <Select
+          options={departments}
+          styles={customStyle}
+          name="department"
+          placeholder="department"
+          label="department"
+        />
       </StyledForm>
+      <Footer>
+        <StyledNavLink to="/signup-step-two">
+          <div>NEXT</div>
+          <Icon icon={faArrowRight} />
+        </StyledNavLink>
+      </Footer>
     </Grid>
   );
 }

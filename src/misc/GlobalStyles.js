@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-export default createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
@@ -10,10 +10,13 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: Roboto, sans-serif;
-    color: #2E2D24;
+    color: #6558f5;
     background: #fff;
-}`;
+  }
 
-export const Logo = styled.img`
-  width: 200px;
-`;
+  p {
+    margin: 0;
+    padding: 0;
+  }`;
+
+export default GlobalStyle;

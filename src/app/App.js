@@ -9,6 +9,8 @@ import Home from '../pages/home/Home';
 import IdeasFeed from '../pages/ideas/IdeasFeedNew';
 import UserLogin from '../pages/login/UserLogin';
 import SignUp from '../pages/signup/SignUp';
+import SignUpStepTwo from '../pages/signup/SignUpStepTwo';
+import SignUpSuccess from '../pages/signup/SignUpSuccess';
 
 const Grid = styled.div`
   display: grid;
@@ -101,7 +103,10 @@ export default function App() {
             <SignUp onSubmit={handleSignUp} history={props.history} />
           )}
         />
+        <Route exact path="/signup-step-two" component={SignUpStepTwo} />
+        <Route exact path="/signup-success" component={SignUpSuccess} />
         <Route exact path="/ideas" component={IdeasFeed} />
+
         {/* <Route
           exact
           path="/ideas/add"
