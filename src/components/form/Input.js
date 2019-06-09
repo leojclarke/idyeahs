@@ -2,12 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledInput = styled.input`
-  margin: 0 0 5px 0;
+  margin-bottom: 10px;
   padding: 5px;
-  border: 1px solid rebeccapurple;
-  font-size: 1.3em;
+  border-radius: 3px;
+  border: 1px solid #6558f5;
+  font-size: 0.8em;
   line-height: 1.6rem;
-  color: rebeccapurple;
+  color: darkslategrey;
+
+  ::placeholder {
+    color: lightslategrey;
+    font-size: 0.8rem;
+  }
 `;
 
 export default function Input({ name, placeholder, type }) {

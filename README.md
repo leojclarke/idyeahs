@@ -1,4 +1,4 @@
-# A React and MongoDB starter kit for neuefische students
+# An ideas app based on the React and MongoDB starter kit for neuefische students
 
 ## Installation
 1. Clone this repo and rename the folder
