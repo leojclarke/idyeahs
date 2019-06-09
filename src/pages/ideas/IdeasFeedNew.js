@@ -24,8 +24,6 @@ const Header = styled.header`
   border-bottom: 0.5px solid lightslategray;
   overflow: hidden;
   background-image: linear-gradient(to right bottom, #34cae2, #a3ded8);
-
-  z-index: 2;
 `;
 
 const Feed = styled.div`
