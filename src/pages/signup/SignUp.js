@@ -147,7 +147,7 @@ export default function Signup({ onLogin: handleLogin, history }) {
         />
       </StyledForm>
       <Footer>
-        <StyledNavLink to="/signup-2">
+        <StyledNavLink to="/signup-step-two">
           <div>NEXT</div>
           <Icon icon={faArrowRight} />
         </StyledNavLink>

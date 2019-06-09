@@ -40,19 +40,6 @@ const Header = styled.header`
   }
 `;
 
-const Footer = styled.footer`
-  display: flex;
-  padding: 10px;
-  width: 100%;
-  align-items: end;
-  justify-content: flex-end;
-  color: #6558f5;
-
-  div {
-    padding-right: 10px;
-  }
-`;
-
 const Greeting = styled.div`
   display: grid;
   grid-template-rows: repeat(2, auto);
@@ -109,7 +96,7 @@ export default function SignUpStepTwo() {
           }
           label="Enter a password"
         />
-        <StyledNavLink to="/">
+        <StyledNavLink to="/signup-success">
           <SubmitButton value="Sign up" />
         </StyledNavLink>
       </StyledForm>

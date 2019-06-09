@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
-import logo from '../../img/logo.png';
+import idyeahsLogoWhite from '../../img/idyeahsLogoWhite.png';
 import SubmitButton from '../../components/form/SubmitButton';
 
 const HomeGrid = styled.section`
@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <HomeGrid>
-      <Logo src={logo} style={logoFadeIn} />
+      <Logo src={idyeahsLogoWhite} style={logoFadeIn} />
       <ButtonContainer>
         <StyledNavLink to="/login">
           <SubmitButton value="Log in" />
