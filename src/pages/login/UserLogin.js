@@ -35,6 +35,7 @@ const Header = styled.header`
 const StyledForm = styled.form`
   display: grid;
   grid-template-rows: auto;
+  width: 100%;
 `;
 
 const StyledNavLink = styled(NavLink)`
