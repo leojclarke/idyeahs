@@ -13,7 +13,14 @@ const HomeGrid = styled.section`
   overflow: none;
   align-items: center;
   justify-items: center;
-  background: #a3ded8;
+  background-image: linear-gradient(
+    to right bottom,
+    #6558f5,
+    #008dff,
+    #00b0fb,
+    #34cae2,
+    #a3ded8
+  );
 `;
 
 const ButtonContainer = styled.section`
@@ -48,7 +55,9 @@ export default function Home() {
   return (
     <HomeGrid>
       <GlobalStyles />
-      <Logo src={logo} style={logoFadeIn} />
+      <StyledNavLink to="/ideas">
+        <Logo src={logo} style={logoFadeIn} />
+      </StyledNavLink>
       <ButtonContainer>
         <StyledNavLink to="/login">
           <SubmitButton value="Log in" />

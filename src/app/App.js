@@ -6,6 +6,7 @@ import { getLocal, setLocal } from '../utils/services';
 import GlobalStyles from '../misc/GlobalStyles';
 import mockIdeas from '../data/MockIdeasData';
 import Home from '../pages/home/Home';
+import IdeasFeed from '../pages/ideas/IdeasFeedNew';
 import UserLogin from '../pages/login/UserLogin';
 import SignUp from '../pages/signup/SignUp';
 
@@ -100,23 +101,8 @@ export default function App() {
             <SignUp onSubmit={handleSignUp} history={props.history} />
           )}
         />
-
+        <Route exact path="/ideas" component={IdeasFeed} />
         {/* <Route
-          exact
-          path="/ideas"
-          render={() => (
-            <>
-              <Header title={'Ideas'} />
-              <IdeasFeed
-                posts={ideas}
-                tagFilter={filteredTags}
-                onTagClick={handleTagClick}
-                resetFilter={resetFilter}
-              />
-            </>
-          )}
-        />
-        <Route
           exact
           path="/ideas/add"
           render={props => (
@@ -154,7 +140,6 @@ export default function App() {
             </>
           )}
         />
-
         <Route
           exact
           path="/feedback/add"
@@ -182,7 +167,7 @@ export default function App() {
               />
             </>
           )}
-        /> */}
+        />{' '} */}
       </Grid>
     </Router>
   );

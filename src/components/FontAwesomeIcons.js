@@ -5,6 +5,9 @@ import {
   faTimes,
   faArrowRight,
   faArrowLeft,
+  faLightbulb,
+  faComment,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
