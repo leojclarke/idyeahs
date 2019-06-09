@@ -5,8 +5,9 @@ const StyledLabel = styled.label`
   display: grid;
   padding-bottom: 5px;
   margin-bottom: 5px;
-  font-size: 0.7em;
-  color: rebeccapurple;
+  font-size: 1rem;
+  line-height: 2rem;
+  color: #6558f5;
 `;
 
 export default function Label({ form, label, content }) {

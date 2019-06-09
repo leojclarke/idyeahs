@@ -2,23 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import uid from 'uid';
-import { getLocal, setLocal } from './services';
-import GlobalStyles from './misc/GlobalStyles';
-import Header from './Header';
-import Footer from './Footer';
-import Home from './Home';
-import IdeasFeed from './pages/ideas/IdeasFeed';
-import IdeaDetails from './pages/ideas/IdeaDetails';
-import IdeaForm from './pages/ideas/CreateIdea';
-import UserLogin from './UserLogin';
-import mockIdeas from './MockIdeasData';
-import GallupTwelveQuestions from './Gallup12Questions';
-import FeedbackResultsPage from './FeedbackResults';
-import FeedbackForm from './FeedbackForm';
+import { getLocal, setLocal } from '../utils/services';
+import GlobalStyles from '../misc/GlobalStyles';
+import mockIdeas from '../data/MockIdeasData';
+import Home from '../pages/home/Home';
+import IdeasFeed from '../pages/ideas/IdeasFeedNew';
+import UserLogin from '../pages/login/UserLogin';
+import SignUp from '../pages/signup/SignUp';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 80px auto 70px;
+  grid-template-rows: auto;
   height: 100vh;
   color: white;
 `;
@@ -72,7 +66,13 @@ export default function App() {
     setFilteredTags([...filteredTags, tag]);
   }
 
-  function handleUserLogin(event, history) {
+  function handleLogin(event, history) {
+    event.preventDefault();
+    setUser(event.target.username.value);
+    history.push('/');
+  }
+
+  function handleSignUp(event, history) {
     event.preventDefault();
     setUser(event.target.username.value);
     history.push('/');
@@ -86,32 +86,23 @@ export default function App() {
     <Router>
       <GlobalStyles />
       <Grid>
+        <Route exact path="/" render={() => <Home user={user} />} />
         <Route
           exact
-          path="/"
-          render={() => (
-            <>
-              <Header title={'IDYEAHS'} />
-              <Home user={user} />
-            </>
+          path="/login"
+          render={props => (
+            <UserLogin onLogin={handleLogin} history={props.history} />
           )}
         />
         <Route
           exact
-          path="/ideas"
-          render={() => (
-            <>
-              <Header title={'Ideas'} />
-              <IdeasFeed
-                posts={ideas}
-                tagFilter={filteredTags}
-                onTagClick={handleTagClick}
-                resetFilter={resetFilter}
-              />
-            </>
+          path="/signup"
+          render={props => (
+            <SignUp onSubmit={handleSignUp} history={props.history} />
           )}
         />
-        <Route
+        <Route exact path="/ideas" component={IdeasFeed} />
+        {/* <Route
           exact
           path="/ideas/add"
           render={props => (
@@ -149,7 +140,6 @@ export default function App() {
             </>
           )}
         />
-
         <Route
           exact
           path="/feedback/add"
@@ -177,8 +167,7 @@ export default function App() {
               />
             </>
           )}
-        />
-        <Footer resetFilter={resetFilter} />
+        />{' '} */}
       </Grid>
     </Router>
   );
