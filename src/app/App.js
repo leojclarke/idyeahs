@@ -5,12 +5,12 @@ import uid from 'uid';
 import { getLocal, setLocal } from '../utils/services';
 import GlobalStyles from '../misc/GlobalStyles';
 import mockIdeas from '../data/MockIdeasData';
-import Home from '../pages/home/Home';
-import IdeasFeed from '../pages/ideas/IdeasFeedNew';
-import UserLogin from '../pages/login/UserLogin';
-import SignUp from '../pages/signup/SignUp';
-import SignUpStepTwo from '../pages/signup/SignUpStepTwo';
-import SignUpSuccess from '../pages/signup/SignUpSuccess';
+import Home from './pages/home/Home';
+import IdeasFeed from './pages/ideas/IdeasFeedNew';
+import UserLogin from './pages/login/UserLogin';
+import SignUp from './pages/signup/SignUp';
+import SignUpStepTwo from './pages/signup/SignUpStepTwo';
+import SignUpSuccess from './pages/signup/SignUpSuccess';
 
 const Grid = styled.div`
   display: grid;
@@ -88,7 +88,7 @@ export default function App() {
     <Router>
       <GlobalStyles />
       <Grid>
-        <Route exact path="/" render={() => <Home user={user} />} />
+        <Route exact path="/" component={Home} />
         <Route
           exact
           path="/login"
