@@ -4,7 +4,7 @@ const usersList = [
     firstname: 'Leo',
     lastname: 'Clarke',
     email: 'leo@idyeahs.com',
-    avatar: '../img/leo.jpg'
+    avatar: '../img/leo.jpg',
     pwd: '123',
   },
   {
@@ -12,7 +12,7 @@ const usersList = [
     firstname: 'R.J.',
     lastname: 'MacReady',
     email: 'macready@idyeahs.com',
-    avatar: '../img/macready.jpg'
+    avatar: '../img/macready.jpg',
     pwd: '123',
   },
 ];

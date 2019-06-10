@@ -6,11 +6,19 @@ import { getLocal, setLocal } from '../utils/services';
 import GlobalStyles from '../misc/GlobalStyles';
 import mockIdeas from '../data/MockIdeasData';
 import Home from './pages/home/Home';
+import UserProfile from './pages/user/UserProfile';
 import IdeasFeed from './pages/ideas/IdeasFeedNew';
+import IdeasDetails from './pages/ideas/IdeasDetailsNew';
+// import IdeaForm from './pages/ideas/SubmitIdea';
+// import IdeaDetails from './pages/ideas/IdeaDetails';
+// import FeedbackResultsPage from './pages/feedback/FeedbackResults';
+// import FeedbackForm from './pages/feedback/FeedbackForm';
 import UserLogin from './pages/login/UserLogin';
 import SignUp from './pages/signup/SignUp';
 import SignUpStepTwo from './pages/signup/SignUpStepTwo';
 import SignUpSuccess from './pages/signup/SignUpSuccess';
+import usersList from '../data/Users';
+import FeedbackQuestions from '../data/FeedbackQuestions';
 
 const Grid = styled.div`
   display: grid;
@@ -26,13 +34,15 @@ export default function App() {
     getLocal('responses') || Array(12).fill(0)
   );
   const [counter, setCounter] = useState(getLocal('counter') || 0);
-  const [user, setUser] = useState(getLocal('user') || null);
+  const [activeUser, setActiveUser] = useState(getLocal('activeUser') || null);
+  const [users, setUsers] = useState(getLocal('users') || usersList);
 
   useEffect(() => setLocal('ideas', ideas), [ideas]);
   useEffect(() => setLocal('responses', responses), [responses]);
   useEffect(() => setLocal('counter', counter), [counter]);
 
-  useEffect(() => setLocal('user', user), [user]);
+  useEffect(() => setLocal('activeUser', activeUser), [activeUser]);
+  useEffect(() => setLocal('users', users), [users]);
 
   function splitToArray(tagString) {
     return tagString.split(',').map(tag => tag.trim());
@@ -40,7 +50,7 @@ export default function App() {
 
   function handleIdeaSubmit(event, date, username, history) {
     event.preventDefault();
-    console.log('user:', username);
+    console.log('activeUser:', username);
     const form = event.target;
     const newIdea = {
       id: uid(),
@@ -70,13 +80,16 @@ export default function App() {
 
   function handleLogin(event, history) {
     event.preventDefault();
-    setUser(event.target.username.value);
-    history.push('/');
+    console.log('Users: ', users);
+    const { username } = event.target;
+    setActiveUser(username.value);
+    history.push('/ideas');
   }
 
   function handleSignUp(event, history) {
     event.preventDefault();
-    setUser(event.target.username.value);
+    setUsers();
+    setActiveUser(event.target.username.value);
     history.push('/');
   }
 
@@ -106,41 +119,34 @@ export default function App() {
         <Route exact path="/signup-step-two" component={SignUpStepTwo} />
         <Route exact path="/signup-success" component={SignUpSuccess} />
         <Route exact path="/ideas" component={IdeasFeed} />
+        <Route exact path="/ideas/details" component={IdeasDetails} />
+        <Route exact path="/user" component={UserProfile} />
 
         {/* <Route
           exact
           path="/ideas/add"
           render={props => (
-            <>
-              <Header title={'Add Idea'} />
-              <IdeaForm
-                onSubmit={handleIdeaSubmit}
-                username={user}
-                history={props.history}
-              />
-            </>
+            <IdeaForm
+              onSubmit={handleIdeaSubmit}
+              username={activeUser}
+              history={props.history}
+            />
           )}
         />
         <Route
           exact
           path="/ideas/details/:id"
-          render={props => (
-            <>
-              <Header title={'Ideas Details'} />
-              <IdeaDetails posts={ideas} {...props} />
-            </>
-          )}
+          render={props => <IdeaDetails posts={ideas} {...props} />}
         />
         <Route
           exact
           path="/feedback"
           render={() => (
             <>
-              <Header title={'Feedback'} />
               <FeedbackResultsPage
                 responses={responses}
                 counter={counter}
-                questions={GallupTwelveQuestions}
+                questions={FeedbackQuestions}
               />
             </>
           )}
@@ -149,30 +155,13 @@ export default function App() {
           exact
           path="/feedback/add"
           render={props => (
-            <>
-              <Header title={'Add Feedback'} />
-              <FeedbackForm
-                questions={GallupTwelveQuestions}
-                handleFeedbackSubmit={handleFeedbackSubmit}
-                history={props.history}
-              />
-            </>
+            <FeedbackForm
+              questions={FeedbackQuestions}
+              handleFeedbackSubmit={handleFeedbackSubmit}
+              history={props.history}
+            />
           )}
-        />
-        <Route
-          exact
-          path="/login"
-          render={props => (
-            <>
-              <Header title={'User Login'} />
-              <UserLogin
-                handleLogin={handleUserLogin}
-                history={props.history}
-                username={user}
-              />
-            </>
-          )}
-        />{' '} */}
+        /> */}
       </Grid>
     </Router>
   );

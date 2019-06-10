@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import Tag from './Tag';
-import { findIdeaByIndex } from '../../utils';
+import { findIdeaByIndex } from '../../../utils/utils';
 
 library.add(faTimes);
 
