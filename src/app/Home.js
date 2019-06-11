@@ -57,10 +57,10 @@ export default function Home() {
         <Logo src={logo} style={logoFadeIn} />
       </StyledNavLink>
       <ButtonContainer>
-        <StyledNavLink to="/login">
+        <StyledNavLink to="/ideas">
           <LoginButton value="Log in" />
         </StyledNavLink>
-        <StyledNavLink to="/signup">
+        <StyledNavLink to="/ideas">
           <SignUpButton value="Sign up" />
         </StyledNavLink>
       </ButtonContainer>
