@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
-import logo from '../../img/idyeahsLogoWhite.png';
-import SubmitButton from '../../components/form/SubmitButton';
+import logo from '../img/idyeahsLogoWhite.png';
+import SubmitButton from '../components/form/SubmitButton';
 
 const HomeGrid = styled.section`
   display: grid;
@@ -12,14 +12,7 @@ const HomeGrid = styled.section`
   overflow: none;
   align-items: center;
   justify-items: center;
-  background-image: linear-gradient(
-    to right bottom,
-    #6558f5,
-    #008dff,
-    #00b0fb,
-    #34cae2,
-    #a3ded8
-  );
+  background-image: linear-gradient(to right bottom, #008dff, #34cae2, #a3ded8);
 `;
 
 const ButtonContainer = styled.section`
@@ -37,8 +30,14 @@ const Logo = styled(animated.img)`
 
 const SignUpButton = styled(SubmitButton)`
   background: transparent;
-  border: 1px solid #6558f5;
-  color: #6558f5;
+  border: 1px solid #008dff;
+  color: #008dff;
+`;
+
+const LoginButton = styled(SubmitButton)`
+  background: white;
+  border: white;
+  color: #008dff;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -59,7 +58,7 @@ export default function Home() {
       </StyledNavLink>
       <ButtonContainer>
         <StyledNavLink to="/login">
-          <SubmitButton value="Log in" />
+          <LoginButton value="Log in" />
         </StyledNavLink>
         <StyledNavLink to="/signup">
           <SignUpButton value="Sign up" />

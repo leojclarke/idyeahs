@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Tag from './Tag';
+import Tag from './IdeaTag';
 
 const IdeaGrid = styled.div`
   display: grid;

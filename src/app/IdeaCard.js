@@ -3,16 +3,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
-  faLightbulb,
   faComment,
   faStar,
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
-// import IdeaPost from './IdeaPost';
-import style from './IdeasFeed.scss';
-import leo from '../../img/leo.jpg';
-import macready from '../../img/macready.jpg';
-import { CardAvatar, CommentAvatar } from './Avatar';
+import macready from '../img/macready.jpg';
+import { CardAvatar, CommentAvatar } from '../components/Avatar';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -75,6 +71,7 @@ const AuthorInfo = styled.div`
 `;
 
 const ContextElipsis = styled.div`
+  color: lightslategray;
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -97,11 +94,12 @@ const CardTagsContainer = styled.div`
 
 const CardTag = styled.span`
   list-style: none;
-  background: #6558f5;
+  background: #008dff;
   padding: 3px 6px;
   margin: 0px 5px 0px 0px;
   border-radius: 2px;
   font-size: 0.7em;
+  text-transform: uppercase;
 `;
 
 const CardStatsContainer = styled.div`
@@ -188,18 +186,14 @@ export function Card() {
       </CardHeader>
       <StyledLink to="ideas/details">
         <CardBody>
-          <h3>Normal Card</h3>
-          <p>
-            The primary task of a Spring is to move data from one state to
-            another. The optional from-prop only plays a role when the component
-            renders first, use the to-prop to update the spring with new values.
-          </p>
+          <h3>Everything</h3>
+          <p>"Everything Begins With An Idea."</p>
         </CardBody>
       </StyledLink>
       <CardTagsContainer>
-        <CardTag>sales</CardTag>
-        <CardTag>production</CardTag>
-        <CardTag>logistics</CardTag>
+        <CardTag>Earl Nightingale</CardTag>
+        <CardTag>Beginnings</CardTag>
+        <CardTag>Ideas</CardTag>
       </CardTagsContainer>
       <CardStatsContainer>
         <Icon icon={faStar} className="card-stats" />
