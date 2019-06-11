@@ -29,10 +29,10 @@ const StyledTag = styled.span`
 const IdeaDetailsLink = styled(NavLink)`
   color: white;
   text-decoration: none;
-  &.link,
-  .visited,
-  .hover,
-  .active {
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
   }
 `;
 

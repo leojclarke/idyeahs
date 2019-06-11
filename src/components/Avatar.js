@@ -5,7 +5,7 @@ const MainAvatar = styled.img`
   clip-path: circle(30px at center);
   width: 60px;
   margin: 10px;
-  border: 1.5px solid white;
+  border: 1px solid white;
   border-radius: 50%;
 `;
 
