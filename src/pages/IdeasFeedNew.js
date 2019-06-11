@@ -12,21 +12,22 @@ import {
 import style from './IdeasFeed.scss';
 import leo from '../../img/leo.jpg';
 import macready from '../../img/macready.jpg';
-import { AddButton } from '../../components/FAB';
-import { Card } from './IdeaCard';
+import { AddButton } from '../components/FAB';
+import { Card } from '../IdeaCard';
+import { Card2 } from './IdeaCard2';
 import { Avatar, CardAvatar } from './Avatar';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 17vh 83vh;
+  grid-template-rows: 18vh 82vh;
 `;
 
 const Header = styled.header`
   display: grid;
   grid-template-rows: 1fr 1fr;
-  border-bottom: 0.5px solid lightslategray;
+  border-bottom: 1px solid lightslategray;
   overflow: hidden;
-  background-image: linear-gradient(to right bottom, #34cae2, #a3ded8);
+  background: #008dff;
 `;
 
 const Feed = styled.div`
@@ -49,11 +50,11 @@ export default function IdeasFeed() {
             <Avatar src={leo} />
           </NavLink>
           <AddButton />
-          <div className="page-title">Heading</div>
+          <div className="page-title">Ideas Feed</div>
         </div>
 
         <div className="nav">
-          <div className="nav-item">
+          <div className="nav-item-active">
             <Icon icon={faLightbulb} />
           </div>
           <div className="nav-item">
@@ -66,7 +67,7 @@ export default function IdeasFeed() {
       </Header>
 
       <Feed>
-        <Card />
+        <Card2 />
         <Card />
         <Card />
         <Card />

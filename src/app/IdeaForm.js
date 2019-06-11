@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import Label from '../../components/Label';
-import Input from '../../components/Input';
-import TextArea from '../../components/TextArea';
-import SubmitButton from '../../components/SubmitButton';
+import Label from './components/form/Label';
+import Input from './components/form/Input';
+import TextArea from './components/form/TextArea';
+import SubmitButton from './components/form/SubmitButton';
 
 moment.locale('de');
 

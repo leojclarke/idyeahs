@@ -8,9 +8,9 @@ import {
   faArrowRight,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import Input from '../../components/form/Input';
-import Label from '../../components/form/Label';
-import SubmitButton from '../../components/form/SubmitButton';
+import Input from '../components/form/Input';
+import Label from '../components/form/Label';
+import SubmitButton from '../components/form/SubmitButton';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
 

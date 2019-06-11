@@ -43,6 +43,14 @@
   justify-items: center;
 }
 
+.nav-item-active {
+  display: grid;
+  width: 100%;
+  color: white;
+  align-items: center;
+  justify-items: center;
+}
+
 .card {
   display: grid;
   grid-template-rows: repeat(4, auto);
@@ -83,6 +91,7 @@
   align-items: flex-start;
   justify-content: space-evenly;
   margin-right: 20px;
+  color: #efefef;
 }
 
 .card-body {

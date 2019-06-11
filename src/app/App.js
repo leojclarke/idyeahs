@@ -5,20 +5,9 @@ import uid from 'uid';
 import { getLocal, setLocal } from '../utils/services';
 import GlobalStyles from '../misc/GlobalStyles';
 import mockIdeas from '../data/MockIdeasData';
-import Home from './pages/home/Home';
-import UserProfile from './pages/user/UserProfile';
-import IdeasFeed from './pages/ideas/IdeasFeedNew';
-import IdeasDetails from './pages/ideas/IdeasDetailsNew';
-// import IdeaForm from './pages/ideas/SubmitIdea';
-// import IdeaDetails from './pages/ideas/IdeaDetails';
-// import FeedbackResultsPage from './pages/feedback/FeedbackResults';
-// import FeedbackForm from './pages/feedback/FeedbackForm';
-import UserLogin from './pages/login/UserLogin';
-import SignUp from './pages/signup/SignUp';
-import SignUpStepTwo from './pages/signup/SignUpStepTwo';
-import SignUpSuccess from './pages/signup/SignUpSuccess';
 import usersList from '../data/Users';
-import FeedbackQuestions from '../data/FeedbackQuestions';
+import Home from './Home';
+import IdeasFeed from './IdeasFeedNew';
 
 const Grid = styled.div`
   display: grid;
@@ -102,66 +91,7 @@ export default function App() {
       <GlobalStyles />
       <Grid>
         <Route exact path="/" component={Home} />
-        <Route
-          exact
-          path="/login"
-          render={props => (
-            <UserLogin onLogin={handleLogin} history={props.history} />
-          )}
-        />
-        <Route
-          exact
-          path="/signup"
-          render={props => (
-            <SignUp onSubmit={handleSignUp} history={props.history} />
-          )}
-        />
-        <Route exact path="/signup-step-two" component={SignUpStepTwo} />
-        <Route exact path="/signup-success" component={SignUpSuccess} />
         <Route exact path="/ideas" component={IdeasFeed} />
-        <Route exact path="/ideas/details" component={IdeasDetails} />
-        <Route exact path="/user" component={UserProfile} />
-
-        {/* <Route
-          exact
-          path="/ideas/add"
-          render={props => (
-            <IdeaForm
-              onSubmit={handleIdeaSubmit}
-              username={activeUser}
-              history={props.history}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/ideas/details/:id"
-          render={props => <IdeaDetails posts={ideas} {...props} />}
-        />
-        <Route
-          exact
-          path="/feedback"
-          render={() => (
-            <>
-              <FeedbackResultsPage
-                responses={responses}
-                counter={counter}
-                questions={FeedbackQuestions}
-              />
-            </>
-          )}
-        />
-        <Route
-          exact
-          path="/feedback/add"
-          render={props => (
-            <FeedbackForm
-              questions={FeedbackQuestions}
-              handleFeedbackSubmit={handleFeedbackSubmit}
-              history={props.history}
-            />
-          )}
-        /> */}
       </Grid>
     </Router>
   );

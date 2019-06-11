@@ -12,7 +12,7 @@ import {
 import style from './IdeasFeed.scss';
 import leo from '../../img/leo.jpg';
 import macready from '../../img/macready.jpg';
-import AddButton, { CommentButton } from '../../components/FAB';
+import AddButton, { CommentButton } from '../components/FAB';
 import { Card, CardDetail } from './IdeaCard';
 import { Avatar, CardAvatar } from './Avatar';
 
