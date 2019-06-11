@@ -8,11 +8,13 @@ import {
   faStar,
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
-import IdeaPost from './IdeaPost';
+// import IdeaPost from './IdeaPost';
 import style from './IdeasFeed.scss';
 import leo from '../../img/leo.jpg';
 import macready from '../../img/macready.jpg';
-import AddButton from '../../components/FAB';
+import { AddButton } from '../../components/FAB';
+import { Card } from './IdeaCard';
+import { Avatar, CardAvatar } from './Avatar';
 
 const Grid = styled.div`
   display: grid;
@@ -38,76 +40,26 @@ const Feed = styled.div`
   }
 `;
 
-const Avatar = styled.img`
-  clip-path: circle(25px at center);
-  width: 50px;
-  margin: 10px;
-  border: 1.5px solid #6558f5;
-  border-radius: 50%;
-`;
-
-const CardAvatar = styled(Avatar)`
-  clip-path: circle(20px at center);
-  width: 40px;
-  margin-left: 20px;
-`;
-
-const Card = () => {
-  return (
-    <section class="card">
-      <div class="card-header">
-        <CardAvatar src={macready} />
-        <div class="card-detail">
-          <div class="author">RJ MacReady</div>
-          <div class="time">12 June 2019 • 13:56</div>
-        </div>
-        <div className="context">
-          <Icon icon={faEllipsisH} />
-        </div>
-      </div>
-      <div class="card-body">
-        <h3>Card Title</h3>
-        <p>
-          The primary task of a Spring is to move data from one state to
-          another. The optional from-prop only plays a role when the component
-          renders first, use the to-prop to update the spring with new values.
-        </p>
-      </div>
-      <div className="card-tags-container">
-        <span className="card--tag">sales</span>
-        <span className="card--tag">production</span>
-        <span className="card--tag">logistics</span>
-      </div>
-      <div className="card-stats-container">
-        <Icon icon={faStar} className="card-stats" />
-        <span className="card-stats">2</span>
-        <Icon icon={faComment} className="card-stats" />
-        <span className="card-stats">0</span>
-      </div>
-    </section>
-  );
-};
-
 export default function IdeasFeed() {
   return (
     <Grid>
       <Header>
-        <div class="heading">
+        <div className="heading">
           <NavLink to="/">
             <Avatar src={leo} />
-            <AddButton />
           </NavLink>
-          <div class="page-title">Heading</div>
+          <AddButton />
+          <div className="page-title">Heading</div>
         </div>
 
-        <div class="nav">
-          <div class="nav-item">
+        <div className="nav">
+          <div className="nav-item">
             <Icon icon={faLightbulb} />
           </div>
-          <div class="nav-item">
+          <div className="nav-item">
             <Icon icon={faComment} />
           </div>
-          <div class="nav-item">
+          <div className="nav-item">
             <Icon icon={faStar} />
           </div>
         </div>

@@ -40,6 +40,11 @@ const StyledForm = styled.form`
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
+  &:active,
+  :visited,
+  :focus-within {
+    color: red;
+  }
 `;
 
 export default function UserLogin({ onLogin: handleLogin, history }) {
@@ -55,11 +60,7 @@ export default function UserLogin({ onLogin: handleLogin, history }) {
         <Label
           form="login"
           content={
-            <Input
-              name="username"
-              placeholder="Email or username..."
-              type="text"
-            />
+            <Input name="username" placeholder="Username..." type="text" />
           }
           label="Enter your email or username"
         />
