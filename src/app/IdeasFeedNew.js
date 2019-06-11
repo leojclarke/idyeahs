@@ -1,29 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import {
-  faLightbulb,
-  faComment,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons';
-import style from './IdeasFeed.scss';
-import leo from '../img/leo.jpg';
-import { AddButton } from '../components/FAB';
-import { Card } from './IdeaCard';
-import { Avatar } from '../components/Avatar';
+import Header from './Header';
+import IdeaCard from './IdeaCard';
 
 const Grid = styled.div`
   display: grid;
   grid-template-rows: 18vh 82vh;
-`;
-
-const Header = styled.header`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  border-bottom: 1px solid lightslategray;
-  overflow: hidden;
-  background: #008dff;
 `;
 
 const Feed = styled.div`
@@ -31,41 +13,24 @@ const Feed = styled.div`
   grid-template-rows: auto;
   background: white;
   overflow: scroll;
-
-  h3 {
-    margin: 0;
-  }
+  color: black;
 `;
 
-export default function IdeasFeed() {
+export default function IdeasFeed({ posts }) {
   return (
     <Grid>
-      <Header>
-        <div className="heading">
-          <NavLink to="/">
-            <Avatar src={leo} />
-          </NavLink>
-          <AddButton />
-          <div className="page-title">Ideas Feed</div>
-        </div>
-
-        <div className="nav">
-          <div className="nav-item-active">
-            <Icon icon={faLightbulb} />
-          </div>
-          <div className="nav-item">
-            <Icon icon={faComment} />
-          </div>
-          <div className="nav-item">
-            <Icon icon={faStar} />
-          </div>
-        </div>
-      </Header>
-
+      <Header heading="Ideas Feed" />
       <Feed>
-        <Card />
-        <Card />
-        <Card />
+        {posts.map(post => (
+          <IdeaCard
+            key={post.id}
+            title={post.title}
+            text={post.text}
+            tags={post.tags}
+            timestamp={post.timestamp}
+            author={post.author}
+          />
+        ))}
       </Feed>
     </Grid>
   );

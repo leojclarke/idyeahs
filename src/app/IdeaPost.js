@@ -75,7 +75,6 @@ export default function IdeaPost({
   username,
   onTagClick,
 }) {
-  console.log('timestamp:', timestamp);
   return (
     <IdeaGrid>
       <IdeaContainer>

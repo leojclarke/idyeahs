@@ -91,7 +91,7 @@ export default function App() {
       <GlobalStyles />
       <Grid>
         <Route exact path="/" component={Home} />
-        <Route exact path="/ideas" component={IdeasFeed} />
+        <Route exact path="/ideas" render={() => <IdeasFeed posts={ideas} />} />
       </Grid>
     </Router>
   );

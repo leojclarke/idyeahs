@@ -5,7 +5,7 @@ const MainAvatar = styled.img`
   clip-path: circle(30px at center);
   width: 60px;
   margin: 10px;
-  border: 1.5px solid white;
+  border: 1px solid white;
   border-radius: 50%;
 `;
 
@@ -25,14 +25,14 @@ const SmallAvatar = styled.img`
   border-radius: 50%;
 `;
 
-export function Avatar({ src }) {
-  return <MainAvatar src={src} />;
+export function Avatar({ src, alt }) {
+  return <MainAvatar src={src} alt={alt} />;
 }
 
-export function CardAvatar({ src }) {
-  return <MediumAvatar src={src} />;
+export function CardAvatar({ src, alt }) {
+  return <MediumAvatar src={src} alt={alt} />;
 }
 
-export function CommentAvatar({ src }) {
-  return <SmallAvatar src={src} />;
+export function CommentAvatar({ src, alt }) {
+  return <SmallAvatar src={src} alt={alt} />;
 }
