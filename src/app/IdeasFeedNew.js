@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-
-import style from './IdeasFeed.scss';
-import { AddButton } from '../components/FAB';
-import { Card } from './IdeaCard';
-import { Avatar } from '../components/Avatar';
 import Header from './Header';
+import IdeaCard from './IdeaCard';
 
 const Grid = styled.div`
   display: grid;
@@ -21,11 +16,22 @@ const Feed = styled.div`
   color: black;
 `;
 
-export default function IdeasFeed() {
+export default function IdeasFeed({ posts }) {
   return (
     <Grid>
       <Header heading="Ideas Feed" />
-      <Feed />
+      <Feed>
+        {posts.map(post => (
+          <IdeaCard
+            key={post.id}
+            title={post.title}
+            text={post.text}
+            tags={post.tags}
+            timestamp={post.timestamp}
+            author={post.author}
+          />
+        ))}
+      </Feed>
     </Grid>
   );
 }

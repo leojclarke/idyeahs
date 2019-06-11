@@ -44,14 +44,6 @@ export default function IdeasFeed({
 }) {
   return (
     <StyledSection>
-      {tagFilter && (
-        <FilterTitle>
-          {tagFilter.map(tagName => (
-            <StyledTag key={tagName.id}>{tagName}</StyledTag>
-          ))}
-          <FontAwesomeIcon icon="times" onClick={resetFilter} />
-        </FilterTitle>
-      )}
       {posts
         .filter(post => post.tags.toString().includes(tagFilter))
         .map(post => (
@@ -62,7 +54,7 @@ export default function IdeasFeed({
               text={post.text}
               tags={post.tags}
               timestamp={post.timestamp}
-              username={post.username}
+              author={post.username}
               onTagClick={onTagClick}
             />
           </IdeaDetailsLink>
