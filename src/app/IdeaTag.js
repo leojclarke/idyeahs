@@ -12,5 +12,5 @@ const StyledTag = styled.span`
 `;
 
 export default function Tag({ tagName }) {
-  return <StyledTag key={tagName.id}>{tagName}</StyledTag>;
+  return <StyledTag>{tagName}</StyledTag>;
 }

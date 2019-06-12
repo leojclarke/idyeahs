@@ -50,7 +50,7 @@ const Link = styled(NavLink)`
 export function AddButton() {
   return (
     <StyledFloatingButton>
-      <Link to="/">
+      <Link to="/ideas/add">
         <FontAwesomeIcon icon={faPlus} size="lg" />
       </Link>
     </StyledFloatingButton>
