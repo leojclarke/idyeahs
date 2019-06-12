@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import uid from 'uid';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,6 +9,7 @@ import {
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
 import { CardAvatar } from '../components/Avatar';
+import defaultAvatar from '../img/defaultAvatar.png';
 import Tag from './IdeaTag';
 
 const StyledLink = styled(Link)`
@@ -98,7 +100,10 @@ export default function Card({ title, text, tags, timestamp, author }) {
     <CardContainer>
       <CardHeader>
         <StyledLink to="/user" className="card-header">
-          <CardAvatar src={author.avatar.src} alt={author.avatar.alt} />
+          <CardAvatar
+            src={author.avatar.src || defaultAvatar}
+            alt={author.avatar.alt}
+          />
         </StyledLink>
         <CardInfo>
           <StyledLink to="/user">
@@ -122,7 +127,7 @@ export default function Card({ title, text, tags, timestamp, author }) {
         </CardBody>
       </StyledLink>
       <CardTagsContainer>
-        {tags && tags.map(tag => <Tag key={tag} tagName={tag} />)}
+        {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
       </CardTagsContainer>
       <CardStatsContainer>
         <Icon icon={faStar} className="card-stats" />

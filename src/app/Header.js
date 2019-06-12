@@ -55,12 +55,12 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function Header({ heading }) {
+export default function Header({ heading, activeUser }) {
   return (
     <>
       <StyledHeader>
         <StyledNavLink to="/">
-          <Avatar src={defaultAvatar} />
+          <Avatar src={activeUser.avatar.src || defaultAvatar} />
         </StyledNavLink>
         <Heading>{heading}</Heading>
 

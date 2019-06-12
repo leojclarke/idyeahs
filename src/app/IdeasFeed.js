@@ -1,64 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import IdeaPost from './IdeaPost';
+import Header from './Header';
+import IdeaCard from './IdeaCard';
 
-library.add(faTimes);
+const MainGrid = styled.div`
+  display: grid;
+  grid-template-rows: 18vh 82vh;
+`;
 
-const StyledSection = styled.div`
-  padding: 10px;
+const FeedGrid = styled.div`
+  display: grid;
+  grid-template-rows: auto;
+  background: white;
   overflow: scroll;
+  color: black;
 `;
 
-const FilterTitle = styled.div`
-  color: rebeccapurple;
-`;
-
-const StyledTag = styled.span`
-  padding: 3px 6px;
-  margin-right: 5px;
-  background: #7fb7be;
-  color: white;
-  border-radius: 2px;
-  font-size: 0.7em;
-`;
-
-const IdeaDetailsLink = styled(NavLink)`
-  color: white;
-  text-decoration: none;
-  a:link,
-  a:visited,
-  a:hover,
-  a:active {
-  }
-`;
-
-export default function IdeasFeed({
-  posts,
-  tagFilter,
-  onTagClick,
-  resetFilter,
-}) {
+export default function IdeasFeed({ posts, activeUser }) {
   return (
-    <StyledSection>
-      {posts
-        .filter(post => post.tags.toString().includes(tagFilter))
-        .map(post => (
-          <IdeaDetailsLink to={`/ideas/details/${post.id}`} key={post.id}>
-            <IdeaPost
-              key={post.id}
-              title={post.title}
-              text={post.text}
-              tags={post.tags}
-              timestamp={post.timestamp}
-              author={post.username}
-              onTagClick={onTagClick}
-            />
-          </IdeaDetailsLink>
+    <MainGrid>
+      <Header heading="Ideas Feed" activeUser={activeUser} />
+      <FeedGrid>
+        {posts.map(post => (
+          <IdeaCard
+            key={post.id}
+            title={post.title}
+            text={post.text}
+            tags={post.tags}
+            timestamp={post.timestamp}
+            author={post.author}
+          />
         ))}
-    </StyledSection>
+      </FeedGrid>
+    </MainGrid>
   );
 }
