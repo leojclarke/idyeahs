@@ -124,7 +124,6 @@ export default function Card({
     setDeleteModalVisible(!isDeleteModalVisible);
     setContextMenuVisible(false);
   }
-
   return (
     <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
       {isContextMenuVisible && (

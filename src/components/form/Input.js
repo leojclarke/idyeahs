@@ -16,6 +16,13 @@ const StyledInput = styled.input`
   }
 `;
 
-export default function Input({ name, placeholder, type }) {
-  return <StyledInput name={name} placeholder={placeholder} type={type} />;
+export default function Input({ name, placeholder, type, value }) {
+  return (
+    <StyledInput
+      name={name}
+      placeholder={placeholder}
+      type={type}
+      defaultValue={value}
+    />
+  );
 }

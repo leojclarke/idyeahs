@@ -68,7 +68,9 @@ export default function ContextMenu({
         <MenuIcon onClick={() => history.push(`/ideas/${id}/edit`)}>
           <Icon icon={faPen} />
         </MenuIcon>
-        <MenuOption>Edit post</MenuOption>
+        <MenuOption onClick={() => history.push(`/ideas/${id}/edit`)}>
+          Edit post
+        </MenuOption>
         <CloseIcon icon={faTimes} onClick={onContextClose} />
 
         <MenuIcon onClick={onDeleteModalClick}>

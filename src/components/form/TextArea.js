@@ -7,9 +7,16 @@ const StyledTextArea = styled.textarea`
   height: 160px;
   font-size: 1.3em;
   border: 1px solid rebeccapurple;
+  border-radius: 3px;
   color: rebeccapurple;
 `;
 
-export default function TextArea({ name, placeholder, type }) {
-  return <StyledTextArea name={name} placeholder={placeholder} type={type} />;
+export default function TextArea({ name, placeholder, value }) {
+  return (
+    <StyledTextArea
+      name={name}
+      placeholder={placeholder}
+      defaultValue={value}
+    />
+  );
 }

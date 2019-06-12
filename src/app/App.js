@@ -10,6 +10,7 @@ import usersList from '../data/Users';
 import Home from './Home';
 import IdeasFeed from './IdeasFeed';
 import IdeaForm from './IdeaForm';
+import IdeaEdit from './IdeaEdit';
 
 const Grid = styled.div`
   display: grid;
@@ -34,18 +35,14 @@ export default function App() {
   useEffect(() => setLocal('responses', responses), [responses]);
   useEffect(() => setLocal('counter', counter), [counter]);
 
-  function handleIdeaSubmit(newIdea, history) {
-    setIdeas([newIdea, ...ideas]);
+  function handleIdeaSubmit(newIdeas, history) {
+    setIdeas(newIdeas);
     history.push('/ideas');
   }
 
   function handleIdeaDelete(id, history) {
-    console.log('ID: ', id);
     const index = findIdeaByIndex(id, ideas);
-    console.log('Idea to delete: ', ideas[index]);
     setIdeas([...ideas.slice(0, index), ...ideas.slice(index + 1)]);
-    console.log('Ideas: ', ideas);
-
     history.push('/ideas');
   }
 
@@ -107,6 +104,20 @@ export default function App() {
               onIdeaSubmit={handleIdeaSubmit}
               activeUser={activeUser}
               history={props.history}
+              posts={ideas}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/ideas/:id/edit"
+          render={props => (
+            <IdeaEdit
+              posts={ideas}
+              id={props.match.params.id}
+              history={props.history}
+              onIdeaEdit={handleIdeaSubmit}
+              editor={activeUser}
             />
           )}
         />
