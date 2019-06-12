@@ -13,6 +13,7 @@ import { CardAvatar } from '../components/Avatar';
 import defaultAvatar from '../img/defaultAvatar.png';
 import Tag from './IdeaTag';
 import ContextMenu from './ContextMenu';
+import DeleteModal from './DeleteModal';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -98,23 +99,51 @@ const CardStats = styled.span`
 `;
 
 export default function Card({
+  id,
   title,
   text,
   tags,
   timestamp,
   author,
-  onContextClick,
+  onIdeaDelete,
+  history,
 }) {
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
+  const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
 
   function handleContextMenuVisible() {
     setContextMenuVisible(!isContextMenuVisible);
   }
 
+  function handleClearScreen() {
+    setContextMenuVisible(false);
+    setDeleteModalVisible(false);
+  }
+
+  function handleDeleteModalVisible() {
+    setDeleteModalVisible(!isDeleteModalVisible);
+    setContextMenuVisible(false);
+  }
+
   return (
     <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
       {isContextMenuVisible && (
-        <ContextMenu onContextClose={handleContextMenuVisible} />
+        <ContextMenu
+          id={id}
+          onContextClose={handleContextMenuVisible}
+          onDeleteModalClick={handleDeleteModalVisible}
+          onIdeaDelete={onIdeaDelete}
+          history={history}
+        />
+      )}
+
+      {isDeleteModalVisible && (
+        <DeleteModal
+          id={id}
+          onClearScreen={handleClearScreen}
+          onIdeaDelete={onIdeaDelete}
+          history={history}
+        />
       )}
 
       <CardContainer>

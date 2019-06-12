@@ -16,7 +16,13 @@ const FeedGrid = styled.div`
   color: black;
 `;
 
-export default function IdeasFeed({ posts, activeUser, onContextClick }) {
+export default function IdeasFeed({
+  posts,
+  activeUser,
+  onContextClick,
+  onIdeaDelete,
+  history,
+}) {
   return (
     <>
       <MainGrid>
@@ -25,12 +31,15 @@ export default function IdeasFeed({ posts, activeUser, onContextClick }) {
           {posts.map(post => (
             <IdeaCard
               key={post.id}
+              id={post.id}
               title={post.title}
               text={post.text}
               tags={post.tags}
               timestamp={post.timestamp}
               author={post.author}
               onContextClick={onContextClick}
+              onIdeaDelete={onIdeaDelete}
+              history={history}
             />
           ))}
         </FeedGrid>

@@ -54,15 +54,24 @@ const CloseIcon = styled(Icon)`
   margin: 10px 10px 0 0;
 `;
 
-export default function ContextMenu({ onContextClose }) {
+export default function ContextMenu({
+  id,
+  onIdeaDelete,
+  onContextClose,
+  onDeleteModalClick,
+  history,
+}) {
   return (
     <>
       <Blur onClick={onContextClose} />
       <ContextMenuContainer>
-        <MenuIcon icon={faPen} />
+        <MenuIcon
+          icon={faPen}
+          onClick={() => history.push(`/ideas/${id}/edit`)}
+        />
         <MenuOption>Edit post</MenuOption>
         <CloseIcon icon={faTimes} onClick={onContextClose} />
-        <MenuIcon icon={faTrashAlt} />
+        <MenuIcon icon={faTrashAlt} onClick={onDeleteModalClick} />
         <MenuOption>Delete post</MenuOption>
       </ContextMenuContainer>
     </>

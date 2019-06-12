@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { getLocal, setLocal } from '../utils/services';
+import { findIdeaByIndex } from '../utils/utils';
 import GlobalStyles from '../misc/GlobalStyles';
 import aUser from '../data/ActiveUser';
 import mockIdeas from '../data/MockIdeasData';
@@ -35,6 +36,16 @@ export default function App() {
 
   function handleIdeaSubmit(newIdea, history) {
     setIdeas([newIdea, ...ideas]);
+    history.push('/ideas');
+  }
+
+  function handleIdeaDelete(id, history) {
+    console.log('ID: ', id);
+    const index = findIdeaByIndex(id, ideas);
+    console.log('Idea to delete: ', ideas[index]);
+    setIdeas([...ideas.slice(0, index), ...ideas.slice(index + 1)]);
+    console.log('Ideas: ', ideas);
+
     history.push('/ideas');
   }
 
@@ -78,7 +89,14 @@ export default function App() {
         <Route
           exact
           path="/ideas"
-          render={() => <IdeasFeed posts={ideas} activeUser={activeUser} />}
+          render={props => (
+            <IdeasFeed
+              posts={ideas}
+              activeUser={activeUser}
+              onIdeaDelete={handleIdeaDelete}
+              history={props.history}
+            />
+          )}
         />
 
         <Route
