@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { getLocal, setLocal } from '../utils/services';
+import { findIdeaByIndex } from '../utils/utils';
 import GlobalStyles from '../misc/GlobalStyles';
 import aUser from '../data/ActiveUser';
 import mockIdeas from '../data/MockIdeasData';
@@ -9,6 +10,7 @@ import usersList from '../data/Users';
 import Home from './Home';
 import IdeasFeed from './IdeasFeed';
 import IdeaForm from './IdeaForm';
+import IdeaEdit from './IdeaEdit';
 
 const Grid = styled.div`
   display: grid;
@@ -33,8 +35,14 @@ export default function App() {
   useEffect(() => setLocal('responses', responses), [responses]);
   useEffect(() => setLocal('counter', counter), [counter]);
 
-  function handleIdeaSubmit(newIdea, history) {
-    setIdeas([newIdea, ...ideas]);
+  function handleIdeaSubmit(newIdeas, history) {
+    setIdeas(newIdeas);
+    history.push('/ideas');
+  }
+
+  function handleIdeaDelete(id, history) {
+    const index = findIdeaByIndex(id, ideas);
+    setIdeas([...ideas.slice(0, index), ...ideas.slice(index + 1)]);
     history.push('/ideas');
   }
 
@@ -78,7 +86,14 @@ export default function App() {
         <Route
           exact
           path="/ideas"
-          render={() => <IdeasFeed posts={ideas} activeUser={activeUser} />}
+          render={props => (
+            <IdeasFeed
+              posts={ideas}
+              activeUser={activeUser}
+              onIdeaDelete={handleIdeaDelete}
+              history={props.history}
+            />
+          )}
         />
 
         <Route
@@ -89,6 +104,20 @@ export default function App() {
               onIdeaSubmit={handleIdeaSubmit}
               activeUser={activeUser}
               history={props.history}
+              posts={ideas}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/ideas/:id/edit"
+          render={props => (
+            <IdeaEdit
+              posts={ideas}
+              id={props.match.params.id}
+              history={props.history}
+              onIdeaEdit={handleIdeaSubmit}
+              editor={activeUser}
             />
           )}
         />

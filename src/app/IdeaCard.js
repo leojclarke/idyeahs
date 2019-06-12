@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import uid from 'uid';
-import { Link } from 'react-router-dom';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,17 +12,7 @@ import { CardAvatar } from '../components/Avatar';
 import defaultAvatar from '../img/defaultAvatar.png';
 import Tag from './IdeaTag';
 import ContextMenu from './ContextMenu';
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: rgba(12, 2, 1, 0.8);
-  &:active,
-  :visited,
-  :focus-within {
-    text-decoration: none;
-    color: rgba(12, 2, 1, 0.8);
-  }
-`;
+import DeleteModal from './DeleteModal';
 
 const CardContainer = styled.section`
   display: grid;
@@ -98,39 +87,62 @@ const CardStats = styled.span`
 `;
 
 export default function Card({
+  id,
   title,
   text,
   tags,
   timestamp,
   author,
-  onContextClick,
+  onIdeaDelete,
+  history,
 }) {
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
+  const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
 
   function handleContextMenuVisible() {
     setContextMenuVisible(!isContextMenuVisible);
   }
 
+  function handleClearScreen() {
+    setContextMenuVisible(false);
+    setDeleteModalVisible(false);
+  }
+
+  function handleDeleteModalVisible() {
+    setDeleteModalVisible(!isDeleteModalVisible);
+    setContextMenuVisible(false);
+  }
   return (
     <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
       {isContextMenuVisible && (
-        <ContextMenu onContextClose={handleContextMenuVisible} />
+        <ContextMenu
+          id={id}
+          onContextClose={handleContextMenuVisible}
+          onDeleteModalClick={handleDeleteModalVisible}
+          onIdeaDelete={onIdeaDelete}
+          history={history}
+        />
+      )}
+
+      {isDeleteModalVisible && (
+        <DeleteModal
+          id={id}
+          onClearScreen={handleClearScreen}
+          onIdeaDelete={onIdeaDelete}
+          history={history}
+        />
       )}
 
       <CardContainer>
         <CardHeader>
-          <StyledLink to="/user" className="card-header">
-            <CardAvatar
-              src={author.avatar.src || defaultAvatar}
-              alt={author.avatar.alt}
-            />
-          </StyledLink>
+          <CardAvatar
+            src={author.avatar.src || defaultAvatar}
+            alt={author.avatar.alt}
+          />
           <CardInfo>
-            <StyledLink to="/user">
-              <Author>
-                {author.firstname} {author.lastname}
-              </Author>
-            </StyledLink>
+            <Author>
+              {author.firstname} {author.lastname}
+            </Author>
             <Date>{timestamp}</Date>
           </CardInfo>
 
@@ -138,12 +150,10 @@ export default function Card({
             <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
           </ContextElipsis>
         </CardHeader>
-        <StyledLink to="ideas/details">
-          <CardBody>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </CardBody>
-        </StyledLink>
+        <CardBody>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </CardBody>
         <CardTagsContainer>
           {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
         </CardTagsContainer>

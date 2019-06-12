@@ -6,6 +6,7 @@ import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { findIdeaByIndex } from '../utils/utils';
 
 import Label from '../components/form/Label';
 import Input from '../components/form/Input';
@@ -58,28 +59,35 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
+export default function IdeaEdit({ posts, id, onIdeaEdit, history, editor }) {
   const [date, setDate] = useState(moment().format('D MMMM, HH:MM'));
+
+  const ideaId = findIdeaByIndex(id, posts);
+
+  const { title, text, tags } = posts[ideaId];
 
   function splitToArray(tagString) {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleFormSubmit(event, date, activeUser, history) {
+  function handleFormSubmit(event, date, editor, history) {
     event.preventDefault();
+
     const form = event.target;
+    const editedIdea = {
+      id: uid(),
+      title: form.title.value,
+      text: form.text.value,
+      tags: splitToArray(form.tags.value),
+      timestamp: date,
+      author: editor,
+    };
     const newIdeas = [
-      {
-        id: uid(),
-        title: form.title.value,
-        text: form.text.value,
-        tags: splitToArray(form.tags.value),
-        timestamp: date,
-        author: activeUser,
-      },
-      ...posts,
+      ...posts.slice(0, ideaId),
+      editedIdea,
+      ...posts.slice(ideaId + 1),
     ];
-    onIdeaSubmit(newIdeas, history);
+    onIdeaEdit(newIdeas, history);
   }
 
   return (
@@ -88,46 +96,42 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
         <StyledNavLink to="/ideas">
           <Icon icon={faArrowLeft} />
         </StyledNavLink>
-        <PageTitle>ADD IDEA</PageTitle>
+        <PageTitle>Edit "{title}"</PageTitle>
       </Header>
       <Main>
         <StyledForm
-          id="createIdea"
+          id="editIdea"
           onSubmit={event => {
             setDate(date);
-            handleFormSubmit(event, date, activeUser, history);
+            handleFormSubmit(event, date, editor, history);
           }}
         >
           <Label
-            form={'createIdea'}
+            form="editIdea"
             content={
               <Input
                 name="title"
                 placeholder="My idea title is..."
                 type="text"
+                value={title}
               />
             }
             label="title"
           />
-
-          <Label
-            form="createIdea"
-            content={
-              <TextArea
-                name="text"
-                placeholder="My idea title is..."
-                type="textarea"
-              />
-            }
-            label="idea"
+          <TextArea
+            name="text"
+            placeholder="My idea title is..."
+            value={text}
+          />
           />
           <Label
-            form="createIdea"
+            form="editIdea"
             content={
               <Input
                 name="tags"
                 placeholder="production, sales, logistics,..."
                 type="text"
+                value={tags.join()}
               />
             }
             label="tags"
@@ -138,7 +142,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
     </Grid>
   );
 }
-IdeaForm.propTypes = {
+IdeaEdit.propTypes = {
   onSubmit: PropTypes.func,
   history: PropTypes.object,
 };
