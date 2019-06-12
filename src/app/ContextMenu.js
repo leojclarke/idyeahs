@@ -19,7 +19,7 @@ const ContextMenuContainer = styled.div`
   display: grid;
   border-top: 1px solid lightslategray;
   box-shadow: 0 0 18px rgba(12, 22, 33, 0.25);
-  grid-template-rows: 60px 60px;
+  grid-template-rows: 70px 70px;
   grid-template-columns: 80px auto 30px;
   width: 100vw;
   position: fixed;
@@ -31,19 +31,19 @@ const ContextMenuContainer = styled.div`
 
 const MenuOption = styled.div`
   display: grid;
-  align-self: center;
-  justify-self: start;
-  font-size: 1rem;
-
-  div :nth-child(2) {
-    grid-column: 1 / span 2;
-  }
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  justify-content: start;
+  font-size: 1.2rem;
 `;
 
-const MenuIcon = styled(Icon)`
+const MenuIcon = styled.div`
   display: grid;
-  align-self: center;
-  justify-self: center;
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
   font-size: 1.2rem;
 `;
 
@@ -51,12 +51,12 @@ const CloseIcon = styled(Icon)`
   display: grid;
   align-self: start;
   justify-self: end;
+  font-size: 1rem;
   margin: 10px 10px 0 0;
 `;
 
 export default function ContextMenu({
   id,
-  onIdeaDelete,
   onContextClose,
   onDeleteModalClick,
   history,
@@ -65,14 +65,17 @@ export default function ContextMenu({
     <>
       <Blur onClick={onContextClose} />
       <ContextMenuContainer>
-        <MenuIcon
-          icon={faPen}
-          onClick={() => history.push(`/ideas/${id}/edit`)}
-        />
+        <MenuIcon onClick={() => history.push(`/ideas/${id}/edit`)}>
+          <Icon icon={faPen} />
+        </MenuIcon>
         <MenuOption>Edit post</MenuOption>
         <CloseIcon icon={faTimes} onClick={onContextClose} />
-        <MenuIcon icon={faTrashAlt} onClick={onDeleteModalClick} />
-        <MenuOption>Delete post</MenuOption>
+
+        <MenuIcon onClick={onDeleteModalClick}>
+          <Icon icon={faTrashAlt} />
+        </MenuIcon>
+
+        <MenuOption onClick={onDeleteModalClick}>Delete post</MenuOption>
       </ContextMenuContainer>
     </>
   );

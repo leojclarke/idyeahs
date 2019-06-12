@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faTimes, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Blur = styled.div`
   display: grid;
@@ -10,33 +8,75 @@ const Blur = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: yellow;
+  background: lightslategray;
   opacity: 0.3;
   z-index: 45;
 `;
 
 const DeleteModalContainer = styled.div`
-  display: grid;
   border: 1px solid lightslategray;
-  width: 150px;
-  height: 100px;
   position: fixed;
-  bottom: 50vh;
-  left: 50vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 60;
-  background: hotpink;
+  background: white;
+`;
+
+const DeleteModalBody = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  width: 300px;
+`;
+
+const DeleteModalHeading = styled.h2`
+  display: grid;
+  grid-column: 1 / span 2;
+  padding: 0;
+  margin: 0;
+  font-size: 1.4rem;
+  align-self: center;
+  justify-self: center;
+`;
+
+const DeleteModalText = styled.p`
+  display: grid;
+  grid-column: 1 / span 2;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  line-height: 1.3rem;
 `;
 
 const CancelButton = styled.button`
-  background: papayawhip;
-  width: 50px;
-  height: 20px;
+  display: grid;
+  width: 100px;
+  height: 25px;
+  background: grey;
+  color: white;
+  border: 1px solid grey;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: Rubik, Roboto, open, sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  align-self: center;
+  justify-self: center;
+
+  a :link,
+  :visited,
+  :active {
+    text-decoration: none;
+    border: none;
+    color: white;
+  }
 `;
 
-const DeleteButton = styled.button`
+const DeleteButton = styled(CancelButton)`
   background: red;
-  width: 50px;
-  height: 20px;
+  border: 1px solid red;
 `;
 
 export default function DeleteModal({
@@ -54,8 +94,24 @@ export default function DeleteModal({
     <>
       <Blur onClick={onClearScreen} />
       <DeleteModalContainer>
-        <CancelButton onClick={onClearScreen}>CANCEL</CancelButton>
-        <DeleteButton onClick={() => handleIdeaDelete()}>DELETE</DeleteButton>
+        <DeleteModalBody>
+          <DeleteModalHeading>Delete post?</DeleteModalHeading>
+          <DeleteModalText>
+            Are you sure?
+            <br />
+            Because, this can't be undone.
+          </DeleteModalText>
+          <CancelButton value="Cancel" type="button" onClick={onClearScreen}>
+            CANCEL
+          </CancelButton>
+          <DeleteButton
+            value="Delete"
+            type="button"
+            onClick={() => handleIdeaDelete()}
+          >
+            DELETE
+          </DeleteButton>
+        </DeleteModalBody>
       </DeleteModalContainer>
     </>
   );
