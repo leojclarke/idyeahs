@@ -80,6 +80,7 @@ export default function App() {
           path="/ideas"
           render={() => <IdeasFeed posts={ideas} activeUser={activeUser} />}
         />
+
         <Route
           exact
           path="/ideas/add"
