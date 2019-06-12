@@ -16,22 +16,25 @@ const FeedGrid = styled.div`
   color: black;
 `;
 
-export default function IdeasFeed({ posts, activeUser }) {
+export default function IdeasFeed({ posts, activeUser, onContextClick }) {
   return (
-    <MainGrid>
-      <Header heading="Ideas Feed" activeUser={activeUser} />
-      <FeedGrid>
-        {posts.map(post => (
-          <IdeaCard
-            key={post.id}
-            title={post.title}
-            text={post.text}
-            tags={post.tags}
-            timestamp={post.timestamp}
-            author={post.author}
-          />
-        ))}
-      </FeedGrid>
-    </MainGrid>
+    <>
+      <MainGrid>
+        <Header heading="Ideas Feed" activeUser={activeUser} />
+        <FeedGrid>
+          {posts.map(post => (
+            <IdeaCard
+              key={post.id}
+              title={post.title}
+              text={post.text}
+              tags={post.tags}
+              timestamp={post.timestamp}
+              author={post.author}
+              onContextClick={onContextClick}
+            />
+          ))}
+        </FeedGrid>
+      </MainGrid>
+    </>
   );
 }

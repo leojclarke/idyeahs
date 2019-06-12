@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import uid from 'uid';
 import { Link } from 'react-router-dom';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faComment,
@@ -11,6 +12,7 @@ import {
 import { CardAvatar } from '../components/Avatar';
 import defaultAvatar from '../img/defaultAvatar.png';
 import Tag from './IdeaTag';
+import ContextMenu from './ContextMenu';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -95,46 +97,63 @@ const CardStats = styled.span`
   font-weight: bold;
 `;
 
-export default function Card({ title, text, tags, timestamp, author }) {
-  return (
-    <CardContainer>
-      <CardHeader>
-        <StyledLink to="/user" className="card-header">
-          <CardAvatar
-            src={author.avatar.src || defaultAvatar}
-            alt={author.avatar.alt}
-          />
-        </StyledLink>
-        <CardInfo>
-          <StyledLink to="/user">
-            <Author>
-              {author.firstname} {author.lastname}
-            </Author>
-          </StyledLink>
-          <Date>{timestamp}</Date>
-        </CardInfo>
+export default function Card({
+  title,
+  text,
+  tags,
+  timestamp,
+  author,
+  onContextClick,
+}) {
+  const [isContextMenuVisible, setContextMenuVisible] = useState(false);
 
-        <ContextElipsis>
-          <Link to="/">
-            <Icon icon={faEllipsisH} />
-          </Link>
-        </ContextElipsis>
-      </CardHeader>
-      <StyledLink to="ideas/details">
-        <CardBody>
-          <h3>{title}</h3>
-          <p>{text}</p>
-        </CardBody>
-      </StyledLink>
-      <CardTagsContainer>
-        {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
-      </CardTagsContainer>
-      <CardStatsContainer>
-        <Icon icon={faStar} className="card-stats" />
-        <CardStats>2</CardStats>
-        <Icon icon={faComment} className="card-stats" />
-        <CardStats>0</CardStats>
-      </CardStatsContainer>
-    </CardContainer>
+  function handleContextMenuVisible() {
+    setContextMenuVisible(!isContextMenuVisible);
+  }
+
+  return (
+    <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
+      {isContextMenuVisible && (
+        <ContextMenu onContextClose={handleContextMenuVisible} />
+      )}
+
+      <CardContainer>
+        <CardHeader>
+          <StyledLink to="/user" className="card-header">
+            <CardAvatar
+              src={author.avatar.src || defaultAvatar}
+              alt={author.avatar.alt}
+            />
+          </StyledLink>
+          <CardInfo>
+            <StyledLink to="/user">
+              <Author>
+                {author.firstname} {author.lastname}
+              </Author>
+            </StyledLink>
+            <Date>{timestamp}</Date>
+          </CardInfo>
+
+          <ContextElipsis>
+            <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+          </ContextElipsis>
+        </CardHeader>
+        <StyledLink to="ideas/details">
+          <CardBody>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </CardBody>
+        </StyledLink>
+        <CardTagsContainer>
+          {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
+        </CardTagsContainer>
+        <CardStatsContainer>
+          <Icon icon={faStar} className="card-stats" />
+          <CardStats>2</CardStats>
+          <Icon icon={faComment} className="card-stats" />
+          <CardStats>0</CardStats>
+        </CardStatsContainer>
+      </CardContainer>
+    </OutsideClickHandler>
   );
 }
