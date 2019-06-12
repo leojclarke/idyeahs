@@ -76,6 +76,8 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
         tags: splitToArray(form.tags.value),
         timestamp: date,
         author: activeUser,
+        stars: 0,
+        comments: [],
       },
       ...posts,
     ];

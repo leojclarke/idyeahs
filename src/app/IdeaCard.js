@@ -8,6 +8,7 @@ import {
   faStar,
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
+import { findIdeaByIndex } from '../utils/utils';
 import { CardAvatar } from '../components/Avatar';
 import defaultAvatar from '../img/defaultAvatar.png';
 import Tag from './IdeaTag';
@@ -81,7 +82,7 @@ const CardStatsContainer = styled.div`
 `;
 
 const CardStats = styled.span`
-  margin: 0 8px;
+  margin: 0 20px;
   font-size: 0.9rem;
   font-weight: bold;
 `;
@@ -93,7 +94,10 @@ export default function Card({
   tags,
   timestamp,
   author,
+  stars,
+  comments,
   onIdeaDelete,
+  onStarClick,
   history,
 }) {
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
@@ -112,6 +116,11 @@ export default function Card({
     setDeleteModalVisible(!isDeleteModalVisible);
     setContextMenuVisible(false);
   }
+
+  function handleStarClick() {
+    onStarClick(id, history);
+  }
+
   return (
     <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
       {isContextMenuVisible && (
@@ -158,10 +167,10 @@ export default function Card({
           {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
         </CardTagsContainer>
         <CardStatsContainer>
-          <Icon icon={faStar} className="card-stats" />
-          <CardStats>2</CardStats>
-          <Icon icon={faComment} className="card-stats" />
-          <CardStats>0</CardStats>
+          <Icon icon={faStar} onClick={() => handleStarClick()} />
+          <CardStats>{stars}</CardStats>
+          <Icon icon={faComment} />
+          <CardStats>{comments.length}</CardStats>
         </CardStatsContainer>
       </CardContainer>
     </OutsideClickHandler>

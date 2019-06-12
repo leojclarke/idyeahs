@@ -21,6 +21,7 @@ export default function IdeasFeed({
   activeUser,
   onContextClick,
   onIdeaDelete,
+  onStarClick,
   history,
 }) {
   return (
@@ -37,7 +38,10 @@ export default function IdeasFeed({
               tags={post.tags}
               timestamp={post.timestamp}
               author={post.author}
+              stars={post.stars}
+              comments={post.comments}
               onContextClick={onContextClick}
+              onStarClick={onStarClick}
               onIdeaDelete={onIdeaDelete}
               history={history}
             />
