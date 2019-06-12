@@ -3,6 +3,18 @@ import styled from 'styled-components';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
+const Blur = styled.div`
+  display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: lightslategray;
+  opacity: 0.3;
+  z-index: 40;
+`;
+
 const ContextMenuContainer = styled.div`
   display: grid;
   border-top: 1px solid lightslategray;
@@ -24,7 +36,7 @@ const MenuOption = styled.div`
   font-size: 1rem;
 
   div :nth-child(2) {
-    grid-colum: 1 / span 2;
+    grid-column: 1 / span 2;
   }
 `;
 
@@ -44,12 +56,15 @@ const CloseIcon = styled(Icon)`
 
 export default function ContextMenu({ onContextClose }) {
   return (
-    <ContextMenuContainer>
-      <MenuIcon icon={faPen} />
-      <MenuOption>Edit post</MenuOption>
-      <CloseIcon icon={faTimes} onClick={onContextClose} />
-      <MenuIcon icon={faTrashAlt} />
-      <MenuOption>Delete post</MenuOption>
-    </ContextMenuContainer>
+    <>
+      <Blur onClick={onContextClose} />
+      <ContextMenuContainer>
+        <MenuIcon icon={faPen} />
+        <MenuOption>Edit post</MenuOption>
+        <CloseIcon icon={faTimes} onClick={onContextClose} />
+        <MenuIcon icon={faTrashAlt} />
+        <MenuOption>Delete post</MenuOption>
+      </ContextMenuContainer>
+    </>
   );
 }
