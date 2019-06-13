@@ -70,6 +70,17 @@ export default function App() {
     history.push(`/ideas/${ideaId}/comment`);
   }
 
+  function handleCommentEdit(ideaId, editedComment) {
+    const newIdeas = ideas.slice();
+    const ideasIndex = findIdeaByIndex(ideaId, newIdeas);
+    const commentsIndex = findCommentByIndex(
+      editedComment.id,
+      newIdeas[ideasIndex].comments
+    );
+    newIdeas[ideasIndex].comments[commentsIndex] = editedComment;
+    setIdeas(newIdeas);
+  }
+
   function handleStarClick(id, isStarred, history) {
     const index = findIdeaByIndex(id, ideas);
     isStarred ? ideas[index].stars-- : ideas[index].stars++;
@@ -154,6 +165,7 @@ export default function App() {
               history={props.history}
               author={activeUser}
               onCommentSubmit={handleCommentSubmit}
+              onCommentEdit={handleCommentEdit}
               onCommentDelete={handleCommentDelete}
             />
           )}

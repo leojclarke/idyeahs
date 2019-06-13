@@ -81,11 +81,12 @@ export default function IdeaComment({
   history,
   author,
   onCommentSubmit,
-  onContextClick,
+  onCommentEdit,
   onCommentDelete,
 }) {
   const index = findIdeaByIndex(ideaId, posts);
   const { title, comments } = posts[index];
+
   function handleCommentSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -119,7 +120,7 @@ export default function IdeaComment({
                 author={comment.author}
                 comment={comment.comment}
                 timestamp={comment.timestamp}
-                onContextClick={onContextClick}
+                onCommentEdit={onCommentEdit}
                 onCommentDelete={onCommentDelete}
                 history={history}
               />

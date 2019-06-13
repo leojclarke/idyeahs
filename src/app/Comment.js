@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import OutsideClickHandler from 'react-outside-click-handler';
 import ContextMenuComment from './ContextMenuComment';
 import DeleteCommentModal from './DeleteCommentModal';
-
+import Input from '../components/form/Input';
 import { CommentAvatar } from '../components/Avatar';
 moment.locale('de');
 
@@ -44,17 +46,36 @@ const TimeStamp = styled.span`
   font-size: 0.7rem;
 `;
 
+const StyledForm = styled.form`
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-content: center;
+  justify-content: center;
+  padding: 2px 2px;
+`;
+
+const SendButton = styled.button`
+  background: hotpink;
+  padding: 1px;
+  margin: 1px;
+  color: white;
+  border: 2px solid blue;
+  border-radius: 3px;
+`;
+
 export default function Comment({
   id,
   ideaId,
   comment,
   author,
   timestamp,
+  onCommentEdit,
   onCommentDelete,
   history,
 }) {
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isCommentEditable, setCommentIsEditable] = useState(false);
 
   function handleContextMenuVisible() {
     setContextMenuVisible(!isContextMenuVisible);
@@ -70,6 +91,23 @@ export default function Comment({
     setContextMenuVisible(false);
   }
 
+  function handleEditComment() {
+    setCommentIsEditable(!isCommentEditable);
+    setContextMenuVisible(!isContextMenuVisible);
+  }
+
+  function handleEditedCommentSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const editedComment = {
+      id: id,
+      author: author,
+      comment: form.comment.value,
+      timestamp: moment()._d,
+    };
+    onCommentEdit(ideaId, editedComment);
+  }
+
   return (
     <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
       {isContextMenuVisible && (
@@ -77,7 +115,7 @@ export default function Comment({
           id={id}
           onContextClose={handleContextMenuVisible}
           onDeleteModalClick={handleDeleteModalVisible}
-          onCommentDelete={onCommentDelete}
+          onCommentEdit={handleEditComment}
           history={history}
         />
       )}
@@ -96,13 +134,31 @@ export default function Comment({
         <div>
           <CommentAvatar src={author.avatar.src} />
         </div>
-        <div onClick={handleContextMenuVisible}>
-          <Author>{author.firstname}</Author>
 
-          <CommentText>{comment}</CommentText>
-          <br />
-          <TimeStamp>{moment(timestamp).fromNow()}</TimeStamp>
-        </div>
+        {!isCommentEditable ? (
+          <div onClick={handleContextMenuVisible}>
+            <Author>{author.firstname}</Author>
+
+            <CommentText>{comment}</CommentText>
+            <br />
+            <TimeStamp>{moment(timestamp).fromNow()}</TimeStamp>
+          </div>
+        ) : (
+          <div>
+            <StyledForm
+              id="comment"
+              onSubmit={event => {
+                handleEditedCommentSubmit(event);
+              }}
+            >
+              <Input name="comment" type="text" value={comment} />
+
+              <SendButton>
+                <Icon icon={faPaperPlane} />
+              </SendButton>
+            </StyledForm>
+          </div>
+        )}
       </StyledCommentRow>
     </OutsideClickHandler>
   );
