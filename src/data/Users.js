@@ -5,7 +5,7 @@ const usersList = [
     lastname: 'Clarke',
     email: 'leo@idyeahs.com',
     avatar: {
-      src: '../img/leo.jpg',
+      src: '/img/leo.jpg',
       alt: 'Leo Avatar Image',
     },
     pwd: '123',
@@ -16,7 +16,7 @@ const usersList = [
     lastname: 'MacReady',
     email: 'macready@idyeahs.com',
     avatar: {
-      src: '../img/macready.jpg',
+      src: '/img/macready.jpg',
       alt: 'MacReady Avatar Image',
     },
     pwd: '123',
