@@ -18,6 +18,35 @@ const ideaEntries = [
       },
       pwd: '123',
     },
+    stars: 5,
+    comments: [
+      {
+        author: {
+          username: 'pilot',
+          firstname: 'R.J.',
+          lastname: 'MacReady',
+          email: 'macready@idyeahs.com',
+          avatar: {
+            src: '/img/macready.jpg',
+            alt: 'MacReady Avatar',
+          },
+        },
+        comment: 'This is my comment',
+      },
+      {
+        author: {
+          username: 'pilot',
+          firstname: 'R.J.',
+          lastname: 'MacReady',
+          email: 'macready@idyeahs.com',
+          avatar: {
+            src: '/img/macready.jpg',
+            alt: 'MacReady Avatar',
+          },
+        },
+        comment: 'I too have a comment.',
+      },
+    ],
   },
   {
     id: uid(),
@@ -35,8 +64,9 @@ const ideaEntries = [
         src: '/img/leo.jpg',
         alt: 'Leo Avatar',
       },
-      pwd: '123',
     },
+    stars: 4,
+    comments: [],
   },
   {
     id: uid(),
@@ -54,8 +84,9 @@ const ideaEntries = [
         src: '/img/defaultAvatar.png',
         alt: 'default Avatar',
       },
-      pwd: '123',
     },
+    stars: 0,
+    comments: [],
   },
 ];
 

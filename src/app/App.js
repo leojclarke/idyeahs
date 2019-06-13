@@ -46,6 +46,12 @@ export default function App() {
     history.push('/ideas');
   }
 
+  function handleStarClick(id, isStarred, history) {
+    const index = findIdeaByIndex(id, ideas);
+    isStarred ? ideas[index].stars-- : ideas[index].stars++;
+    history.push('/ideas');
+  }
+
   function handleFeedbackSubmit(answers, history) {
     const newCounter = counter + 1;
     setCounter(newCounter);
@@ -91,6 +97,7 @@ export default function App() {
               posts={ideas}
               activeUser={activeUser}
               onIdeaDelete={handleIdeaDelete}
+              onStarClick={handleStarClick}
               history={props.history}
             />
           )}

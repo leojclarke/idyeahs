@@ -6,6 +6,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faComment,
   faStar,
+  faPlus,
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
 import { CardAvatar } from '../components/Avatar';
@@ -81,9 +82,13 @@ const CardStatsContainer = styled.div`
 `;
 
 const CardStats = styled.span`
-  margin: 0 8px;
+  margin: 0 20px;
   font-size: 0.9rem;
   font-weight: bold;
+`;
+
+const StyledIcon = styled(Icon)`
+  color: #efc311;
 `;
 
 export default function Card({
@@ -93,11 +98,15 @@ export default function Card({
   tags,
   timestamp,
   author,
+  stars,
+  comments,
   onIdeaDelete,
+  onStarClick,
   history,
 }) {
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isStarred, setStarred] = useState(false);
 
   function handleContextMenuVisible() {
     setContextMenuVisible(!isContextMenuVisible);
@@ -112,6 +121,12 @@ export default function Card({
     setDeleteModalVisible(!isDeleteModalVisible);
     setContextMenuVisible(false);
   }
+
+  function handleStarClick() {
+    setStarred(!isStarred);
+    onStarClick(id, isStarred, history);
+  }
+
   return (
     <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
       {isContextMenuVisible && (
@@ -158,10 +173,17 @@ export default function Card({
           {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
         </CardTagsContainer>
         <CardStatsContainer>
-          <Icon icon={faStar} className="card-stats" />
-          <CardStats>2</CardStats>
-          <Icon icon={faComment} className="card-stats" />
-          <CardStats>0</CardStats>
+          {!isStarred ? (
+            <Icon icon={faStar} onClick={() => handleStarClick()} />
+          ) : (
+            <StyledIcon icon={faStar} onClick={() => handleStarClick()} />
+          )}
+
+          <CardStats>{stars}</CardStats>
+          <Icon icon={faComment} />
+          <CardStats>
+            {comments.length !== undefined ? comments.length : 0}
+          </CardStats>
         </CardStatsContainer>
       </CardContainer>
     </OutsideClickHandler>
