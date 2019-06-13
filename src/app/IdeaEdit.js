@@ -64,7 +64,7 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history, editor }) {
 
   const ideaId = findIdeaByIndex(id, posts);
 
-  const { title, text, tags } = posts[ideaId];
+  const { title, text, tags, stars, comments } = posts[ideaId];
 
   function splitToArray(tagString) {
     return tagString.split(',').map(tag => tag.trim());
@@ -81,6 +81,8 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history, editor }) {
       tags: splitToArray(form.tags.value),
       timestamp: date,
       author: editor,
+      stars: stars,
+      comments: comments,
     };
     const newIdeas = [
       ...posts.slice(0, ideaId),

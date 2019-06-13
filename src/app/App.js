@@ -46,9 +46,9 @@ export default function App() {
     history.push('/ideas');
   }
 
-  function handleStarClick(id, history) {
+  function handleStarClick(id, isStarred, history) {
     const index = findIdeaByIndex(id, ideas);
-    ideas[index].stars++;
+    isStarred ? ideas[index].stars-- : ideas[index].stars++;
     history.push('/ideas');
   }
 

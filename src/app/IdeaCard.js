@@ -6,9 +6,9 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faComment,
   faStar,
+  faPlus,
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
-import { findIdeaByIndex } from '../utils/utils';
 import { CardAvatar } from '../components/Avatar';
 import defaultAvatar from '../img/defaultAvatar.png';
 import Tag from './IdeaTag';
@@ -87,6 +87,10 @@ const CardStats = styled.span`
   font-weight: bold;
 `;
 
+const StyledIcon = styled(Icon)`
+  color: #efc311;
+`;
+
 export default function Card({
   id,
   title,
@@ -102,6 +106,7 @@ export default function Card({
 }) {
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isStarred, setStarred] = useState(false);
 
   function handleContextMenuVisible() {
     setContextMenuVisible(!isContextMenuVisible);
@@ -118,7 +123,8 @@ export default function Card({
   }
 
   function handleStarClick() {
-    onStarClick(id, history);
+    setStarred(!isStarred);
+    onStarClick(id, isStarred, history);
   }
 
   return (
@@ -167,10 +173,17 @@ export default function Card({
           {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
         </CardTagsContainer>
         <CardStatsContainer>
-          <Icon icon={faStar} onClick={() => handleStarClick()} />
+          {!isStarred ? (
+            <Icon icon={faStar} onClick={() => handleStarClick()} />
+          ) : (
+            <StyledIcon icon={faStar} onClick={() => handleStarClick()} />
+          )}
+
           <CardStats>{stars}</CardStats>
           <Icon icon={faComment} />
-          <CardStats>{comments.length}</CardStats>
+          <CardStats>
+            {comments.length !== undefined ? comments.length : 0}
+          </CardStats>
         </CardStatsContainer>
       </CardContainer>
     </OutsideClickHandler>
