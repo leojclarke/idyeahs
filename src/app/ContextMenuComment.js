@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faTimes, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Blur = styled.div`
   display: grid;
@@ -55,7 +55,7 @@ const CloseIcon = styled(Icon)`
   margin: 10px 10px 0 0;
 `;
 
-export default function ContextMenu({
+export default function ContextMenuComment({
   id,
   onContextClose,
   onDeleteModalClick,
@@ -65,19 +65,12 @@ export default function ContextMenu({
     <>
       <Blur onClick={onContextClose} />
       <ContextMenuContainer>
-        <MenuIcon onClick={() => history.push(`/ideas/${id}/edit`)}>
-          <Icon icon={faPen} />
-        </MenuIcon>
-        <MenuOption onClick={() => history.push(`/ideas/${id}/edit`)}>
-          Edit post
-        </MenuOption>
-        <CloseIcon icon={faTimes} onClick={onContextClose} />
-
         <MenuIcon onClick={onDeleteModalClick}>
           <Icon icon={faTrashAlt} />
         </MenuIcon>
 
-        <MenuOption onClick={onDeleteModalClick}>Delete post</MenuOption>
+        <MenuOption onClick={onDeleteModalClick}>Delete Comment</MenuOption>
+        <CloseIcon icon={faTimes} onClick={onContextClose} />
       </ContextMenuContainer>
     </>
   );

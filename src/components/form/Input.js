@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledInput = styled.input`
-  margin-bottom: 10px;
-  padding: 5px;
   border-radius: 3px;
   border: 1px solid blue;
   font-size: 0.8em;
-  line-height: 1.6rem;
+  line-height: 16px;
   color: darkslategrey;
+  box-sizing: content-box;
 
   ::placeholder {
     color: lightslategrey;

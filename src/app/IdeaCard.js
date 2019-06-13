@@ -6,7 +6,6 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faComment,
   faStar,
-  faPlus,
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
 import { CardAvatar } from '../components/Avatar';
@@ -14,6 +13,8 @@ import defaultAvatar from '../img/defaultAvatar.png';
 import Tag from './IdeaTag';
 import ContextMenu from './ContextMenu';
 import DeleteModal from './DeleteModal';
+import moment from 'moment';
+moment.locale('de');
 
 const CardContainer = styled.section`
   display: grid;
@@ -180,7 +181,12 @@ export default function Card({
           )}
 
           <CardStats>{stars}</CardStats>
-          <Icon icon={faComment} />
+
+          <Icon
+            icon={faComment}
+            onClick={() => history.push(`/ideas/${id}/comment`)}
+          />
+
           <CardStats>
             {comments.length !== undefined ? comments.length : 0}
           </CardStats>
