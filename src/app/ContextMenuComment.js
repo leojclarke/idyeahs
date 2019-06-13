@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faTimes, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Blur = styled.div`
   display: grid;
@@ -56,21 +56,23 @@ const CloseIcon = styled(Icon)`
 `;
 
 export default function ContextMenuComment({
-  id,
   onContextClose,
+  onCommentEdit,
   onDeleteModalClick,
-  history,
 }) {
   return (
     <>
       <Blur onClick={onContextClose} />
       <ContextMenuContainer>
+        <MenuIcon onClick={onCommentEdit}>
+          <Icon icon={faPen} />
+        </MenuIcon>
+        <MenuOption onClick={onCommentEdit}>Edit Comment</MenuOption>
+        <CloseIcon icon={faTimes} onClick={onContextClose} />
         <MenuIcon onClick={onDeleteModalClick}>
           <Icon icon={faTrashAlt} />
         </MenuIcon>
-
         <MenuOption onClick={onDeleteModalClick}>Delete Comment</MenuOption>
-        <CloseIcon icon={faTimes} onClick={onContextClose} />
       </ContextMenuContainer>
     </>
   );
