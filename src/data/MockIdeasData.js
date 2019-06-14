@@ -1,5 +1,4 @@
 import uid from 'uid';
-import moment from 'moment';
 
 const ideaEntries = [
   {
