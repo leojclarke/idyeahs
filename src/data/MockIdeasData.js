@@ -1,4 +1,5 @@
 import uid from 'uid';
+import moment from 'moment';
 
 const ideaEntries = [
   {
@@ -6,7 +7,7 @@ const ideaEntries = [
     title: 'My Great Idea',
     text: 'Everything Begins With An Idea.',
     tags: ['sales', 'logistics'],
-    timestamp: '2014-09-08T08:02:17-05:00',
+    timestamp: '2018-09-08T08:02:17-05:00',
     author: {
       username: 'pilot',
       firstname: 'R.J.',
@@ -37,7 +38,7 @@ const ideaEntries = [
           },
         },
         comment: 'This is my comment',
-        timestamp: '2014-09-08T08:02:17-05:00',
+        timestamp: '2018-09-08T08:02:17-05:00',
       },
       {
         id: uid(),
@@ -54,7 +55,7 @@ const ideaEntries = [
           },
         },
         comment: 'I too have a comment.',
-        timestamp: '2014-09-08T08:02:17-05:00',
+        timestamp: '2018-09-08T08:02:17-05:00',
       },
     ],
   },
@@ -64,7 +65,7 @@ const ideaEntries = [
     text:
       'No Matter What People Tell You, Words And Ideas Can Change The World.',
     tags: ['events', 'service'],
-    timestamp: '2014-09-08T08:02:17-05:00',
+    timestamp: '2018-09-08T08:02:17-05:00',
     author: {
       username: 'leojclarke',
       firstname: 'Leo',
@@ -86,7 +87,7 @@ const ideaEntries = [
     text:
       'With the introduction of JavaScript ES6, new coding concepts were introduced to JavaScript and therefore to React. For instance, a JavaScript function can be expressed as lambda (arrow function). That’s why a Function Component is sometimes called Arrow Function Components (or maybe also Lambda Function Component). Let’s see our refactored React Component with an Arrow Function.',
     tags: ['events', 'service'],
-    timestamp: '2014-09-08T08:02:17-05:00',
+    timestamp: '2018-09-08T08:02:17-05:00',
     author: {
       username: 'other user',
       firstname: 'James Anthony',
