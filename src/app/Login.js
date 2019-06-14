@@ -47,22 +47,38 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function UserLogin({ onLogin: handleLogin, history }) {
+export default function UserLogin({ users, onLogin, history }) {
+  function handleLogin(event) {
+    event.preventDefault();
+    const login = event.target;
+
+    const loginEmail = login.email.value;
+    const loginPassword = login.password.value;
+
+    const loggedInUser = users.find(user => user.email === loginEmail);
+
+    try {
+      if (loggedInUser.pwd === loginPassword) {
+        onLogin(loggedInUser, history);
+      } else {
+        console.log('Error, wrong password');
+      }
+    } catch {
+      console.log('Error, wrong Email');
+    }
+  }
+
   return (
     <Grid>
       <Header>
-        <StyledNavLink to="/">
-          <Icon icon={faArrowLeft} />
-        </StyledNavLink>
+        <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
         <h1>LOG IN</h1>
       </Header>
-      <StyledForm id="login" onSubmit={event => handleLogin(event, history)}>
+      <StyledForm id="login" onSubmit={event => handleLogin(event)}>
         <Label
           form="login"
-          content={
-            <Input name="username" placeholder="Username..." type="text" />
-          }
-          label="Enter your email or username"
+          content={<Input name="email" placeholder="Email..." type="email" />}
+          label="Enter your email"
         />
         <Label
           form="login"
