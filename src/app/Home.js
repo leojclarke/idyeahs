@@ -44,7 +44,7 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
 `;
 
-export default function Home() {
+export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
   const logoFadeIn = useSpring({
     opacity: 1,
     from: { opacity: 0 },
@@ -53,16 +53,18 @@ export default function Home() {
 
   return (
     <HomeGrid>
-      <StyledNavLink to="/ideas">
-        <Logo src={logo} style={logoFadeIn} />
-      </StyledNavLink>
+      <Logo src={logo} style={logoFadeIn} onClick={() => onProceed(history)} />
       <ButtonContainer>
-        <StyledNavLink to="/ideas">
-          <LoginButton value="Log in" />
-        </StyledNavLink>
-        <StyledNavLink to="/ideas">
-          <SignUpButton value="Sign up" />
-        </StyledNavLink>
+        {!isLoggedIn && (
+          <StyledNavLink to="/login">
+            <LoginButton value="Log in" />
+          </StyledNavLink>
+        )}
+        {isLoggedIn && (
+          <div onClick={() => onLogOut(history)}>
+            <SignUpButton value="Log out" />
+          </div>
+        )}
       </ButtonContainer>
     </HomeGrid>
   );

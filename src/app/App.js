@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { getLocal, setLocal } from '../utils/services';
 import { findIdeaByIndex, findCommentByIndex } from '../utils/utils';
 import GlobalStyles from '../misc/GlobalStyles';
-import aUser from '../data/ActiveUser';
 import mockIdeas from '../data/MockIdeasData';
 import usersList from '../data/Users';
 import Home from './Home';
@@ -13,6 +12,7 @@ import IdeaForm from './IdeaForm';
 import IdeaEdit from './IdeaEdit';
 import IdeaComment from './IdeaComment';
 import IdeaDetailsView from './IdeaDetailsView';
+import Login from './Login';
 
 const Grid = styled.div`
   display: grid;
@@ -23,7 +23,8 @@ const Grid = styled.div`
 export default function App() {
   const [ideas, setIdeas] = useState(getLocal('ideas') || mockIdeas);
   const [users, setUsers] = useState(getLocal('users') || usersList);
-  const [activeUser, setActiveUser] = useState(getLocal('activeUser') || aUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(getLocal('isLoggedIn') || false);
+  const [activeUser, setActiveUser] = useState(getLocal('activeUser') || []);
   const [responses, setResponses] = useState(
     getLocal('responses') || Array(12).fill(0)
   );
@@ -31,6 +32,7 @@ export default function App() {
 
   useEffect(() => setLocal('activeUser', activeUser), [activeUser]);
   useEffect(() => setLocal('users', users), [users]);
+  useEffect(() => setLocal('isLoggedIn', isLoggedIn), [isLoggedIn]);
   useEffect(() => setLocal('ideas', ideas), [ideas]);
   useEffect(() => setLocal('responses', responses), [responses]);
   useEffect(() => setLocal('counter', counter), [counter]);
@@ -102,11 +104,20 @@ export default function App() {
     history.push('/feedback');
   }
 
-  function handleLogin(event, history) {
-    event.preventDefault();
-    const { username } = event.target;
-    setActiveUser(username.value);
+  function handleLogin(loggedInUser, history) {
+    setActiveUser(loggedInUser);
+    setIsLoggedIn(true);
     history.push('/ideas');
+  }
+
+  function handleLogOut(history) {
+    setActiveUser('');
+    setIsLoggedIn(false);
+    history.push('/');
+  }
+
+  function handleProceed(history) {
+    isLoggedIn ? history.push('/ideas') : history.push('/');
   }
 
   function handleSignUp(event, history) {
@@ -120,7 +131,18 @@ export default function App() {
     <Router>
       <GlobalStyles />
       <Grid>
-        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <Home
+              isLoggedIn={isLoggedIn}
+              onLogOut={handleLogOut}
+              onProceed={handleProceed}
+              history={props.history}
+            />
+          )}
+        />
         <Route
           exact
           path="/ideas"
@@ -187,6 +209,17 @@ export default function App() {
               onCommentEdit={handleCommentEdit}
               onCommentDelete={handleCommentDelete}
               onStarClick={handleStarClickDetails}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/login"
+          render={props => (
+            <Login
+              users={users}
+              history={props.history}
+              onLogin={handleLogin}
             />
           )}
         />
