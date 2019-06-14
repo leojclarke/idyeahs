@@ -57,12 +57,14 @@ export function AddButton() {
   );
 }
 
-export function CommentButton() {
+export function CommentButton({ history, id }) {
   return (
     <StyledCommentButton>
-      <Link to="/">
-        <FontAwesomeIcon icon={faComment} size="lg" />
-      </Link>
+      <FontAwesomeIcon
+        icon={faComment}
+        size="lg"
+        onClick={() => history.push(`/ideas/${id}/comment`)}
+      />
     </StyledCommentButton>
   );
 }

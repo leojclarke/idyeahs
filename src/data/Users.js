@@ -4,6 +4,8 @@ const usersList = [
     firstname: 'Leo',
     lastname: 'Clarke',
     email: 'leo@idyeahs.com',
+    role: 'Helpdesk Technician',
+    department: 'Helpdesk',
     avatar: {
       src: '/img/leo.jpg',
       alt: 'Leo Avatar Image',
@@ -15,6 +17,8 @@ const usersList = [
     firstname: 'R.J.',
     lastname: 'MacReady',
     email: 'macready@idyeahs.com',
+    role: 'Pilot',
+    department: 'outpost b19',
     avatar: {
       src: '/img/macready.jpg',
       alt: 'MacReady Avatar Image',

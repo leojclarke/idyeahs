@@ -166,7 +166,7 @@ export default function Card({
             <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
           </ContextElipsis>
         </CardHeader>
-        <CardBody>
+        <CardBody onClick={() => history.push(`/ideas/${id}/details`)}>
           <h3>{title}</h3>
           <p>{text}</p>
         </CardBody>

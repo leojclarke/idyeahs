@@ -1,49 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import uid from 'uid';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import {
-  faComment,
-  faStar,
-  faEllipsisH,
-} from '@fortawesome/free-solid-svg-icons';
+import { faStar, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { CardAvatar } from '../components/Avatar';
 import Tag from './IdeaTag';
+import ContextMenu from './ContextMenu';
+import DeleteModal from './DeleteModal';
+import Comment from './Comment';
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: rgba(12, 2, 1, 0.8);
-  &:active,
-  :visited,
-  :focus-within {
-    text-decoration: none;
-    color: rgba(12, 2, 1, 0.8);
-  }
-`;
-
-const CardContainer = styled.section`
-  display: grid;
-  grid-template-rows: repeat(4, auto);
-  background: white;
-  width: 100%;
-  border-bottom: 0.5px solid lightslategray;
-  color: rgba(12, 2, 1, 0.8);
-  margin-top: 10px;
-`;
-
-const CardContainerDetail = styled.section`
-  display: grid;
-  grid-template-rows: 60px auto 40px 40px 50px auto auto;
-  background: white;
-  width: 100%;
-  color: rgba(12, 2, 1, 0.8);
-  margin-top: 10px;
-`;
-
-const CardHeader = styled.div`
+const CardHeader = styled.header`
   display: grid;
   grid-template-columns: 50px auto 30px;
   width: 100%;
+  color: darkslategray;
 `;
 
 const CardInfo = styled.div`
@@ -60,12 +31,6 @@ const Author = styled.div`
   font-weight: bold;
 `;
 
-const Date = styled.div`
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-`;
-
 const ContextElipsis = styled.div`
   color: lightslategray;
   display: flex;
@@ -78,135 +43,177 @@ const CardBody = styled.div`
   padding: 0 20px;
   line-height: 1.6rem;
   font-size: 0.9rem;
+  color: darkslategray;
 `;
 
 const CardTagsContainer = styled.div`
   display: flex;
   justify-items: flex-start;
   align-items: center;
-  color: white;
+  color: darkslategray;
   padding: 15px 20px;
 `;
 
-const CardTag = styled(Tag)``;
-
-const CardStatsContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
+const CardStatsContainerDetail = styled.footer`
   align-items: center;
   padding: 5px 10px 10px 10px;
   margin: 0 0;
-`;
-
-const CardStatsContainerDetail = styled(CardStatsContainer)`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  padding: 5px 10px 10px 10px;
-  margin: 0 0;
   background: #efefef;
+  color: darkslategray;
   border-top: 1px solid lightslategray;
   border-bottom: 1px solid lightslategray;
-`;
-
-const CardCommentsContainer = styled.section`
-  display: grid;
-  margin: 0;
-  border-top: 1px solid lightslategray;
-  font-size: 0.8rem;
-  line-height: 1rem;
-
-  div :first-child {
-    border-top: none;
-  }
-`;
-
-const Comment = styled.div`
-  display: grid;
-  grid-template-columns: 40px auto;
-  grid-template-rows: auto;
-  background: plum;
-  border-top: 1px solid lightslategray;
-`;
-
-const CommentAuthor = styled.div`
-  display: grid;
-  align-self: center;
-`;
-
-const CommentText = styled.span`
-  display: flex;
-  padding: 0 2px;
-  align-items: flex-start;
 `;
 
 const CardStats = styled.span`
   margin: 0 8px;
   font-size: 0.9rem;
-  font-weight: bold;
+
+  span :first-child {
+    font-weight: bold;
+  }
 `;
 
-const DateDetail = {
-  fontSize: '0.7rem',
-  color: 'lightslategrey',
-  paddingLeft: '20px',
-};
-export function CardDetail() {
+const Date = styled.div`
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+`;
+
+const StyledIcon = styled(Icon)`
+  color: #efc311;
+`;
+
+const StyledComments = styled.section`
+  width: 100vw;
+  color: black;
+  overflow: scroll;
+`;
+
+const StarContainer = styled.div`
+  display: grid;
+  width: 100%;
+  justify-content: end;
+`;
+
+export default function IdeaCardDetail({
+  id,
+  title,
+  text,
+  tags,
+  timestamp,
+  stars,
+  comments,
+  author,
+  onIdeaDelete,
+  onStarClick,
+  onCommentEdit,
+  onCommentDelete,
+  history,
+}) {
+  const [isContextMenuVisible, setContextMenuVisible] = useState(false);
+  const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isStarred, setStarred] = useState(false);
+
+  function handleContextMenuVisible() {
+    setContextMenuVisible(!isContextMenuVisible);
+  }
+
+  function handleClearScreen() {
+    setContextMenuVisible(false);
+    setDeleteModalVisible(false);
+  }
+
+  function handleDeleteModalVisible() {
+    setDeleteModalVisible(!isDeleteModalVisible);
+    setContextMenuVisible(false);
+  }
+
+  function handleStarClick() {
+    setStarred(!isStarred);
+    onStarClick(id, isStarred, history);
+  }
+
   return (
-    <CardContainerDetail>
+    <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
+      {isContextMenuVisible && (
+        <ContextMenu
+          id={id}
+          onContextClose={handleContextMenuVisible}
+          onDeleteModalClick={handleDeleteModalVisible}
+          onIdeaDelete={onIdeaDelete}
+          history={history}
+        />
+      )}
+
+      {isDeleteModalVisible && (
+        <DeleteModal
+          id={id}
+          onClearScreen={handleClearScreen}
+          onIdeaDelete={onIdeaDelete}
+          history={history}
+        />
+      )}
+
       <CardHeader>
-        <StyledLink to="/user" className="card-header">
-          <CardAvatar src={macready} />
-        </StyledLink>
+        <CardAvatar src={author.avatar.src} />
         <CardInfo>
-          <StyledLink to="/user">
-            <Author>R.J. MacReady</Author>
-          </StyledLink>
-          <AuthorInfo>role | department</AuthorInfo>
+          <Author>
+            {author.firstname} {author.lastname}
+          </Author>
+          <div>
+            {author.role} | {author.department}
+          </div>
         </CardInfo>
 
         <ContextElipsis>
-          <Link to="/">
-            <Icon icon={faEllipsisH} />
-          </Link>
+          <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
         </ContextElipsis>
       </CardHeader>
       <CardBody>
-        <h2> Very DetailedCard Title</h2>
-        <p>
-          The primary task of a Spring is to move data from one state to
-          another. The optional from-prop only plays a role when the component
-          renders first, use the to-prop to update the spring with new values.
-        </p>
+        <StarContainer>
+          {!isStarred ? (
+            <Icon icon={faStar} onClick={() => handleStarClick()} />
+          ) : (
+            <StyledIcon icon={faStar} onClick={() => handleStarClick()} />
+          )}
+        </StarContainer>
+        <h2>{title}</h2>
+        <p>{text}</p>
 
         <br />
       </CardBody>
       <CardTagsContainer>
-        <CardTag>sales</CardTag>
-        <CardTag>production</CardTag>
-        <CardTag>logistics</CardTag>
+        {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
       </CardTagsContainer>
-      <Date style={DateDetail}>12 June 2019 • 13:56</Date>
+      <Date>{timestamp}</Date>
       <CardStatsContainerDetail>
-        <CardStats>2 Stars</CardStats>
-        <CardStats>0 Comments</CardStats>
+        <CardStats>
+          <span>{stars}</span> <span>Stars</span>
+        </CardStats>
+        <CardStats>
+          <span>{comments.length !== undefined ? comments.length : 0}</span>{' '}
+          <span>Comments</span>
+        </CardStats>
       </CardStatsContainerDetail>
 
-      <CardCommentsContainer>
-        <Comment>
-          <CommentAuthor>
-            <CommentAvatar src={macready} />
-          </CommentAuthor>
-          <CommentText>My comment about this idea</CommentText>
-        </Comment>
-
-        <Comment>
-          <CommentAuthor>
-            <CommentAvatar src={macready} />
-          </CommentAuthor>
-          <CommentText>I also have a comment about this idea</CommentText>
-        </Comment>
-      </CardCommentsContainer>
-    </CardContainerDetail>
+      <StyledComments>
+        {comments &&
+          comments.map(comment => (
+            <Comment
+              id={comment.id}
+              ideaId={id}
+              key={uid()}
+              author={comment.author}
+              comment={comment.comment}
+              timestamp={comment.timestamp}
+              onCommentEdit={onCommentEdit}
+              onCommentDelete={onCommentDelete}
+              history={history}
+            />
+          ))}
+      </StyledComments>
+    </OutsideClickHandler>
   );
 }

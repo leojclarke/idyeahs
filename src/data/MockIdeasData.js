@@ -12,6 +12,8 @@ const ideaEntries = [
       firstname: 'R.J.',
       lastname: 'MacReady',
       email: 'macready@idyeahs.com',
+      role: 'Pilot',
+      department: 'outpost b19',
       avatar: {
         src: '/img/macready.jpg',
         alt: 'MacReady Avatar',
@@ -27,6 +29,8 @@ const ideaEntries = [
           firstname: 'R.J.',
           lastname: 'MacReady',
           email: 'macready@idyeahs.com',
+          role: 'Pilot',
+          department: 'outpost b19',
           avatar: {
             src: '/img/macready.jpg',
             alt: 'MacReady Avatar',
@@ -42,6 +46,8 @@ const ideaEntries = [
           firstname: 'R.J.',
           lastname: 'MacReady',
           email: 'macready@idyeahs.com',
+          role: 'Pilot',
+          department: 'outpost b19',
           avatar: {
             src: '/img/macready.jpg',
             alt: 'MacReady Avatar',
@@ -64,9 +70,11 @@ const ideaEntries = [
       firstname: 'Leo',
       lastname: 'Clarke',
       email: 'leo@idyeahs.com',
+      role: 'Helpdesk Technician',
+      department: 'Helpdesk',
       avatar: {
         src: '/img/leo.jpg',
-        alt: 'Leo Avatar',
+        alt: 'Leo Avatar Image',
       },
     },
     stars: 4,
@@ -84,6 +92,8 @@ const ideaEntries = [
       firstname: 'James Anthony',
       lastname: 'Smith',
       email: 'jim@idyeahs.com',
+      role: 'chief something officer',
+      department: 'office',
       avatar: {
         src: '/img/defaultAvatar.png',
         alt: 'default Avatar',

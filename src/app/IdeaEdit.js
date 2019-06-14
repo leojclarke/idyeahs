@@ -125,7 +125,7 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history, editor }) {
             placeholder="My idea title is..."
             value={text}
           />
-          />
+
           <Label
             form="editIdea"
             content={
