@@ -103,9 +103,7 @@ export default function IdeaComment({
   return (
     <Grid>
       <Header>
-        <StyledNavLink to="/ideas">
-          <Icon icon={faArrowLeft} />
-        </StyledNavLink>
+        <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
         <PageTitle>Comment on {title}</PageTitle>
       </Header>
 

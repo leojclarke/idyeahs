@@ -12,12 +12,12 @@ import IdeasFeed from './IdeasFeed';
 import IdeaForm from './IdeaForm';
 import IdeaEdit from './IdeaEdit';
 import IdeaComment from './IdeaComment';
+import IdeaDetailsView from './IdeaDetailsView';
 
 const Grid = styled.div`
   display: grid;
   grid-template-rows: auto;
   height: 100vh;
-  color: white;
 `;
 
 export default function App() {
@@ -85,6 +85,12 @@ export default function App() {
     const index = findIdeaByIndex(id, ideas);
     isStarred ? ideas[index].stars-- : ideas[index].stars++;
     history.push('/ideas');
+  }
+
+  function handleStarClickDetails(id, isStarred, history) {
+    const index = findIdeaByIndex(id, ideas);
+    isStarred ? ideas[index].stars-- : ideas[index].stars++;
+    history.push(`/ideas/${id}/details`);
   }
 
   function handleFeedbackSubmit(answers, history) {
@@ -167,6 +173,21 @@ export default function App() {
               onCommentSubmit={handleCommentSubmit}
               onCommentEdit={handleCommentEdit}
               onCommentDelete={handleCommentDelete}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/ideas/:id/details"
+          render={props => (
+            <IdeaDetailsView
+              posts={ideas}
+              id={props.match.params.id}
+              history={props.history}
+              onCommentSubmit={handleCommentSubmit}
+              onCommentEdit={handleCommentEdit}
+              onCommentDelete={handleCommentDelete}
+              onStarClick={handleStarClickDetails}
             />
           )}
         />

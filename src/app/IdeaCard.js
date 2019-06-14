@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import uid from 'uid';
+
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
@@ -166,7 +167,7 @@ export default function Card({
             <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
           </ContextElipsis>
         </CardHeader>
-        <CardBody>
+        <CardBody onClick={() => history.push(`/ideas/${id}/details`)}>
           <h3>{title}</h3>
           <p>{text}</p>
         </CardBody>
