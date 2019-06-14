@@ -56,7 +56,7 @@ export default function App() {
     history.push(`/ideas/${id}/comment`);
   }
 
-  function handleCommentDelete(id, ideaId, history) {
+  function handleCommentDelete(id, ideaId) {
     const newIdeas = ideas.slice();
     const ideasIndex = findIdeaByIndex(ideaId, newIdeas);
     const comments = newIdeas[ideasIndex].comments;
@@ -67,7 +67,6 @@ export default function App() {
     ];
     newIdeas[ideasIndex].comments = newComments;
     setIdeas(newIdeas);
-    history.push(`/ideas/${ideaId}/comment`);
   }
 
   function handleCommentEdit(ideaId, editedComment) {

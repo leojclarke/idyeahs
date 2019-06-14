@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { CommentButton } from '../components/FAB';
@@ -37,20 +36,13 @@ const PageTitle = styled.h1`
   padding-left: 10px;
 `;
 
-const StyledNavLink = styled(Link)`
-  text-decoration: none;
-  &:active,
-  :visited,
-  :focus-within {
-    color: hotpink;
-  }
-`;
-
 export default function IdeaDetailsView({
   posts,
   id,
   onContextClick,
   onIdeaDelete,
+  onCommentEdit,
+  onCommentDelete,
   onStarClick,
   history,
 }) {
@@ -78,6 +70,8 @@ export default function IdeaDetailsView({
           onContextClick={onContextClick}
           onStarClick={onStarClick}
           onIdeaDelete={onIdeaDelete}
+          onCommentEdit={onCommentEdit}
+          onCommentDelete={onCommentDelete}
           history={history}
         />
       </Main>

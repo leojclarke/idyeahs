@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import uid from 'uid';
 import moment from 'moment';
-import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { findIdeaByIndex } from '../utils/utils';
@@ -60,15 +59,6 @@ const SendButton = styled.button`
   border-radius: 3px;
 `;
 
-const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
-  &:active,
-  :visited,
-  :focus-within {
-    color: hotpink;
-  }
-`;
-
 const StyledComments = styled.section`
   width: 100vw;
   color: black;
@@ -97,7 +87,7 @@ export default function IdeaComment({
       timestamp: moment()._d,
     };
     form.comment.value = '';
-    onCommentSubmit(ideaId, newComment, history);
+    onCommentSubmit(ideaId, newComment);
   }
 
   return (
