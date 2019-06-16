@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledTextArea = styled.textarea`
-  margin: 0 0 5px 0;
+  margin: 0 0 5px;
   padding: 5px;
   height: 160px;
   font-size: 1.3em;

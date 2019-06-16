@@ -59,30 +59,25 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function IdeaEdit({ posts, id, onIdeaEdit, history, editor }) {
-  const [date, setDate] = useState(moment().format('D MMMM, HH:MM'));
-
+export default function IdeaEdit({ posts, id, onIdeaEdit, history }) {
   const ideaId = findIdeaByIndex(id, posts);
 
-  const { title, text, tags, stars, comments } = posts[ideaId];
+  const { title, text, tags } = posts[ideaId];
 
   function splitToArray(tagString) {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleFormSubmit(event, date, editor, history) {
+  function handleFormSubmit(event, history) {
     event.preventDefault();
 
     const form = event.target;
     const editedIdea = {
-      id: uid(),
       title: form.title.value,
       text: form.text.value,
       tags: splitToArray(form.tags.value),
-      timestamp: date,
-      author: editor,
-      stars: stars,
-      comments: comments,
+      timestamp: moment()._d,
+      ...posts[ideaId],
     };
     const newIdeas = [
       ...posts.slice(0, ideaId),
@@ -104,8 +99,7 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history, editor }) {
         <StyledForm
           id="editIdea"
           onSubmit={event => {
-            setDate(date);
-            handleFormSubmit(event, date, editor, history);
+            handleFormSubmit(event, history);
           }}
         >
           <Label

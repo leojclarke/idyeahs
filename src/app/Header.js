@@ -16,21 +16,20 @@ const StyledHeader = styled.header`
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 80px auto;
   border-bottom: 1px solid lightslategray;
-  overflow: hidden;
   background: #008dff;
   color: white;
 `;
 
-const Heading = styled.header`
+const Heading = styled.h1`
   display: flex;
   color: white;
   font-family: Rubik;
-  font-weight: bold;
   font-size: 1.5rem;
   text-transform: uppercase;
   justify-content: flex-start;
   align-items: center;
   height: 80px;
+  margin: 0;
 `;
 
 const Navigation = styled.nav`
@@ -39,7 +38,7 @@ const Navigation = styled.nav`
   grid-column: 1 / span 3;
   align-items: center;
   justify-items: center;
-  padding: 0 0 10px 0;
+  padding: 0 0 10px;
   font-size: 1.5rem;
   color: #ddd;
 `;

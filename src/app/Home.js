@@ -9,7 +9,6 @@ const HomeGrid = styled.section`
   display: grid;
   grid-template-rows: 1fr 180px;
   padding: 10px;
-  overflow: none;
   align-items: center;
   justify-items: center;
   background-image: linear-gradient(to right bottom, #008dff, #34cae2, #a3ded8);
@@ -50,7 +49,6 @@ export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
     from: { opacity: 0 },
     config: { duration: 1000 },
   });
-
   return (
     <HomeGrid>
       <Logo src={logo} style={logoFadeIn} onClick={() => onProceed(history)} />

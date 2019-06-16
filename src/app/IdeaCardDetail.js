@@ -56,8 +56,8 @@ const CardTagsContainer = styled.div`
 
 const CardStatsContainerDetail = styled.footer`
   align-items: center;
-  padding: 5px 10px 10px 10px;
-  margin: 0 0;
+  padding: 5px 10px 10px;
+  margin: 0;
   display: flex;
   justify-content: flex-start;
   background: #efefef;
@@ -142,7 +142,6 @@ export default function IdeaCardDetail({
           id={id}
           onContextClose={handleContextMenuVisible}
           onDeleteModalClick={handleDeleteModalVisible}
-          onIdeaDelete={onIdeaDelete}
           history={history}
         />
       )}
@@ -193,8 +192,7 @@ export default function IdeaCardDetail({
           <span>{stars}</span> <span>Stars</span>
         </CardStats>
         <CardStats>
-          <span>{comments.length !== undefined ? comments.length : 0}</span>{' '}
-          <span>Comments</span>
+          <span>{comments.length}</span> <span>Comments</span>
         </CardStats>
       </CardStatsContainerDetail>
 

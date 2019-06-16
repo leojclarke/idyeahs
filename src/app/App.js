@@ -48,14 +48,14 @@ export default function App() {
     history.push('/ideas');
   }
 
-  function handleCommentSubmit(id, newComment, history) {
+  function handleCommentSubmit(ideaId, newComment, history) {
     const newIdeas = ideas.slice();
-    const index = findIdeaByIndex(id, newIdeas);
+    const index = findIdeaByIndex(ideaId, newIdeas);
     const comments = newIdeas[index].comments;
     const newComments = [...comments, newComment];
     newIdeas[index].comments = newComments;
     setIdeas(newIdeas);
-    history.push(`/ideas/${id}/comment`);
+    history.push(`/ideas/${ideaId}/comment`);
   }
 
   function handleCommentDelete(id, ideaId) {
@@ -178,7 +178,6 @@ export default function App() {
               id={props.match.params.id}
               history={props.history}
               onIdeaEdit={handleIdeaSubmit}
-              editor={activeUser}
             />
           )}
         />

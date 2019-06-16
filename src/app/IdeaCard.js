@@ -79,8 +79,8 @@ const CardStatsContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 5px 10px 10px 10px;
-  margin: 0 0;
+  padding: 5px 10px 10px;
+  margin: 0;
 `;
 
 const CardStats = styled.span`
@@ -136,7 +136,6 @@ export default function Card({
           id={id}
           onContextClose={handleContextMenuVisible}
           onDeleteModalClick={handleDeleteModalVisible}
-          onIdeaDelete={onIdeaDelete}
           history={history}
         />
       )}
@@ -188,9 +187,7 @@ export default function Card({
             onClick={() => history.push(`/ideas/${id}/comment`)}
           />
 
-          <CardStats>
-            {comments.length !== undefined ? comments.length : 0}
-          </CardStats>
+          <CardStats>{comments.length}</CardStats>
         </CardStatsContainer>
       </CardContainer>
     </OutsideClickHandler>

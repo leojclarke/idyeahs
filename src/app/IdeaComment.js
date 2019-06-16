@@ -87,7 +87,7 @@ export default function IdeaComment({
       timestamp: moment()._d,
     };
     form.comment.value = '';
-    onCommentSubmit(ideaId, newComment);
+    onCommentSubmit(ideaId, newComment, history);
   }
 
   return (

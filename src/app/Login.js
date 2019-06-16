@@ -38,15 +38,6 @@ const StyledForm = styled.form`
   width: 100%;
 `;
 
-const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
-  &:active,
-  :visited,
-  :focus-within {
-    color: red;
-  }
-`;
-
 export default function UserLogin({ users, onLogin, history }) {
   function handleLogin(event) {
     event.preventDefault();

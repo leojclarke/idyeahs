@@ -60,7 +60,6 @@ const CancelButton = styled.button`
   font-size: 0.8rem;
   font-weight: 500;
   font-family: Rubik, Roboto, open, sans-serif;
-  text-decoration: none;
   text-transform: uppercase;
   align-self: center;
   justify-self: center;
@@ -102,14 +101,8 @@ export default function DeleteCommentModal({
             <br />
             Because, this can't be undone.
           </DeleteModalText>
-          <CancelButton value="Cancel" type="button" onClick={onClearScreen}>
-            CANCEL
-          </CancelButton>
-          <DeleteButton
-            value="Delete"
-            type="button"
-            onClick={() => handleCommentDelete()}
-          >
+          <CancelButton onClick={onClearScreen}>CANCEL</CancelButton>
+          <DeleteButton onClick={() => handleCommentDelete()}>
             DELETE
           </DeleteButton>
         </DeleteModalBody>

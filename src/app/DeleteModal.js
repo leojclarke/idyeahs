@@ -101,16 +101,8 @@ export default function DeleteModal({
             <br />
             Because, this can't be undone.
           </DeleteModalText>
-          <CancelButton value="Cancel" type="button" onClick={onClearScreen}>
-            CANCEL
-          </CancelButton>
-          <DeleteButton
-            value="Delete"
-            type="button"
-            onClick={() => handleIdeaDelete()}
-          >
-            DELETE
-          </DeleteButton>
+          <CancelButton onClick={onClearScreen}>CANCEL</CancelButton>
+          <DeleteButton onClick={() => handleIdeaDelete()}>DELETE</DeleteButton>
         </DeleteModalBody>
       </DeleteModalContainer>
     </>
