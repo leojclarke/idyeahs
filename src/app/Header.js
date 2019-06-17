@@ -9,7 +9,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import defaultAvatar from '../img/defaultAvatar.png';
 import { Avatar } from '../components/Avatar';
-import { AddButton } from '../components/FAB';
 
 const StyledHeader = styled.header`
   display: grid;
@@ -42,6 +41,7 @@ const Navigation = styled.nav`
   padding: 0 0 10px 0;
   font-size: 1.5rem;
   color: #ddd;
+  transition: all 0.2s ease-in-out;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -49,13 +49,9 @@ const StyledNavLink = styled(NavLink)`
   :visited {
     color: #0769b4;
   }
-
-  a:active {
-    color: white;
-  }
 `;
 
-export default function Header({ heading, activeUser }) {
+export default function Header({ heading, activeUser, fab }) {
   return (
     <>
       <StyledHeader>
@@ -65,10 +61,10 @@ export default function Header({ heading, activeUser }) {
         <Heading>{heading}</Heading>
 
         <Navigation>
-          <StyledNavLink to="/">
+          <StyledNavLink to="/ideas">
             <Icon icon={faLightbulb} />
           </StyledNavLink>
-          <StyledNavLink to="/">
+          <StyledNavLink to="/feedback">
             <Icon icon={faComment} />
           </StyledNavLink>
 
@@ -77,7 +73,7 @@ export default function Header({ heading, activeUser }) {
           </StyledNavLink>
         </Navigation>
       </StyledHeader>
-      <AddButton />
+      {fab}
     </>
   );
 }

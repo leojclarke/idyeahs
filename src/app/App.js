@@ -5,6 +5,8 @@ import { getLocal, setLocal } from '../utils/services';
 import { findIdeaByIndex, findCommentByIndex } from '../utils/utils';
 import GlobalStyles from '../misc/GlobalStyles';
 import mockIdeas from '../data/MockIdeasData';
+import feedback from '../data/Feedback';
+import responsesData from '../data/Responses';
 import usersList from '../data/Users';
 import Home from './Home';
 import IdeasFeed from './IdeasFeed';
@@ -13,6 +15,8 @@ import IdeaEdit from './IdeaEdit';
 import IdeaComment from './IdeaComment';
 import IdeaDetailsView from './IdeaDetailsView';
 import Login from './Login';
+import FeedbackResultsPage from './FeedbackResults';
+import FeedbackForm from './FeedbackForm';
 
 const Grid = styled.div`
   display: grid;
@@ -22,12 +26,13 @@ const Grid = styled.div`
 
 export default function App() {
   const [ideas, setIdeas] = useState(getLocal('ideas') || mockIdeas);
+  const [responses, setResponses] = useState(
+    getLocal('responses') || responsesData
+  );
   const [users, setUsers] = useState(getLocal('users') || usersList);
   const [isLoggedIn, setIsLoggedIn] = useState(getLocal('isLoggedIn') || false);
   const [activeUser, setActiveUser] = useState(getLocal('activeUser') || []);
-  const [responses, setResponses] = useState(
-    getLocal('responses') || Array(12).fill(0)
-  );
+
   const [counter, setCounter] = useState(getLocal('counter') || 0);
 
   useEffect(() => setLocal('activeUser', activeUser), [activeUser]);
@@ -209,6 +214,29 @@ export default function App() {
               onCommentEdit={handleCommentEdit}
               onCommentDelete={handleCommentDelete}
               onStarClick={handleStarClickDetails}
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path="/feedback"
+          render={props => (
+            <FeedbackResultsPage
+              responses={responses}
+              questions={feedback}
+              activeUser={activeUser}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/feedback/add"
+          render={props => (
+            <FeedbackForm
+              feedback={feedback}
+              handleFeedbackSubmit={handleFeedbackSubmit}
+              history={props.history}
             />
           )}
         />

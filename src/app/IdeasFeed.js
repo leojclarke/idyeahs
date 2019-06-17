@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './Header';
 import IdeaCard from './IdeaCard';
+import { AddButton } from '../components/FAB';
 
 const MainGrid = styled.div`
   display: grid;
@@ -27,7 +28,7 @@ export default function IdeasFeed({
   return (
     <>
       <MainGrid>
-        <Header heading="Ideas Feed" activeUser={activeUser} />
+        <Header heading="Ideas" activeUser={activeUser} fab={<AddButton />} />
         <FeedGrid>
           {posts.map(post => (
             <IdeaCard

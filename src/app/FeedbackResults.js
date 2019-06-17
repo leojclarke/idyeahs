@@ -1,26 +1,69 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FeedbackQuestion } from './FeedbackResponse';
+import { Link } from 'react-router-dom';
+import { FeedbackSummary } from './FeedbackSummary';
+import Header from './Header';
+import SubmitButton from '../components/form/SubmitButton';
 
-const FeedbackResponses = styled.section`
+const MainGrid = styled.div`
   display: grid;
-  padding: 10px;
-  overflow: scroll;
+  grid-template-rows: 18vh 82vh;
 `;
 
-export default function FeedbackResultsPage({ responses, questions, counter }) {
+const FeedGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: black;
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  justify-content: center;
+
+  a :link,
+  :active {
+    text-decoration: none;
+    color: white;
+  }
+`;
+
+const AddFeedbackButton = styled(SubmitButton)`
+  background: #efc311;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+`;
+
+export default function FeedbackResultsPage({
+  activeUser,
+  responses,
+  questions,
+}) {
+  console.log(responses);
   return (
-    <FeedbackResponses>
-      {questions.map(question => (
-        <FeedbackQuestion
-          key={question.id}
-          questionNumber={question.id + 1}
-          question={question.question_text_en}
-          result={responses}
-          index={question.id}
-          counter={counter}
-        />
-      ))}
-    </FeedbackResponses>
+    <MainGrid>
+      <Header heading="Feedback" activeUser={activeUser} />
+      <FeedGrid>
+        <StyledLink to="feedback/add">
+          <AddFeedbackButton value="Add Feedback" />
+        </StyledLink>
+
+        {responses.map(summary => (
+          <FeedbackSummary
+            key={summary.id}
+            date={summary.date}
+            result={summary.results}
+            counter={summary.counter}
+            questions={questions}
+          />
+        ))}
+      </FeedGrid>
+    </MainGrid>
   );
 }
