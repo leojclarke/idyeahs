@@ -17,6 +17,7 @@ const Blur = styled.div`
 
 const ContextMenuContainer = styled.div`
   display: grid;
+  color: darkslategray;
   border-top: 1px solid lightslategray;
   box-shadow: 0 0 18px rgba(12, 22, 33, 0.25);
   grid-template-rows: 70px 70px;

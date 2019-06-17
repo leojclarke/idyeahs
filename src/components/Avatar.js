@@ -7,6 +7,7 @@ const MainAvatar = styled.img`
   margin: 10px;
   border: 1px solid white;
   border-radius: 50%;
+  background: #008dff;
 `;
 
 const MediumAvatar = styled.img`
@@ -15,6 +16,7 @@ const MediumAvatar = styled.img`
   margin: 10px;
   border: 1px solid #008dff;
   border-radius: 50%;
+  background: #008dff;
 `;
 
 const SmallAvatar = styled.img`
@@ -23,6 +25,7 @@ const SmallAvatar = styled.img`
   margin: 10px;
   border: 1px solid #008dff;
   border-radius: 50%;
+  background: #008dff;
 `;
 
 export function Avatar({ src, alt }) {

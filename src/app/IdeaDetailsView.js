@@ -39,11 +39,13 @@ const PageTitle = styled.h1`
 export default function IdeaDetailsView({
   posts,
   id,
+  activeUser,
   onContextClick,
   onIdeaDelete,
   onCommentEdit,
   onCommentDelete,
-  onStarClick,
+  onStarAdd,
+  onStarRemove,
   history,
 }) {
   const index = findIdeaByIndex(id, posts);
@@ -60,15 +62,11 @@ export default function IdeaDetailsView({
         <IdeaCardDetail
           key={post.id}
           id={post.id}
-          title={post.title}
-          text={post.text}
-          tags={post.tags}
-          timestamp={post.timestamp}
-          author={post.author}
-          stars={post.stars}
-          comments={post.comments}
+          post={post}
+          activeUser={activeUser}
           onContextClick={onContextClick}
-          onStarClick={onStarClick}
+          onStarAdd={onStarAdd}
+          onStarRemove={onStarRemove}
           onIdeaDelete={onIdeaDelete}
           onCommentEdit={onCommentEdit}
           onCommentDelete={onCommentDelete}

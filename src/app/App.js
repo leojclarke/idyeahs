@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { getLocal, setLocal } from '../utils/services';
-import { findIdeaByIndex, findCommentByIndex } from '../utils/utils';
+import {
+  findIdeaByIndex,
+  findCommentByIndex,
+  findStarByUsername,
+} from '../utils/utils';
 import GlobalStyles from '../misc/GlobalStyles';
 import mockIdeas from '../data/MockIdeasData';
 import usersList from '../data/Users';
@@ -13,6 +17,7 @@ import IdeaEdit from './IdeaEdit';
 import IdeaComment from './IdeaComment';
 import IdeaDetailsView from './IdeaDetailsView';
 import Login from './Login';
+import Signup from './SignUp';
 
 const Grid = styled.div`
   display: grid;
@@ -82,16 +87,26 @@ export default function App() {
     setIdeas(newIdeas);
   }
 
-  function handleStarClick(id, isStarred, history) {
-    const index = findIdeaByIndex(id, ideas);
-    isStarred ? ideas[index].stars-- : ideas[index].stars++;
-    history.push('/ideas');
+  function handleStarAdd(id, newStar) {
+    const newIdeas = ideas.slice();
+    const index = findIdeaByIndex(id, newIdeas);
+    const stars = newIdeas[index].stars;
+    const newStars = [...stars, newStar];
+    newIdeas[index].stars = newStars;
+    setIdeas(newIdeas);
   }
 
-  function handleStarClickDetails(id, isStarred, history) {
-    const index = findIdeaByIndex(id, ideas);
-    isStarred ? ideas[index].stars-- : ideas[index].stars++;
-    history.push(`/ideas/${id}/details`);
+  function handleStarRemove(id, userName) {
+    const newIdeas = ideas.slice();
+    const ideasIndex = findIdeaByIndex(id, newIdeas);
+    const stars = newIdeas[ideasIndex].stars;
+    const starsIndex = findStarByUsername(userName, stars);
+    const newStars = [
+      ...stars.slice(0, starsIndex),
+      ...stars.slice(starsIndex + 1),
+    ];
+    newIdeas[ideasIndex].stars = newStars;
+    setIdeas(newIdeas);
   }
 
   function handleFeedbackSubmit(answers, history) {
@@ -124,7 +139,7 @@ export default function App() {
     event.preventDefault();
     setUsers();
     setActiveUser(event.target.username.value);
-    history.push('/');
+    history.push('/signupsuccess');
   }
 
   return (
@@ -151,7 +166,8 @@ export default function App() {
               posts={ideas}
               activeUser={activeUser}
               onIdeaDelete={handleIdeaDelete}
-              onStarClick={handleStarClick}
+              onStarAdd={handleStarAdd}
+              onStarRemove={handleStarRemove}
               history={props.history}
             />
           )}
@@ -207,7 +223,9 @@ export default function App() {
               onCommentSubmit={handleCommentSubmit}
               onCommentEdit={handleCommentEdit}
               onCommentDelete={handleCommentDelete}
-              onStarClick={handleStarClickDetails}
+              onStarAdd={handleStarAdd}
+              onStarRemove={handleStarRemove}
+              activeUser={activeUser}
             />
           )}
         />
@@ -219,6 +237,17 @@ export default function App() {
               users={users}
               history={props.history}
               onLogin={handleLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={props => (
+            <Signup
+              users={users}
+              history={props.history}
+              onSignup={handleSignUp}
             />
           )}
         />

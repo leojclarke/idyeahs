@@ -19,6 +19,8 @@ const ContextMenuContainer = styled.div`
   display: grid;
   border-top: 1px solid lightslategray;
   box-shadow: 0 0 18px rgba(12, 22, 33, 0.25);
+  color: darkslategray;
+
   grid-template-rows: 70px 70px;
   grid-template-columns: 80px auto 30px;
   width: 100vw;
