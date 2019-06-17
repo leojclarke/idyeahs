@@ -6,7 +6,7 @@ const ideaEntries = [
     title: 'My Great Idea',
     text: 'Everything Begins With An Idea.',
     tags: ['sales', 'logistics'],
-    timestamp: '2018-09-08T08:02:17-05:00',
+    timestamp: '2018-09-08T08:02:17',
     author: {
       username: 'pilot',
       firstname: 'R.J.',
@@ -20,7 +20,29 @@ const ideaEntries = [
       },
       pwd: '123',
     },
-    stars: 5,
+    stars: [
+      {
+        timestamp: '2010-01-01T08:02:17-05:00',
+        author: {
+          username: 'pilot',
+          email: 'macready@idyeahs.com',
+        },
+      },
+      {
+        timestamp: '2010-01-02T08:02:17-05:00',
+        author: {
+          username: 'leojclarke',
+          email: 'leo@idyeahs.com',
+        },
+      },
+      {
+        timestamp: '2010-04-02T08:02:17-05:00',
+        author: {
+          username: 'blair',
+          email: 'blair@idyeahs.com',
+        },
+      },
+    ],
     comments: [
       {
         id: uid(),
@@ -64,7 +86,7 @@ const ideaEntries = [
     text:
       'No Matter What People Tell You, Words And Ideas Can Change The World.',
     tags: ['events', 'service'],
-    timestamp: '2018-09-08T08:02:17-05:00',
+    timestamp: '2018-09-08T08:02:17',
     author: {
       username: 'leojclarke',
       firstname: 'Leo',
@@ -77,7 +99,7 @@ const ideaEntries = [
         alt: 'Leo Avatar Image',
       },
     },
-    stars: 4,
+    stars: [],
     comments: [],
   },
   {
@@ -86,7 +108,7 @@ const ideaEntries = [
     text:
       'With the introduction of JavaScript ES6, new coding concepts were introduced to JavaScript and therefore to React. For instance, a JavaScript function can be expressed as lambda (arrow function). That’s why a Function Component is sometimes called Arrow Function Components (or maybe also Lambda Function Component). Let’s see our refactored React Component with an Arrow Function.',
     tags: ['events', 'service'],
-    timestamp: '2018-09-08T08:02:17-05:00',
+    timestamp: '2018-09-08T08:02:17',
     author: {
       username: 'other user',
       firstname: 'James Anthony',
@@ -99,7 +121,7 @@ const ideaEntries = [
         alt: 'default Avatar',
       },
     },
-    stars: 0,
+    stars: [],
     comments: [],
   },
 ];

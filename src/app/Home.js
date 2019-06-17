@@ -54,9 +54,14 @@ export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
       <Logo src={logo} style={logoFadeIn} onClick={() => onProceed(history)} />
       <ButtonContainer>
         {!isLoggedIn && (
-          <StyledNavLink to="/login">
-            <LoginButton value="Log in" />
-          </StyledNavLink>
+          <>
+            <StyledNavLink to="/login">
+              <LoginButton value="Log in" />
+            </StyledNavLink>
+            <StyledNavLink to="/signup">
+              <SignUpButton value="Sign up" />
+            </StyledNavLink>
+          </>
         )}
         {isLoggedIn && (
           <div onClick={() => onLogOut(history)}>

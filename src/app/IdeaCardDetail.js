@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import uid from 'uid';
+import moment from 'moment';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faStar, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +10,7 @@ import Tag from './IdeaTag';
 import ContextMenu from './ContextMenu';
 import DeleteModal from './DeleteModal';
 import Comment from './Comment';
+moment.locale('de');
 
 const CardHeader = styled.header`
   display: grid;
@@ -79,6 +81,8 @@ const Date = styled.div`
   font-size: 0.8rem;
   display: flex;
   align-items: center;
+  padding-left: 20px;
+  padding-bottom: 10px;
 `;
 
 const StyledIcon = styled(Icon)`
@@ -99,15 +103,11 @@ const StarContainer = styled.div`
 
 export default function IdeaCardDetail({
   id,
-  title,
-  text,
-  tags,
-  timestamp,
-  stars,
-  comments,
-  author,
+  post,
+  activeUser,
   onIdeaDelete,
-  onStarClick,
+  onStarAdd,
+  onStarRemove,
   onCommentEdit,
   onCommentDelete,
   history,
@@ -115,6 +115,38 @@ export default function IdeaCardDetail({
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
   const [isStarred, setStarred] = useState(false);
+
+  const { title, text, tags, timestamp, stars, comments, author } = post;
+
+  useEffect(() => checkIfStarred(), []);
+
+  function checkIfStarred() {
+    const activeUserHasStarred = stars.find(
+      star => star.author.username === activeUser.username
+    );
+    setStarred(activeUserHasStarred === undefined ? true : false);
+  }
+
+  function handleStarClick() {
+    const activeUserHasStarred = stars.find(
+      star => star.author.username === activeUser.username
+    );
+    const newStar = {
+      timestamp: moment()._d,
+      author: {
+        username: activeUser.username,
+        email: activeUser.email,
+      },
+    };
+    if (activeUserHasStarred === undefined) {
+      setStarred(!isStarred);
+      onStarAdd(id, newStar, history);
+    } else {
+      setStarred(!isStarred);
+      const userName = activeUser.username;
+      onStarRemove(id, userName);
+    }
+  }
 
   function handleContextMenuVisible() {
     setContextMenuVisible(!isContextMenuVisible);
@@ -128,11 +160,6 @@ export default function IdeaCardDetail({
   function handleDeleteModalVisible() {
     setDeleteModalVisible(!isDeleteModalVisible);
     setContextMenuVisible(false);
-  }
-
-  function handleStarClick() {
-    setStarred(!isStarred);
-    onStarClick(id, isStarred, history);
   }
 
   return (
@@ -172,7 +199,7 @@ export default function IdeaCardDetail({
       </CardHeader>
       <CardBody>
         <StarContainer>
-          {!isStarred ? (
+          {isStarred ? (
             <Icon icon={faStar} onClick={() => handleStarClick()} />
           ) : (
             <StyledIcon icon={faStar} onClick={() => handleStarClick()} />
@@ -186,10 +213,10 @@ export default function IdeaCardDetail({
       <CardTagsContainer>
         {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
       </CardTagsContainer>
-      <Date>{timestamp}</Date>
+      <Date>{moment(timestamp).format("D. MMM 'YY • HH:mm")}</Date>
       <CardStatsContainerDetail>
         <CardStats>
-          <span>{stars}</span> <span>Stars</span>
+          <span>{stars.length}</span> <span>Stars</span>
         </CardStats>
         <CardStats>
           <span>{comments.length}</span> <span>Comments</span>

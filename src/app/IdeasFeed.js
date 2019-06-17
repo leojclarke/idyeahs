@@ -21,7 +21,8 @@ export default function IdeasFeed({
   activeUser,
   onContextClick,
   onIdeaDelete,
-  onStarClick,
+  onStarAdd,
+  onStarRemove,
   history,
 }) {
   return (
@@ -32,16 +33,11 @@ export default function IdeasFeed({
           {posts.map(post => (
             <IdeaCard
               key={post.id}
-              id={post.id}
-              title={post.title}
-              text={post.text}
-              tags={post.tags}
-              timestamp={post.timestamp}
-              author={post.author}
-              stars={post.stars}
-              comments={post.comments}
+              post={post}
+              activeUser={activeUser}
               onContextClick={onContextClick}
-              onStarClick={onStarClick}
+              onStarAdd={onStarAdd}
+              onStarRemove={onStarRemove}
               onIdeaDelete={onIdeaDelete}
               history={history}
             />
