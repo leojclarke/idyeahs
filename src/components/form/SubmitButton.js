@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 const StyledButton = styled.button`
   display: grid;
-  width: 355px;
-  height: 46px;
   background: #008dff;
   color: white;
   border-radius: 3px;
