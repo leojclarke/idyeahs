@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  display: grid;
+  display: flex;
+  width: 100%;
+  height: 40px;
   background: #008dff;
   color: white;
   border-radius: 3px;
@@ -11,6 +13,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   font-family: Rubik, Roboto, open, sans-serif;
   text-transform: uppercase;
+  text-align: center;
 
   a {
     text-decoration: none;

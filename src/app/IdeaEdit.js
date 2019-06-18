@@ -30,8 +30,8 @@ const Header = styled.header`
 `;
 
 const Main = styled.div`
-  display: grid;
-  grid-template-rows: auto;
+  display: flex;
+  flex-direction: column;
   background: white;
   overflow: scroll;
 `;
@@ -45,9 +45,15 @@ const PageTitle = styled.h1`
 `;
 
 const StyledForm = styled.form`
-  display: grid;
-  grid-template-rows: auto;
   padding: 0 20px;
+  align-items: center;
+  width: 100%;
+
+  p {
+    font-size: 0.7rem;
+    color: lightslategray;
+    padding-bottom: 10px;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -112,12 +118,19 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history }) {
                 value={title}
               />
             }
-            label="title"
+            label="Idea title"
           />
-          <TextArea
-            name="text"
-            placeholder="My idea title is..."
-            value={text}
+          <Label
+            form="createIdea"
+            content={
+              <TextArea
+                name="text"
+                placeholder="My idea title is..."
+                type="textarea"
+                value={text}
+              />
+            }
+            label="My idea"
           />
 
           <Label
@@ -130,8 +143,9 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history }) {
                 value={tags.join()}
               />
             }
-            label="tags"
+            label="Idea tags"
           />
+          <p>Separate tags with a comma</p>
           <SubmitButton value="SUBMIT" />
         </StyledForm>
       </Main>
