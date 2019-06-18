@@ -20,6 +20,6 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function SubmitButton({ value, className }) {
-  return <StyledButton className={className}>{value}</StyledButton>;
+export default function SubmitButton({ value }) {
+  return <StyledButton>{value}</StyledButton>;
 }
