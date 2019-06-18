@@ -1,4 +1,4 @@
-const gallupTwelveQuestions = [
+const feedback = [
   {
     id: 0,
     question_text_en: 'Do you know what is expected of you at work?',
@@ -81,4 +81,4 @@ const gallupTwelveQuestions = [
   },
 ];
 
-export default gallupTwelveQuestions;
+export default feedback;
