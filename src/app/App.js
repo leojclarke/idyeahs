@@ -167,6 +167,7 @@ export default function App() {
           path="/ideas"
           render={props => (
             <IdeasFeed
+              heading="Ideas"
               posts={ideas}
               activeUser={activeUser}
               onIdeaDelete={handleIdeaDelete}
@@ -181,6 +182,8 @@ export default function App() {
           path="/starred"
           render={props => (
             <IdeasFeed
+              heading="Starred"
+              showStarred={true}
               posts={ideas}
               activeUser={activeUser}
               onIdeaDelete={handleIdeaDelete}
@@ -252,6 +255,7 @@ export default function App() {
           path="/feedback"
           render={props => (
             <FeedbackResultsPage
+              heading="Feedback"
               responses={responses}
               questions={feedback}
               activeUser={activeUser}

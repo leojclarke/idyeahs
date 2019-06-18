@@ -18,6 +18,7 @@ const FeedGrid = styled.div`
 `;
 
 export default function IdeasFeed({
+  heading,
   posts,
   activeUser,
   onContextClick,
@@ -25,26 +26,33 @@ export default function IdeasFeed({
   onStarAdd,
   onStarRemove,
   history,
+  showStarred,
 }) {
+  function getFilterdPosts() {
+    return posts.filter(post => {
+      return post.stars.find(
+        star => star.author.username === activeUser.username
+      );
+    });
+  }
+  const displayPosts = showStarred ? getFilterdPosts() : posts;
   return (
-    <>
-      <MainGrid>
-        <Header heading="Ideas" activeUser={activeUser} fab={<AddButton />} />
-        <FeedGrid>
-          {posts.map(post => (
-            <IdeaCard
-              key={post.id}
-              post={post}
-              activeUser={activeUser}
-              onContextClick={onContextClick}
-              onStarAdd={onStarAdd}
-              onStarRemove={onStarRemove}
-              onIdeaDelete={onIdeaDelete}
-              history={history}
-            />
-          ))}
-        </FeedGrid>
-      </MainGrid>
-    </>
+    <MainGrid>
+      <Header heading={heading} activeUser={activeUser} fab={<AddButton />} />
+      <FeedGrid>
+        {displayPosts.map(post => (
+          <IdeaCard
+            key={post.id}
+            post={post}
+            activeUser={activeUser}
+            onContextClick={onContextClick}
+            onStarAdd={onStarAdd}
+            onStarRemove={onStarRemove}
+            onIdeaDelete={onIdeaDelete}
+            history={history}
+          />
+        ))}
+      </FeedGrid>
+    </MainGrid>
   );
 }
