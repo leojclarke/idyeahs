@@ -16,7 +16,7 @@ library.add(faTimes, faArrowRight, faArrowLeft);
 const Grid = styled.div`
   display: grid;
   grid-template-rows: 150px auto;
-  padding: 10px;
+  padding: 20px;
   align-items: start;
   justify-items: center;
   color: darkslategray;
@@ -25,15 +25,14 @@ const Grid = styled.div`
 const Header = styled.header`
   display: grid;
   grid-template-rows: 50px 70px;
-  padding: 10px;
   width: 100%;
   align-items: left;
   justify-items: left;
 `;
 
 const StyledForm = styled.form`
-  display: grid;
-  grid-template-rows: auto;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 `;
 

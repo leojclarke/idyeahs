@@ -29,8 +29,8 @@ const Header = styled.header`
 `;
 
 const Main = styled.div`
-  display: grid;
-  grid-template-rows: auto;
+  display: flex;
+  flex-direction: column;
   background: white;
   overflow: scroll;
 `;
@@ -44,9 +44,13 @@ const PageTitle = styled.h1`
 `;
 
 const StyledForm = styled.form`
-  display: grid;
-  grid-template-rows: auto;
   padding: 0 20px;
+  align-items: center;
+  p {
+    font-size: 0.7rem;
+    color: lightslategray;
+    padding-bottom: 10px;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -74,7 +78,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
         tags: splitToArray(form.tags.value),
         timestamp: moment()._d,
         author: activeUser,
-        stars: 0,
+        stars: [],
         comments: [],
       },
       ...posts,
@@ -106,7 +110,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
                 type="text"
               />
             }
-            label="title"
+            label="Idea title"
           />
 
           <Label
@@ -118,7 +122,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
                 type="textarea"
               />
             }
-            label="idea"
+            label="My idea"
           />
           <Label
             form="createIdea"
@@ -129,8 +133,10 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
                 type="text"
               />
             }
-            label="tags"
+            label="Idea tags"
           />
+          <p>Separate tags with a comma</p>
+
           <SubmitButton value="SUBMIT" />
         </StyledForm>
       </Main>
