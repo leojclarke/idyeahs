@@ -49,6 +49,9 @@ const StyledNavLink = styled(NavLink)`
   :visited {
     color: #0769b4;
   }
+  &.active {
+    color: white;
+  }
 `;
 
 export default function Header({ heading, activeUser, fab }) {
@@ -68,7 +71,7 @@ export default function Header({ heading, activeUser, fab }) {
             <Icon icon={faComment} />
           </StyledNavLink>
 
-          <StyledNavLink to="/">
+          <StyledNavLink to="/starred">
             <Icon icon={faStar} />
           </StyledNavLink>
         </Navigation>

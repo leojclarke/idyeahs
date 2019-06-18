@@ -234,7 +234,7 @@ export default function App() {
           path="/feedback/add"
           render={props => (
             <FeedbackForm
-              feedback={feedback}
+              questions={feedback}
               handleFeedbackSubmit={handleFeedbackSubmit}
               history={props.history}
             />
