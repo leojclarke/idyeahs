@@ -41,13 +41,14 @@ const AddFeedbackButton = styled(SubmitButton)`
 `;
 
 export default function FeedbackResultsPage({
+  heading,
   activeUser,
   responses,
   questions,
 }) {
   return (
     <MainGrid>
-      <Header heading="Feedback" activeUser={activeUser} />
+      <Header heading={heading} activeUser={activeUser} />
       <FeedGrid>
         <StyledLink to="feedback/add">
           <AddFeedbackButton value="Add Feedback" />
