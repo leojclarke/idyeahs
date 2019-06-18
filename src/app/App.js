@@ -267,17 +267,6 @@ export default function App() {
             />
           )}
         />
-        <Route
-          exact
-          path="/signup"
-          render={props => (
-            <Signup
-              users={users}
-              history={props.history}
-              onSignup={handleSignUp}
-            />
-          )}
-        />
       </Grid>
     </Router>
   );
