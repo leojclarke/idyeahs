@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import uid from 'uid';
-
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
@@ -79,8 +78,8 @@ const CardStatsContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 5px 10px 10px 10px;
-  margin: 0 0;
+  padding: 5px 10px 10px;
+  margin: 0;
 `;
 
 const CardStats = styled.span`
@@ -94,21 +93,26 @@ const StyledIcon = styled(Icon)`
 `;
 
 export default function Card({
-  id,
-  title,
-  text,
-  tags,
-  timestamp,
-  author,
-  stars,
-  comments,
+  post,
+  activeUser,
   onIdeaDelete,
-  onStarClick,
+  onStarAdd,
+  onStarRemove,
   history,
 }) {
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
   const [isStarred, setStarred] = useState(false);
+
+  useEffect(() => checkIfStarred(), []);
+  const { id, title, text, tags, timestamp, author, stars, comments } = post;
+
+  function checkIfStarred() {
+    const activeUserHasStarred = stars.find(
+      star => star.author.username === activeUser.username
+    );
+    setStarred(activeUserHasStarred === undefined ? true : false);
+  }
 
   function handleContextMenuVisible() {
     setContextMenuVisible(!isContextMenuVisible);
@@ -125,8 +129,24 @@ export default function Card({
   }
 
   function handleStarClick() {
-    setStarred(!isStarred);
-    onStarClick(id, isStarred, history);
+    const activeUserHasStarred = stars.find(
+      star => star.author.username === activeUser.username
+    );
+    const newStar = {
+      timestamp: moment()._d,
+      author: {
+        username: activeUser.username,
+        email: activeUser.email,
+      },
+    };
+    if (activeUserHasStarred === undefined) {
+      setStarred(!isStarred);
+      onStarAdd(id, newStar, history);
+    } else {
+      setStarred(!isStarred);
+      const userName = activeUser.username;
+      onStarRemove(id, userName);
+    }
   }
 
   return (
@@ -136,7 +156,6 @@ export default function Card({
           id={id}
           onContextClose={handleContextMenuVisible}
           onDeleteModalClick={handleDeleteModalVisible}
-          onIdeaDelete={onIdeaDelete}
           history={history}
         />
       )}
@@ -160,7 +179,7 @@ export default function Card({
             <Author>
               {author.firstname} {author.lastname}
             </Author>
-            <Date>{timestamp}</Date>
+            <Date>{moment(timestamp).format("DD. MMM 'YY • HH:mm")}</Date>
           </CardInfo>
 
           <ContextElipsis>
@@ -175,22 +194,20 @@ export default function Card({
           {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}
         </CardTagsContainer>
         <CardStatsContainer>
-          {!isStarred ? (
+          {isStarred ? (
             <Icon icon={faStar} onClick={() => handleStarClick()} />
           ) : (
             <StyledIcon icon={faStar} onClick={() => handleStarClick()} />
           )}
 
-          <CardStats>{stars}</CardStats>
+          <CardStats>{stars.length}</CardStats>
 
           <Icon
             icon={faComment}
             onClick={() => history.push(`/ideas/${id}/comment`)}
           />
 
-          <CardStats>
-            {comments.length !== undefined ? comments.length : 0}
-          </CardStats>
+          <CardStats>{comments.length}</CardStats>
         </CardStatsContainer>
       </CardContainer>
     </OutsideClickHandler>

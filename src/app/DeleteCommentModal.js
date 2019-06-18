@@ -9,7 +9,7 @@ const Blur = styled.div`
   width: 100vw;
   height: 100vh;
   background: lightslategray;
-  opacity: 0.3;
+  opacity: 0.5;
   z-index: 45;
 `;
 
@@ -21,6 +21,8 @@ const DeleteModalContainer = styled.div`
   transform: translate(-50%, -50%);
   z-index: 60;
   background: white;
+  box-shadow: 0 0 18px rgba(12, 22, 33, 0.25);
+  border-radius: 5px;
 `;
 
 const DeleteModalBody = styled.div`
@@ -60,7 +62,6 @@ const CancelButton = styled.button`
   font-size: 0.8rem;
   font-weight: 500;
   font-family: Rubik, Roboto, open, sans-serif;
-  text-decoration: none;
   text-transform: uppercase;
   align-self: center;
   justify-self: center;
@@ -102,14 +103,8 @@ export default function DeleteCommentModal({
             <br />
             Because, this can't be undone.
           </DeleteModalText>
-          <CancelButton value="Cancel" type="button" onClick={onClearScreen}>
-            CANCEL
-          </CancelButton>
-          <DeleteButton
-            value="Delete"
-            type="button"
-            onClick={() => handleCommentDelete()}
-          >
+          <CancelButton onClick={onClearScreen}>CANCEL</CancelButton>
+          <DeleteButton onClick={() => handleCommentDelete()}>
             DELETE
           </DeleteButton>
         </DeleteModalBody>

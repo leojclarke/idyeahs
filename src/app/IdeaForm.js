@@ -59,13 +59,11 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
-  const [date, setDate] = useState(moment().format('D MMMM, HH:MM'));
-
   function splitToArray(tagString) {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleFormSubmit(event, date, activeUser, history) {
+  function handleFormSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const newIdeas = [
@@ -74,7 +72,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
         title: form.title.value,
         text: form.text.value,
         tags: splitToArray(form.tags.value),
-        timestamp: date,
+        timestamp: moment()._d,
         author: activeUser,
         stars: 0,
         comments: [],
@@ -96,8 +94,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
         <StyledForm
           id="createIdea"
           onSubmit={event => {
-            setDate(date);
-            handleFormSubmit(event, date, activeUser, history);
+            handleFormSubmit(event);
           }}
         >
           <Label

@@ -51,7 +51,7 @@ const StyledForm = styled.form`
   grid-template-columns: 80% 20%;
   align-content: center;
   justify-content: center;
-  padding: 2px 2px;
+  padding: 2px;
 `;
 
 const SendButton = styled.button`
@@ -100,8 +100,7 @@ export default function Comment({
     event.preventDefault();
     const form = event.target;
     const editedComment = {
-      id: id,
-      author: author,
+      ...comment,
       comment: form.comment.value,
       timestamp: moment()._d,
     };

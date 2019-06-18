@@ -10,7 +10,6 @@ const StyledButton = styled.button`
   font-size: 1rem;
   font-weight: 500;
   font-family: Rubik, Roboto, open, sans-serif;
-  text-decoration: none;
   text-transform: uppercase;
 
   a {
