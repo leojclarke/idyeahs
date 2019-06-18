@@ -172,7 +172,20 @@ export default function App() {
             />
           )}
         />
-
+        <Route
+          exact
+          path="/starred"
+          render={props => (
+            <IdeasFeed
+              posts={ideas}
+              activeUser={activeUser}
+              onIdeaDelete={handleIdeaDelete}
+              onStarAdd={handleStarAdd}
+              onStarRemove={handleStarRemove}
+              history={props.history}
+            />
+          )}
+        />
         <Route
           exact
           path="/ideas/add"

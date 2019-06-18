@@ -49,7 +49,7 @@ const StyledNavLink = styled(NavLink)`
     color: #0769b4;
   }
 
-  a:active {
+  .active {
     color: white;
   }
 `;
@@ -64,14 +64,14 @@ export default function Header({ heading, activeUser }) {
         <Heading>{heading}</Heading>
 
         <Navigation>
-          <StyledNavLink to="/">
+          <StyledNavLink to="/ideas">
             <Icon icon={faLightbulb} />
           </StyledNavLink>
-          <StyledNavLink to="/">
+          <StyledNavLink to="/feedback">
             <Icon icon={faComment} />
           </StyledNavLink>
 
-          <StyledNavLink to="/">
+          <StyledNavLink to="/starred">
             <Icon icon={faStar} />
           </StyledNavLink>
         </Navigation>
