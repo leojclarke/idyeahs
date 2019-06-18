@@ -35,25 +35,6 @@ const Stats = styled.div`
   }
 `;
 
-const SummaryContainer = styled.section`
-  display: grid;
-  padding: 10px;
-  grid-template-columns: 60vw 20vw 20vw;
-  color: darkslategray;
-  border-top: 1px solid lightslategray;
-  border-bottom: 1px solid lightslategray;
-
-  h3 {
-    font-size: 1.2rem;
-  }
-
-  p {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #008dff;
-  }
-`;
-
 export function FeedbackQuestion({
   questionNumber,
   question,
@@ -61,8 +42,6 @@ export function FeedbackQuestion({
   counter,
   results,
 }) {
-  console.log('question: ', results);
-
   const calcResult =
     counter !== 0 ? (results[index] / counter).toFixed(2) : '0';
 

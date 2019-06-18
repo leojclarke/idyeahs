@@ -45,7 +45,6 @@ export default function FeedbackResultsPage({
   responses,
   questions,
 }) {
-  console.log(responses);
   return (
     <MainGrid>
       <Header heading="Feedback" activeUser={activeUser} />

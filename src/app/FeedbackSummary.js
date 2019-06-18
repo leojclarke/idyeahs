@@ -45,24 +45,15 @@ const SummaryContainer = styled.section`
 `;
 
 export function FeedbackSummary({ date, result, counter, questions }) {
-  console.log('Summary: ', result);
   const calcResultSummary =
     counter !== 0 ? (result[0] / counter).toFixed(2) : '0';
-
-  function getColorRating() {
-    const color = calcResultSummary >= 3 ? 'red' : 'hotpink';
-    console.log(color);
-
-    return color;
-  }
-
-  getColorRating();
 
   const [isDetailsVisible, setDetailsVisible] = useState(false);
 
   function handleDetailsVisible() {
     setDetailsVisible(!isDetailsVisible);
   }
+
   return (
     <OutsideClickHandler onOutsideClick={() => setDetailsVisible(false)}>
       <SummaryContainer>
@@ -80,8 +71,8 @@ export function FeedbackSummary({ date, result, counter, questions }) {
         </Stats>
       </SummaryContainer>
 
-      <FeedbackQuestion>
-        {questions.map(question => (
+      {isDetailsVisible &&
+        questions.map(question => (
           <FeedbackQuestion
             key={question.id}
             questionNumber={question.id + 1}
@@ -91,7 +82,6 @@ export function FeedbackSummary({ date, result, counter, questions }) {
             counter={counter}
           />
         ))}
-      </FeedbackQuestion>
     </OutsideClickHandler>
   );
 }
