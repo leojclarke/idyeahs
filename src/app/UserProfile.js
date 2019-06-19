@@ -154,14 +154,14 @@ export default function UserPage({ users, userID, posts, history }) {
               key={post.id}
             >
               {post.title}
-              <div>
+              <span>
                 <Icon icon={faStar} />
                 <CardStats>{post.stars.length}</CardStats>
-              </div>
-              <div>
+              </span>
+              <span>
                 <Icon icon={faComment} />
                 <CardStats>{post.comments.length}</CardStats>
-              </div>
+              </span>
             </UserPost>
           ))}
         </UserPosts>

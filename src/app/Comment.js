@@ -50,21 +50,21 @@ const TimeStamp = styled.span`
 
 const StyledForm = styled.form`
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 1fr 0.2fr;
   align-content: center;
   justify-content: center;
   padding: 2px;
 `;
 
 const SendButton = styled.button`
-  background: hotpink;
-  padding: 1px;
-  margin: 1px;
+  background: #008dff;
+  margin-left: 2px;
   color: white;
-  border: 2px solid blue;
+  border: 2px solid #008dff;
+  height: 42px;
+  padding: 0;
   border-radius: 3px;
 `;
-
 export default function Comment({
   id,
   ideaId,

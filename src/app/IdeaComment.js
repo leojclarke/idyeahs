@@ -22,13 +22,13 @@ const Header = styled.header`
   padding: 10px;
   width: 100%;
   border-bottom: 1px solid lightslategray;
-  overflow: scroll;
 `;
 
 const Main = styled.div`
-  display: grid;
-  grid-template-rows: auto 80px;
+  display: flex;
+  flex-direction: column;
   background: white;
+  overflow: scroll;
 `;
 
 const PageTitle = styled.h1`
@@ -46,23 +46,20 @@ const StyledForm = styled.form`
   align-content: center;
   justify-content: center;
   padding: 5px 10px;
-  border-top: 1px solid darkslategray;
-  box-shadow: 5px 14px 28px rgba(19, 22, 52, 0.25);
 `;
 
 const SendButton = styled.button`
-  background: hotpink;
-  padding: 1px;
-  margin: 1px;
+  background: #008dff;
+  margin-left: 2px;
   color: white;
-  border: 2px solid blue;
+  border: 2px solid #008dff;
+  height: 42px;
+  padding: 0;
   border-radius: 3px;
 `;
 
 const StyledComments = styled.section`
   width: 100vw;
-  color: black;
-  overflow: scroll;
 `;
 
 export default function IdeaComment({
