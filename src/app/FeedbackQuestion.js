@@ -36,13 +36,9 @@ const Stats = styled.div`
 export function FeedbackQuestion({
   questionNumber,
   question,
-  index,
   counter,
-  results,
+  result,
 }) {
-  const calcResult =
-    counter !== 0 ? (results[index] / counter).toFixed(2) : '0';
-
   return (
     <FeedbackContainer>
       <QuestionTitle>
@@ -50,7 +46,7 @@ export function FeedbackQuestion({
       </QuestionTitle>
       <Stats>
         <Icon icon={faTachometerAlt} />
-        <p>{calcResult}</p>
+        <p>{result.toFixed(2)}</p>
       </Stats>
       <Stats>
         <Icon icon={faUser} />

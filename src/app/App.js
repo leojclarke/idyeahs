@@ -248,6 +248,7 @@ export default function App() {
               responses={responses}
               questions={feedback}
               activeUser={activeUser}
+              history={props.history}
             />
           )}
         />

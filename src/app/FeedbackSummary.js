@@ -38,10 +38,13 @@ const SummaryContainer = styled.section`
   }
 `;
 
-export function FeedbackSummary({ date, result, counter, questions }) {
-  const calcResultSummary =
-    counter !== 0 ? (result[0] / counter).toFixed(2) : '0';
-
+export function FeedbackSummary({
+  date,
+  result,
+  counter,
+  overallRating,
+  questions,
+}) {
   const [isDetailsVisible, setDetailsVisible] = useState(false);
 
   function handleDetailsVisible() {
@@ -57,7 +60,7 @@ export function FeedbackSummary({ date, result, counter, questions }) {
         </div>
         <Stats>
           <Icon icon={faTachometerAlt} />
-          <p>{calcResultSummary}</p>
+          <p>{overallRating.toFixed(2)}</p>
         </Stats>
         <Stats>
           <Icon icon={faUser} />
@@ -66,12 +69,12 @@ export function FeedbackSummary({ date, result, counter, questions }) {
       </SummaryContainer>
 
       {isDetailsVisible &&
-        questions.map(question => (
+        questions.map((question, index) => (
           <FeedbackQuestion
             key={question.id}
             questionNumber={question.id + 1}
             question={question.question_text_en}
-            results={result}
+            result={result[index]}
             index={question.id}
             counter={counter}
           />

@@ -88,6 +88,7 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history }) {
       editedIdea,
       ...posts.slice(ideaId + 1),
     ];
+    console.log(newIdeas);
     onIdeaEdit(newIdeas, history);
   }
 

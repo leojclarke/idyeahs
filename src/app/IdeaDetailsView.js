@@ -55,7 +55,7 @@ export default function IdeaDetailsView({
   return (
     <Grid>
       <Header>
-        <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
+        <Icon icon={faArrowLeft} onClick={() => history.push(`/ideas/`)} />
         <PageTitle>{post.title}</PageTitle>
         <CommentButton history={history} id={id} />
       </Header>
