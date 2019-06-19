@@ -12,9 +12,11 @@ const MainGrid = styled.div`
 const FeedGrid = styled.div`
   display: grid;
   grid-template-rows: auto;
-  background: white;
+  background: #efefef;
   overflow: scroll;
   color: black;
+  padding: 0 5px;
+  margin-bottom: 10px;
 `;
 
 export default function IdeasFeed({
@@ -28,17 +30,22 @@ export default function IdeasFeed({
   history,
   showStarred,
 }) {
-  function getFilterdPosts() {
+  function getFilteredPosts() {
     return posts.filter(post => {
       return post.stars.find(
         star => star.author.username === activeUser.username
       );
     });
   }
-  const displayPosts = showStarred ? getFilterdPosts() : posts;
+  const displayPosts = showStarred ? getFilteredPosts() : posts;
   return (
     <MainGrid>
-      <Header heading={heading} activeUser={activeUser} fab={<AddButton />} />
+      <Header
+        heading={heading}
+        history={history}
+        activeUser={activeUser}
+        fab={!showStarred && <AddButton />}
+      />
       <FeedGrid>
         {displayPosts.map(post => (
           <IdeaCard

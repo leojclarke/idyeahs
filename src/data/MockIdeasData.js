@@ -110,7 +110,7 @@ const ideaEntries = [
     tags: ['events', 'service'],
     timestamp: '2018-09-08T08:02:17',
     author: {
-      username: 'other user',
+      username: 'defaultUser',
       firstname: 'James Anthony',
       lastname: 'Smith',
       email: 'jim@idyeahs.com',

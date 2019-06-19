@@ -15,9 +15,8 @@ const HomeGrid = styled.section`
 `;
 
 const ButtonContainer = styled.section`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 10px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: center;
   justify-items: center;

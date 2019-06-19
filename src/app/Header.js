@@ -7,7 +7,6 @@ import {
   faComment,
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
-import defaultAvatar from '../img/defaultAvatar.png';
 import { Avatar } from '../components/Avatar';
 
 const StyledHeader = styled.header`
@@ -53,13 +52,11 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function Header({ heading, activeUser, fab }) {
+export default function Header({ heading, activeUser, fab, history }) {
   return (
     <>
       <StyledHeader>
-        <StyledNavLink to="/">
-          <Avatar src={activeUser.avatar.src || defaultAvatar} />
-        </StyledNavLink>
+        <Avatar src={activeUser.avatar.src} onClick={() => history.push(`/`)} />
         <Heading>{heading}</Heading>
 
         <Navigation>

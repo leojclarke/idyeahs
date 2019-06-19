@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import OutsideClickHandler from 'react-outside-click-handler';
-
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 

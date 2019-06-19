@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import uid from 'uid';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { findIdeaByIndex } from '../utils/utils';
-
 import Label from '../components/form/Label';
 import Input from '../components/form/Input';
 import TextArea from '../components/form/TextArea';

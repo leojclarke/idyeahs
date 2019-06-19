@@ -13,13 +13,13 @@ const StyledButton = styled.button`
   font-weight: 500;
   font-family: Rubik, Roboto, open, sans-serif;
   text-transform: uppercase;
-  text-align: center;
+  justify-content: center;
 
   a {
     text-decoration: none;
   }
 `;
 
-export default function SubmitButton({ value }) {
-  return <StyledButton>{value}</StyledButton>;
+export default function SubmitButton({ value, className }) {
+  return <StyledButton className={className}>{value}</StyledButton>;
 }

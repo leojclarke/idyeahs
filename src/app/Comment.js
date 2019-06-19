@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import OutsideClickHandler from 'react-outside-click-handler';
 import moment from 'moment';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import OutsideClickHandler from 'react-outside-click-handler';
 import ContextMenuComment from './ContextMenuComment';
 import DeleteCommentModal from './DeleteCommentModal';
 import Input from '../components/form/Input';
@@ -131,7 +131,11 @@ export default function Comment({
 
       <StyledCommentRow>
         <div>
-          <CommentAvatar src={author.avatar.src} />
+          <CommentAvatar
+            src={author.avatar.src}
+            alt={author.avatar.alt}
+            onClick={() => history.push(`/profile/${author.username}/`)}
+          />
         </div>
 
         {!isCommentEditable ? (

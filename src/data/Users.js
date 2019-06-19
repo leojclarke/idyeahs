@@ -25,6 +25,18 @@ const usersList = [
     },
     pwd: '123',
   },
+  {
+    username: 'defaultUser',
+    firstname: 'James Anthony',
+    lastname: 'Smith',
+    email: 'jim@idyeahs.com',
+    role: 'chief something officer',
+    department: 'office',
+    avatar: {
+      src: '/img/defaultAvatar.png',
+      alt: 'default Avatar',
+    },
+  },
 ];
 
 export default usersList;
