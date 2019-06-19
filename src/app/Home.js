@@ -15,31 +15,38 @@ const HomeGrid = styled.section`
 `;
 
 const ButtonContainer = styled.section`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
   width: 100%;
   align-items: center;
   justify-items: center;
+  padding: 10px;
 `;
 
 const Logo = styled(animated.img)`
   width: 200px;
 `;
 
-const SignUpButton = styled(SubmitButton)`
+const ButtonTransparent = styled(SubmitButton)`
   background: transparent;
   border: 1px solid #008dff;
   color: #008dff;
 `;
 
-const LoginButton = styled(SubmitButton)`
+const ButtonFilled = styled(SubmitButton)`
   background: white;
-  border: white;
   color: #008dff;
+  border: none;
 `;
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
+  width: 100%;
+`;
+
+const LogOut = styled.div`
+  width: 100%;
 `;
 
 export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
@@ -55,17 +62,17 @@ export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
         {!isLoggedIn && (
           <>
             <StyledNavLink to="/login">
-              <LoginButton value="Log in" />
+              <ButtonFilled value="Log in" />
             </StyledNavLink>
             <StyledNavLink to="/signup">
-              <SignUpButton value="Sign up" />
+              <ButtonTransparent value="Sign up" />
             </StyledNavLink>
           </>
         )}
         {isLoggedIn && (
-          <div onClick={() => onLogOut(history)}>
-            <SignUpButton value="Log out" />
-          </div>
+          <LogOut onClick={() => onLogOut(history)}>
+            <ButtonTransparent value="Log out" />
+          </LogOut>
         )}
       </ButtonContainer>
     </HomeGrid>

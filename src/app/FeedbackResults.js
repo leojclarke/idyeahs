@@ -50,18 +50,17 @@ export default function FeedbackResultsPage({
   history,
 }) {
   function getUpdate(existing, response) {
-    const { results } = response;
-    const overallRating =
-      results.reduce((prev, a) => prev + parseInt(a), 0) / 12;
-
+    const resultSums = response.results.map(
+      (result, index) => Number(existing.resultSums[index]) + Number(result)
+    );
+    const overallSum =
+      resultSums.reduce((prev, a) => prev + parseInt(a), 0) / 12;
     const submissionCount = existing.submissionCount + 1;
 
     return {
       submissionCount,
-      overallRating: (existing.overallRating + overallRating) / submissionCount,
-      responsesOverall: existing.responsesOverall.map(
-        (entry, index) => (Number(entry) + Number(response.results[index])) / 2
-      ),
+      overallSum,
+      resultSums,
     };
   }
 
@@ -70,8 +69,8 @@ export default function FeedbackResultsPage({
     const existing = prev[date] || {
       date,
       submissionCount: 0,
-      overallRating: 0,
-      responsesOverall: response.results,
+      overallSum: 0,
+      resultSums: new Array(12).fill(0),
     };
 
     return {
@@ -87,8 +86,6 @@ export default function FeedbackResultsPage({
     }))
     .sort((a, b) => (moment(a.date).isBefore(moment(b.date)) ? 1 : -1));
 
-  console.log(sortedGroupRespones);
-
   return (
     <MainGrid>
       <Header heading={heading} activeUser={activeUser} history={history} />
@@ -101,9 +98,9 @@ export default function FeedbackResultsPage({
           <FeedbackSummary
             key={summary.date}
             date={summary.date}
-            result={summary.responsesOverall}
-            counter={summary.submissionCount}
-            overallRating={summary.overallRating}
+            submissionCount={summary.submissionCount}
+            overallSum={summary.overallSum}
+            resultSums={summary.resultSums}
             questions={questions}
           />
         ))}

@@ -197,7 +197,9 @@ export default function IdeaCardDetail({
         </CardInfo>
 
         <ContextElipsis>
-          <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+          {author.username === activeUser.username && (
+            <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+          )}
         </ContextElipsis>
       </CardHeader>
       <CardBody>
@@ -234,7 +236,7 @@ export default function IdeaCardDetail({
               ideaId={id}
               key={uid()}
               author={comment.author}
-              comment={comment.comment}
+              comment={comment}
               timestamp={comment.timestamp}
               onCommentEdit={onCommentEdit}
               onCommentDelete={onCommentDelete}

@@ -37,7 +37,7 @@ export function FeedbackQuestion({
   return (
     <FeedbackContainer>
       <QuestionTitle>
-        Q{questionNumber} {question}
+        Q{questionNumber}. {question}
       </QuestionTitle>
       <Stats>
         <Icon icon={faTachometerAlt} />

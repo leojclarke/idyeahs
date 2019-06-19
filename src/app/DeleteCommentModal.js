@@ -14,7 +14,7 @@ const Blur = styled.div`
 `;
 
 const DeleteModalContainer = styled.div`
-  border: 1px solid lightslategray;
+  border: 1px solid #dedede;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -36,7 +36,7 @@ const DeleteModalHeading = styled.h2`
   display: grid;
   grid-column: 1 / span 2;
   padding: 0;
-  margin: 0;
+  margin: 5px;
   font-size: 1.4rem;
   align-self: center;
   justify-self: center;
@@ -48,7 +48,7 @@ const DeleteModalText = styled.p`
   align-self: center;
   justify-self: center;
   text-align: center;
-  line-height: 1.3rem;
+  line-height: 1.6rem;
 `;
 
 const CancelButton = styled.button`
