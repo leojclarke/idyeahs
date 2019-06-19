@@ -106,7 +106,7 @@ export default function IdeaComment({
                 ideaId={ideaId}
                 key={uid()}
                 author={comment.author}
-                comment={comment.comment}
+                comment={comment}
                 timestamp={comment.timestamp}
                 onCommentEdit={onCommentEdit}
                 onCommentDelete={onCommentDelete}

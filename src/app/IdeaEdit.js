@@ -72,23 +72,22 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history }) {
     return tagString.split(',').map(tag => tag.trim());
   }
 
-  function handleFormSubmit(event, history) {
+  function handleFormSubmit(event) {
     event.preventDefault();
 
     const form = event.target;
     const editedIdea = {
+      ...posts[ideaId],
       title: form.title.value,
       text: form.text.value,
       tags: splitToArray(form.tags.value),
       timestamp: moment()._d,
-      ...posts[ideaId],
     };
     const newIdeas = [
       ...posts.slice(0, ideaId),
       editedIdea,
       ...posts.slice(ideaId + 1),
     ];
-    console.log(newIdeas);
     onIdeaEdit(newIdeas, history);
   }
 
@@ -104,7 +103,7 @@ export default function IdeaEdit({ posts, id, onIdeaEdit, history }) {
         <StyledForm
           id="editIdea"
           onSubmit={event => {
-            handleFormSubmit(event, history);
+            handleFormSubmit(event);
           }}
         >
           <Label

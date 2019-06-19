@@ -51,7 +51,7 @@ const UserInfo = styled.section`
 `;
 
 const CardStats = styled.span`
-  margin: 0 20px;
+  margin: 0 10px;
   font-size: 0.9rem;
   font-weight: bold;
 `;
@@ -103,7 +103,9 @@ const UserPosts = styled.section`
 `;
 
 const UserPost = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.5fr 0.4fr 0.4fr;
+  grid-template-rows: 15px;
   padding: 10px;
 `;
 
@@ -152,11 +154,14 @@ export default function UserPage({ users, userID, posts, history }) {
               key={post.id}
             >
               {post.title}
-
-              <Icon icon={faStar} />
-              <CardStats>{post.stars.length}</CardStats>
-              <Icon icon={faComment} />
-              <CardStats>{post.comments.length}</CardStats>
+              <div>
+                <Icon icon={faStar} />
+                <CardStats>{post.stars.length}</CardStats>
+              </div>
+              <div>
+                <Icon icon={faComment} />
+                <CardStats>{post.comments.length}</CardStats>
+              </div>
             </UserPost>
           ))}
         </UserPosts>

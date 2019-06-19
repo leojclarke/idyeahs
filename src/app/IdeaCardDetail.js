@@ -197,7 +197,9 @@ export default function IdeaCardDetail({
         </CardInfo>
 
         <ContextElipsis>
-          <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+          {author.username === activeUser.username && (
+            <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+          )}
         </ContextElipsis>
       </CardHeader>
       <CardBody>

@@ -24,6 +24,7 @@ const SummaryContainer = styled.section`
   grid-template-columns: 60vw 20vw 20vw;
   color: darkslategray;
   border-bottom: 1px solid #dfdfdf;
+  background-image: linear-gradient(to right top, #efefef, #fdfdfd, #fff);
 
   h3 {
     font-size: 1.2rem;
@@ -39,9 +40,9 @@ const SummaryContainer = styled.section`
 
 export function FeedbackSummary({
   date,
-  result,
-  counter,
-  overallRating,
+  submissionCount,
+  overallSum,
+  resultSums,
   questions,
 }) {
   const [isDetailsVisible, setDetailsVisible] = useState(false);
@@ -59,11 +60,11 @@ export function FeedbackSummary({
         </div>
         <Stats>
           <Icon icon={faTachometerAlt} />
-          <p>{overallRating.toFixed(2)}</p>
+          <p>{(overallSum / submissionCount).toFixed(2)}</p>
         </Stats>
         <Stats>
           <Icon icon={faUser} />
-          <p>{counter}</p>
+          <p>{submissionCount}</p>
         </Stats>
       </SummaryContainer>
 
@@ -73,9 +74,9 @@ export function FeedbackSummary({
             key={question.id}
             questionNumber={question.id + 1}
             question={question.question_text_en}
-            result={result[index]}
+            result={resultSums[index] / submissionCount}
             index={question.id}
-            counter={counter}
+            counter={submissionCount}
           />
         ))}
     </OutsideClickHandler>

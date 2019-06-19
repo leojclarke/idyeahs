@@ -14,31 +14,33 @@ const StyledCommentRow = styled.div`
   display: grid;
   grid-template-columns: 50px auto;
   grid-template-rows: auto;
-  background: lightslategray;
   color: black;
   font-size: 0.8em;
+  border-bottom: 1px solid #dedede;
 
   div :first-child {
     width: 50px;
-    background: white;
   }
 
   div :nth-child(2) {
     width: auto;
     padding: 2px 5px;
-    background: white;
-    justify-content: start;
-    align-content: center;
   }
+`;
+
+const CommentBody = styled.div`
+  align-self: center;
 `;
 
 const Author = styled.span`
   font-weight: bold;
+  color: #008dff;
 `;
 
-const CommentText = styled.span`
+const CommentText = styled.p`
+  display: inline;
   padding-left: 3px;
-  color: blue;
+  color: darkslategray;
 `;
 
 const TimeStamp = styled.span`
@@ -139,13 +141,13 @@ export default function Comment({
         </div>
 
         {!isCommentEditable ? (
-          <div onClick={handleContextMenuVisible}>
-            <Author>{author.firstname}</Author>
+          <CommentBody onClick={handleContextMenuVisible}>
+            <Author>{author.username}</Author>
 
-            <CommentText>{comment}</CommentText>
+            <CommentText>{comment.comment}</CommentText>
             <br />
             <TimeStamp>{moment(timestamp).fromNow()}</TimeStamp>
-          </div>
+          </CommentBody>
         ) : (
           <div>
             <StyledForm
@@ -154,7 +156,7 @@ export default function Comment({
                 handleEditedCommentSubmit(event);
               }}
             >
-              <Input name="comment" type="text" value={comment} />
+              <Input name="comment" type="text" value={comment.comment} />
 
               <SendButton>
                 <Icon icon={faPaperPlane} />

@@ -23,9 +23,10 @@ const Header = styled.header`
 `;
 
 const Main = styled.div`
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: #efefef;
   overflow: scroll;
 `;
 
@@ -38,20 +39,23 @@ const PageTitle = styled.h1`
 `;
 
 const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  background: white;
+  display: grid;
+  grid-template-rows: auto;
   overflow-y: scroll;
   overflow-x: hidden;
   color: black;
+  padding: 0 10px;
+  grid-gap: 5px;
 `;
 
 const StyledQuestionContainer = styled.div`
   display: grid;
   grid-template-rows: repeat(3, auto);
-  padding: 10px;
   color: darkslategray;
-  background: #efefef;
+  padding: 0 10px;
+  background: white;
+  border: 1px solid #dedede;
+  border-radius: 3px;
 `;
 
 const StyledQuestion = styled.div`
@@ -59,6 +63,15 @@ const StyledQuestion = styled.div`
   font-size: 1rem;
   line-height: 1.4rem;
   padding-bottom: 5px;
+  border-bottom: 1px solid #efefef;
+
+  div :first-child {
+    background: green;
+  }
+
+  div :last-child {
+    background: yellow;
+  }
 `;
 
 const StyledRadioButtons = styled.div`
@@ -119,9 +132,7 @@ const StyledLegend = styled.div`
 const AddFeedbackButton = styled(SubmitButton)`
   background: #efc311;
   border: none;
-  padding: 10px;
-  margin: 20px;
-  width: 100%;
+  margin: 15px 0;
 `;
 
 export default function FeedbackForm({

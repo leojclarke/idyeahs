@@ -184,7 +184,9 @@ export default function Card({
           </CardInfo>
 
           <ContextElipsis>
-            <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+            {author.username === activeUser.username && (
+              <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+            )}
           </ContextElipsis>
         </CardHeader>
         <CardBody onClick={() => history.push(`/ideas/${id}/details`)}>
