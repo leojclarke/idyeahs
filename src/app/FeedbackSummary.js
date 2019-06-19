@@ -23,12 +23,11 @@ const SummaryContainer = styled.section`
   padding: 10px;
   grid-template-columns: 60vw 20vw 20vw;
   color: darkslategray;
-  border-top: 1px solid lightslategray;
-  background: ${props => props.color};
-  border-bottom: 1px solid lightslategray;
+  border-bottom: 1px solid #dfdfdf;
 
   h3 {
     font-size: 1.2rem;
+    margin: 10px 0;
   }
 
   p {

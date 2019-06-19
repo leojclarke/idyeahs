@@ -25,6 +25,7 @@ const StyledLink = styled(Link)`
   width: 100%;
   text-decoration: none;
   justify-content: center;
+  border-bottom: 1px solid #efefef;
 
   a :link,
   :active {
@@ -98,7 +99,7 @@ export default function FeedbackResultsPage({
 
         {sortedGroupRespones.map(summary => (
           <FeedbackSummary
-            key={summary.id}
+            key={summary.date}
             date={summary.date}
             result={summary.responsesOverall}
             counter={summary.submissionCount}

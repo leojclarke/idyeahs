@@ -7,13 +7,8 @@ const FeedbackContainer = styled.section`
   display: grid;
   grid-template-columns: 70vw 15vw 15vw;
   color: darkslategray;
-  border-top: 1px solid lightslategray;
+  border-top: 1px solid #dfdfdf;
   border-left: 4px solid green;
-
-  section :first-child {
-    border-top: none;
-    box-shadow: 0 14px 28px rgba(19, 22, 52, 0.25);
-  }
 `;
 
 const QuestionTitle = styled.h3`
