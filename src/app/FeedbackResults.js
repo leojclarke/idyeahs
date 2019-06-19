@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FeedbackSummary } from './FeedbackSummary';
 import Header from './Header';
 import SubmitButton from '../components/form/SubmitButton';
+import moment from 'moment';
 
 const MainGrid = styled.div`
   display: grid;
@@ -24,6 +25,7 @@ const StyledLink = styled(Link)`
   width: 100%;
   text-decoration: none;
   justify-content: center;
+  border-bottom: 1px solid #efefef;
 
   a :link,
   :active {
@@ -45,21 +47,63 @@ export default function FeedbackResultsPage({
   activeUser,
   responses,
   questions,
+  history,
 }) {
+  function getUpdate(existing, response) {
+    const { results } = response;
+    const overallRating =
+      results.reduce((prev, a) => prev + parseInt(a), 0) / 12;
+
+    const submissionCount = existing.submissionCount + 1;
+
+    return {
+      submissionCount,
+      overallRating: (existing.overallRating + overallRating) / submissionCount,
+      responsesOverall: existing.responsesOverall.map(
+        (entry, index) => (Number(entry) + Number(response.results[index])) / 2
+      ),
+    };
+  }
+
+  const groupedResponses = responses.reduce((prev, response) => {
+    const date = moment(response.date).format('YYYY-MM-DD');
+    const existing = prev[date] || {
+      date,
+      submissionCount: 0,
+      overallRating: 0,
+      responsesOverall: response.results,
+    };
+
+    return {
+      ...prev,
+      [date]: getUpdate(existing, response),
+    };
+  }, {});
+
+  const sortedGroupRespones = Object.keys(groupedResponses)
+    .map(date => ({
+      date,
+      ...groupedResponses[date],
+    }))
+    .sort((a, b) => (moment(a.date).isBefore(moment(b.date)) ? 1 : -1));
+
+  console.log(sortedGroupRespones);
+
   return (
     <MainGrid>
-      <Header heading={heading} activeUser={activeUser} />
+      <Header heading={heading} activeUser={activeUser} history={history} />
       <FeedGrid>
         <StyledLink to="feedback/add">
           <AddFeedbackButton value="Add Feedback" />
         </StyledLink>
 
-        {responses.map(summary => (
+        {sortedGroupRespones.map(summary => (
           <FeedbackSummary
-            key={summary.id}
+            key={summary.date}
             date={summary.date}
-            result={summary.results}
-            counter={summary.counter}
+            result={summary.responsesOverall}
+            counter={summary.submissionCount}
+            overallRating={summary.overallRating}
             questions={questions}
           />
         ))}

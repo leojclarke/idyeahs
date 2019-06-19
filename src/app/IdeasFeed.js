@@ -10,13 +10,12 @@ const MainGrid = styled.div`
 `;
 
 const FeedGrid = styled.div`
-  display: grid;
-  grid-template-rows: auto;
+  display: flex;
+  flex-direction: column;
   background: #efefef;
   overflow: scroll;
   color: black;
   padding: 0 5px;
-  margin-bottom: 10px;
 `;
 
 export default function IdeasFeed({

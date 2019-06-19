@@ -26,6 +26,7 @@ const Main = styled.div`
   display: grid;
   grid-template-rows: auto 80px;
   background: white;
+  overflow-y: scroll;
 `;
 
 const PageTitle = styled.h1`
@@ -54,7 +55,7 @@ export default function IdeaDetailsView({
   return (
     <Grid>
       <Header>
-        <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
+        <Icon icon={faArrowLeft} onClick={() => history.push(`/ideas/`)} />
         <PageTitle>{post.title}</PageTitle>
         <CommentButton history={history} id={id} />
       </Header>

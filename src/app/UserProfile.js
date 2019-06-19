@@ -115,9 +115,6 @@ const PageTitle = styled.h1`
 `;
 
 export default function UserPage({ users, userID, posts, history }) {
-  console.log('Posts: ', posts);
-  console.log('UserID: ', userID);
-
   const user = users.find(user => user.username === userID);
 
   function getFilteredPosts() {
@@ -125,8 +122,6 @@ export default function UserPage({ users, userID, posts, history }) {
   }
 
   const userPosts = getFilteredPosts();
-
-  console.log('Filtered Posts: ', userPosts);
 
   return (
     <Grid>
@@ -152,7 +147,10 @@ export default function UserPage({ users, userID, posts, history }) {
         </MyIdeas>
         <UserPosts>
           {userPosts.map(post => (
-            <UserPost onClick={() => history.push(`/ideas/${post.id}/details`)}>
+            <UserPost
+              onClick={() => history.push(`/ideas/${post.id}/details`)}
+              key={post.id}
+            >
               {post.title}
 
               <Icon icon={faStar} />

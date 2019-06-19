@@ -23,12 +23,11 @@ const SummaryContainer = styled.section`
   padding: 10px;
   grid-template-columns: 60vw 20vw 20vw;
   color: darkslategray;
-  border-top: 1px solid lightslategray;
-  background: ${props => props.color};
-  border-bottom: 1px solid lightslategray;
+  border-bottom: 1px solid #dfdfdf;
 
   h3 {
     font-size: 1.2rem;
+    margin: 10px 0;
   }
 
   p {
@@ -38,10 +37,13 @@ const SummaryContainer = styled.section`
   }
 `;
 
-export function FeedbackSummary({ date, result, counter, questions }) {
-  const calcResultSummary =
-    counter !== 0 ? (result[0] / counter).toFixed(2) : '0';
-
+export function FeedbackSummary({
+  date,
+  result,
+  counter,
+  overallRating,
+  questions,
+}) {
   const [isDetailsVisible, setDetailsVisible] = useState(false);
 
   function handleDetailsVisible() {
@@ -57,7 +59,7 @@ export function FeedbackSummary({ date, result, counter, questions }) {
         </div>
         <Stats>
           <Icon icon={faTachometerAlt} />
-          <p>{calcResultSummary}</p>
+          <p>{overallRating.toFixed(2)}</p>
         </Stats>
         <Stats>
           <Icon icon={faUser} />
@@ -66,12 +68,12 @@ export function FeedbackSummary({ date, result, counter, questions }) {
       </SummaryContainer>
 
       {isDetailsVisible &&
-        questions.map(question => (
+        questions.map((question, index) => (
           <FeedbackQuestion
             key={question.id}
             questionNumber={question.id + 1}
             question={question.question_text_en}
-            results={result}
+            result={result[index]}
             index={question.id}
             counter={counter}
           />
