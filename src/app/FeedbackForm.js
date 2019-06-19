@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import uid from 'uid';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import SubmitButton from '../components/form/SubmitButton';
+import moment from 'moment';
+moment.locale('de');
 
 const Grid = styled.div`
   display: grid;
@@ -129,10 +132,16 @@ export default function FeedbackForm({
   function handleFormSubmit(event, questions, history) {
     event.preventDefault();
     const form = event.target;
-    const answers = questions.map(
+    const results = questions.map(
       question => form[`q-${question.id + 1}`].value
     );
-    handleFeedbackSubmit(answers, history);
+    const response = {
+      id: uid(),
+      date: moment()._d,
+      counter: 1,
+      results: results,
+    };
+    handleFeedbackSubmit(response, history);
   }
 
   return (

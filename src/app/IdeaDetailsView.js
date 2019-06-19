@@ -26,6 +26,7 @@ const Main = styled.div`
   display: grid;
   grid-template-rows: auto 80px;
   background: white;
+  overflow-y: scroll;
 `;
 
 const PageTitle = styled.h1`

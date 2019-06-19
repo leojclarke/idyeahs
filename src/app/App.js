@@ -38,14 +38,11 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(getLocal('isLoggedIn') || false);
   const [activeUser, setActiveUser] = useState(getLocal('activeUser') || []);
 
-  const [counter, setCounter] = useState(getLocal('counter') || 0);
-
   useEffect(() => setLocal('activeUser', activeUser), [activeUser]);
   useEffect(() => setLocal('users', users), [users]);
   useEffect(() => setLocal('isLoggedIn', isLoggedIn), [isLoggedIn]);
   useEffect(() => setLocal('ideas', ideas), [ideas]);
   useEffect(() => setLocal('responses', responses), [responses]);
-  useEffect(() => setLocal('counter', counter), [counter]);
 
   function handleIdeaSubmit(newIdeas, history) {
     setIdeas(newIdeas);
@@ -114,13 +111,11 @@ export default function App() {
     setIdeas(newIdeas);
   }
 
-  function handleFeedbackSubmit(answers, history) {
-    const newCounter = counter + 1;
-    setCounter(newCounter);
-    const responsesSum = responses.map(
-      (number, index) => Number(number) + Number(answers[index])
-    );
-    setResponses(responsesSum);
+  function handleFeedbackSubmit(response, history) {
+    // const responsesSum = responses.map(
+    //   (number, index) => Number(number) + Number(answers[index])
+    // );
+    setResponses([...responses, response]);
     history.push('/feedback');
   }
 
