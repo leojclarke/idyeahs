@@ -236,7 +236,7 @@ export default function IdeaCardDetail({
               ideaId={id}
               key={uid()}
               author={comment.author}
-              comment={comment.comment}
+              comment={comment}
               timestamp={comment.timestamp}
               onCommentEdit={onCommentEdit}
               onCommentDelete={onCommentDelete}

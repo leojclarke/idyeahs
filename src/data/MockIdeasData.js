@@ -106,16 +106,35 @@ const ideaEntries = [
     id: uid(),
     title: 'This is also a great idea',
     text:
-      'With the introduction of JavaScript ES6, new coding concepts were introduced to JavaScript and therefore to React. For instance, a JavaScript function can be expressed as lambda (arrow function). That’s why a Function Component is sometimes called Arrow Function Components (or maybe also Lambda Function Component). Let’s see our refactored React Component with an Arrow Function.',
+      // eslint-disable-next-line no-multi-str
+      "Beautiful is better than ugly.\
+      Explicit is better than implicit.\
+      Simple is better than complex.\
+      Complex is better than complicated.\
+      Flat is better than nested.\
+      Sparse is better than dense.\
+      Readability counts.\
+      Special cases aren't special enough to break the rules.\
+      Although practicality beats purity.\
+      Errors should never pass silently.\
+      Unless explicitly silenced.\
+      In the face of ambiguity, refuse the temptation to guess.\
+      There should be one—and preferably only one—obvious way to do it.\
+      Although that way may not be obvious at first unless you're Dutch.\
+      Now is better than never.\
+      Although never is often better than right now.\
+      If the implementation is hard to explain, it's a bad idea.\
+      If the implementation is easy to explain, it may be a good idea.\
+      Namespaces are one honking great idea—let's do more of those!",
     tags: ['events', 'service'],
     timestamp: '2018-09-08T08:02:17',
     author: {
       username: 'defaultUser',
-      firstname: 'James Anthony',
-      lastname: 'Smith',
-      email: 'jim@idyeahs.com',
-      role: 'chief something officer',
-      department: 'office',
+      firstname: 'Tim',
+      lastname: 'Peters',
+      email: 'tim@idyeahs.com',
+      role: 'software developer',
+      department: 'python',
       avatar: {
         src: '/img/defaultAvatar.png',
         alt: 'default Avatar',

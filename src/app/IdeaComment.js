@@ -90,7 +90,10 @@ export default function IdeaComment({
   return (
     <Grid>
       <Header>
-        <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
+        <Icon
+          icon={faArrowLeft}
+          onClick={() => history.push(`/ideas/${ideaId}/details`)}
+        />
         <PageTitle>Comment on {title}</PageTitle>
       </Header>
 

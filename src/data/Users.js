@@ -27,11 +27,11 @@ const usersList = [
   },
   {
     username: 'defaultUser',
-    firstname: 'James Anthony',
-    lastname: 'Smith',
-    email: 'jim@idyeahs.com',
-    role: 'chief something officer',
-    department: 'office',
+    firstname: 'Tim',
+    lastname: 'Peters',
+    email: 'tim@idyeahs.com',
+    role: 'software developer',
+    department: 'python',
     avatar: {
       src: '/img/defaultAvatar.png',
       alt: 'default Avatar',
