@@ -118,7 +118,7 @@ export default function IdeaCardDetail({
 
   const { title, text, tags, timestamp, stars, comments, author } = post;
 
-  useEffect(() => checkIfStarred(), []);
+  useEffect(() => checkIfStarred());
 
   function checkIfStarred() {
     const activeUserHasStarred = stars.find(
@@ -183,7 +183,10 @@ export default function IdeaCardDetail({
       )}
 
       <CardHeader>
-        <CardAvatar src={author.avatar.src} />
+        <CardAvatar
+          src={author.avatar.src}
+          onClick={() => history.push(`/profile/${author.username}/`)}
+        />
         <CardInfo>
           <Author>
             {author.firstname} {author.lastname}

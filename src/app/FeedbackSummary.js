@@ -7,12 +7,6 @@ import { faTachometerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FeedbackQuestion } from './FeedbackQuestion';
 moment.locale('de');
 
-const QuestionTitle = styled.h3`
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin: 0;
-  padding: 10px 5px;
-`;
 const Stats = styled.div`
   display: flex;
   align-items: center;

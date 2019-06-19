@@ -21,20 +21,20 @@ const CardContainer = styled.section`
   grid-template-rows: repeat(4, auto);
   background: white;
   width: 100%;
-  border-bottom: 0.5px solid lightslategray;
   color: rgba(12, 2, 1, 0.8);
   margin-top: 10px;
+  border-radius: 3px;
 `;
 
 const CardHeader = styled.div`
   display: grid;
-  grid-template-columns: 50px auto 40px;
+  grid-template-columns: 70px auto 30px;
   width: 100%;
+  border-bottom: 1px solid #efefef;
 `;
 
 const CardInfo = styled.div`
   display: grid;
-  margin-left: 20px;
   padding: 10px 0;
   align-items: stretch;
 `;
@@ -54,10 +54,8 @@ const Date = styled.div`
 
 const ContextElipsis = styled.div`
   color: lightslategray;
-  display: flex;
   align-items: flex-start;
-  justify-content: space-evenly;
-  margin-right: 20px;
+  justify-items: center;
 `;
 
 const CardBody = styled.div`
@@ -104,7 +102,7 @@ export default function Card({
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
   const [isStarred, setStarred] = useState(false);
 
-  useEffect(() => checkIfStarred(), []);
+  useEffect(() => checkIfStarred());
   const { id, title, text, tags, timestamp, author, stars, comments } = post;
 
   function checkIfStarred() {
@@ -174,12 +172,15 @@ export default function Card({
           <CardAvatar
             src={author.avatar.src || defaultAvatar}
             alt={author.avatar.alt}
+            onClick={() => history.push(`/profile/${author.username}/`)}
           />
           <CardInfo>
-            <Author>
+            <Author
+              onClick={() => history.push(`/profile/${author.username}/`)}
+            >
               {author.firstname} {author.lastname}
             </Author>
-            <Date>{moment(timestamp).format("DD. MMM 'YY • HH:mm")}</Date>
+            <Date>{moment(timestamp).format('DD. MMMM YY • HH:mm')}</Date>
           </CardInfo>
 
           <ContextElipsis>
