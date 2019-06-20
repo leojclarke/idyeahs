@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faTimes, faPowerOff, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 const Blur = styled.div`
   display: grid;
@@ -20,7 +20,7 @@ const ContextMenuContainer = styled.div`
   color: darkslategray;
   border-top: 1px solid lightslategray;
   box-shadow: 0 0 18px rgba(12, 22, 33, 0.25);
-  grid-template-rows: 70px 70px;
+  grid-template-rows: 70px;
   grid-template-columns: 80px auto 30px;
   width: 100vw;
   position: fixed;
@@ -66,18 +66,11 @@ export default function ContextMenuUserProfile({
     <>
       <Blur onClick={onContextClose} />
       <ContextMenuContainer>
-        <MenuIcon onClick={() => history.push(`/ideas/${id}/edit`)}>
-          <Icon icon={faKey} />
-        </MenuIcon>
-        <MenuOption onClick={() => history.push(`/ideas/${id}/edit`)}>
-          Change password
-        </MenuOption>
-        <CloseIcon icon={faTimes} onClick={onContextClose} />
-
         <MenuIcon onClick={() => onLogOut(history)}>
           <Icon icon={faPowerOff} />
         </MenuIcon>
         <MenuOption onClick={() => onLogOut(history)}>Log out</MenuOption>
+        <CloseIcon icon={faTimes} onClick={onContextClose} />
       </ContextMenuContainer>
     </>
   );
