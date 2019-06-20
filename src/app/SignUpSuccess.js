@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import idyeahsLogoColor from '../../img/idyeahsLogoColor.png';
+import idyeahsLogoColor from '../img/idyeahsLogoColor.png';
 import SubmitButton from '../components/form/SubmitButton';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
@@ -12,7 +12,7 @@ library.add(faCheckCircle);
 const Grid = styled.section`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
-  padding: 10px;
+  padding: 20px;
   overflow: none;
   align-items: center;
   justify-items: center;
@@ -34,24 +34,31 @@ const Logo = styled.img`
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
+  width: 100%;
 `;
 
 const iconStyle = {
   color: 'green',
 };
 
+const ButtonFilled = styled(SubmitButton)`
+  color: white;
+  background: #008dff;
+  border: none;
+`;
+
 export default function SignUpSuccess() {
   return (
     <Grid>
       <div>
-        <Heading>Congratulations, First</Heading>
+        <Heading>Congratulations!</Heading>
         <p>You are now signed up for</p>
       </div>
       <Logo src={idyeahsLogoColor} />
       <Icon icon={faCheckCircle} size="4x" style={iconStyle} />
 
-      <StyledNavLink to="/ideas">
-        <SubmitButton value="Ok" />
+      <StyledNavLink to="/login">
+        <ButtonFilled value="Log in" />
       </StyledNavLink>
     </Grid>
   );

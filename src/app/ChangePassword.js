@@ -41,12 +41,10 @@ export default function UserLogin({ users, onLogin, history }) {
     event.preventDefault();
     const login = event.target;
 
-    const loginName = login.name.value;
+    const loginEmail = login.email.value;
     const loginPassword = login.password.value;
 
-    const loggedInUser = users.find(
-      user => user.email === loginName || user.username === loginName
-    );
+    const loggedInUser = users.find(user => user.email === loginEmail);
 
     try {
       if (loggedInUser.pwd === loginPassword) {
@@ -68,10 +66,8 @@ export default function UserLogin({ users, onLogin, history }) {
       <StyledForm id="login" onSubmit={event => handleLogin(event)}>
         <Label
           form="login"
-          content={
-            <Input name="name" placeholder="Email or username..." type="text" />
-          }
-          label="Enter your email or username"
+          content={<Input name="email" placeholder="Email..." type="email" />}
+          label="Enter your email"
         />
         <Label
           form="login"

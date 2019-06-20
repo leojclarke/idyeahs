@@ -19,6 +19,8 @@ import IdeaEdit from './IdeaEdit';
 import IdeaComment from './IdeaComment';
 import IdeaDetailsView from './IdeaDetailsView';
 import Login from './Login';
+import SignUp from './SignUp';
+import SignUpSuccess from './SignUpSuccess';
 import FeedbackResultsPage from './FeedbackResults';
 import FeedbackForm from './FeedbackForm';
 import UserPage from './UserProfile';
@@ -34,7 +36,7 @@ export default function App() {
   const [responses, setResponses] = useState(
     getLocal('responses') || responsesData
   );
-  const [users] = useState(getLocal('users') || usersList);
+  const [users, setUsers] = useState(getLocal('users') || usersList);
   const [isLoggedIn, setIsLoggedIn] = useState(getLocal('isLoggedIn') || false);
   const [activeUser, setActiveUser] = useState(getLocal('activeUser') || []);
 
@@ -133,6 +135,11 @@ export default function App() {
 
   function handleProceed(history) {
     isLoggedIn ? history.push('/ideas') : history.push('/');
+  }
+
+  function handleSignUp(newUsers, history) {
+    setUsers(newUsers);
+    history.push('/signup/success');
   }
 
   return (
@@ -276,13 +283,33 @@ export default function App() {
         />
         <Route
           exact
+          path="/signup"
+          render={props => (
+            <SignUp
+              users={users}
+              history={props.history}
+              onSignUp={handleSignUp}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/signup/success"
+          render={props => (
+            <SignUpSuccess users={users} history={props.history} />
+          )}
+        />
+        <Route
+          exact
           path="/profile/:username"
           render={props => (
             <UserPage
               userID={props.match.params.username}
               users={users}
+              activeUser={activeUser}
               posts={ideas}
               history={props.history}
+              onLogOut={handleLogOut}
             />
           )}
         />

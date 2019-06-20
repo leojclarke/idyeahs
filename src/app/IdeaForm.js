@@ -58,7 +58,7 @@ const StyledNavLink = styled(NavLink)`
   &:active,
   :visited,
   :focus-within {
-    color: hotpink;
+    color: darkslategray;
   }
 `;
 

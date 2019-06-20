@@ -10,14 +10,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/form/Input';
 import Label from '../components/form/Label';
-import Select from 'react-select';
+import SubmitButton from '../components/form/SubmitButton';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 120px 140px auto;
-  padding: 10px;
+  grid-template-rows: 150px auto;
+  padding: 20px;
   align-items: start;
   justify-items: center;
   color: darkslategray;
@@ -26,32 +26,15 @@ const Grid = styled.div`
 const Header = styled.header`
   display: grid;
   grid-template-rows: 50px 70px;
-  padding: 10px;
   width: 100%;
   align-items: left;
   justify-items: left;
-  color: #6558f5;
-`;
-
-const Footer = styled.footer`
-  display: flex;
-  padding: 10px;
-  width: 100%;
-  justify-content: flex-end;
-  color: #6558f5;
-  div {
-    padding-right: 10px;
-  }
-`;
-
-const Greeting = styled.div`
-  padding: 10px;
 `;
 
 const StyledForm = styled.form`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  grid-template-rows: auto;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -60,43 +43,44 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
 `;
 
-const InlineLogo = styled.span`
-  font-family: Rubik;
-  letter-spacing: 0.1em;
-`;
+const StyledSelect = styled.select`
+  color: lightslategray;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 40px;
+  padding: 0 5px;
+  border-radius: 3px;
+  border: 1px solid #008dff;
+  font-size: 0.8em;
+  line-height: 1.3rem;
+  text-align: center;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+‚`;
 
-const roles = [
-  { value: 'helpdesk-agent', label: 'helpdesk-agent' },
-  { value: 'manager', label: 'manager' },
-  { value: 'service-technician', label: 'service technician' },
-];
+export default function Signup({ users, onSignUp, history }) {
+  function handleSignUp(event) {
+    event.preventDefault();
+    const form = event.target;
+    const newUsers = [
+      {
+        username: form.username.value,
+        firstname: form.firstname.value,
+        lastname: form.lastname.value,
+        email: form.email.value,
+        role: form.role.value,
+        department: form.department.value,
+        avatar: {
+          src: '/img/defaultAvatar.png',
+          alt: 'default Avatar',
+        },
+        pwd: form.password.value,
+      },
+      ...users,
+    ];
+    onSignUp(newUsers, history);
+  }
 
-const departments = [
-  { value: 'helpdesk', label: 'helpdesk' },
-  { value: 'sales', label: 'sales' },
-  { value: 'projects', label: 'projects' },
-];
-
-const customStyle = {
-  control: styles => ({ ...styles, backgroundColor: 'white' }),
-  container: styles => ({
-    ...styles,
-    marginBottom: '10px',
-    padding: '5px',
-    borderRadius: '3px',
-    border: '1px solid #6558f5',
-    fontSize: '0.8em',
-    lineHeight: '1.6rem',
-    color: 'darkslategrey',
-  }),
-  placeholder: styles => ({
-    ...styles,
-    color: 'lightslategray',
-    fontSize: '0.8rem',
-  }),
-};
-
-export default function Signup({ onLogin: handleLogin, history }) {
   return (
     <Grid>
       <Header>
@@ -105,53 +89,68 @@ export default function Signup({ onLogin: handleLogin, history }) {
         </StyledNavLink>
         <h1>SIGN UP</h1>
       </Header>
-      <Greeting>
-        <p>
-          Hey, thank you for joining the <InlineLogo>IDYEAHS</InlineLogo>{' '}
-          community!
-        </p>
-        <p>Please fill out the details below to register your account.</p>
-      </Greeting>
-      <StyledForm id="login" onSubmit={event => handleLogin(event, history)}>
+      <StyledForm id="login" onSubmit={event => handleSignUp(event)}>
         <Label
           form="login"
           content={
-            <Input
-              name="username"
-              placeholder="Email or username..."
-              type="text"
-            />
+            <Input name="firstname" placeholder="First name..." type="text" />
           }
-          label="Enter your email or username"
+          label="Enter your first name"
+        />
+        <Label
+          form="login"
+          content={
+            <Input name="lastname" placeholder="Last name..." type="text" />
+          }
+          label="Enter your last name"
+        />
+        <Label
+          form="login"
+          content={<Input name="email" placeholder="Email..." type="email" />}
+          label="Enter your @idyeahs.com email"
+        />
+        <Label
+          form="login"
+          content={
+            <Input name="username" placeholder="Username..." type="text" />
+          }
+          label="Enter a username"
         />
         <Label
           form="login"
           content={
             <Input name="password" placeholder="Password..." type="password" />
           }
-          label="Enter your password"
+          label="Enter a password"
         />
-        <Select
-          options={roles}
-          styles={customStyle}
-          name="role"
-          placeholder="role"
-          label="role"
+
+        <Label
+          form="login"
+          content={
+            <StyledSelect name="role">
+              <option value="developer">frontend developer</option>
+              <option value="helpdesk agent">helpdesk agent</option>
+              <option value="logistics operative">logistics operative</option>
+              <option value="project manager">project manager</option>
+            </StyledSelect>
+          }
+          label="Choose your role"
         />
-        <Select
-          options={departments}
-          styles={customStyle}
-          name="department"
-          placeholder="department"
-          label="department"
+        <Label
+          form="login"
+          content={
+            <StyledSelect name="department">
+              <option value="development">development</option>
+              <option value="logistics">logistics</option>
+              <option value="production">production</option>
+              <option value="service">service</option>
+              <option value="sales">sales</option>
+            </StyledSelect>
+          }
+          label="Choose your department"
         />
+        <SubmitButton value="Sign up" />
       </StyledForm>
-      <Footer>
-        <StyledNavLink to="/signup-step-two">
-          <div>NEXT</div>
-          <Icon icon={faArrowRight} />
-        </StyledNavLink>
-      </Footer>
     </Grid>
   );
 }

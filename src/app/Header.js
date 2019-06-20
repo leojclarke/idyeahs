@@ -56,7 +56,10 @@ export default function Header({ heading, activeUser, fab, history }) {
   return (
     <>
       <StyledHeader>
-        <Avatar src={activeUser.avatar.src} onClick={() => history.push(`/`)} />
+        <Avatar
+          src={activeUser.avatar.src}
+          onClick={() => history.push(`/profile/${activeUser.username}/`)}
+        />
         <Heading>{heading}</Heading>
 
         <Navigation>
