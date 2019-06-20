@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import OutsideClickHandler from 'react-outside-click-handler';
+
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
   faComment,
   faStar,
+  faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
 import { ProfileAvatar } from '../components/Avatar';
+import ContextMenuUserProfile from './ContextMenuUserProfile';
 
 const Grid = styled.div`
   display: grid;
@@ -34,7 +38,7 @@ const Header = styled.header`
 
 const UserInfo = styled.section`
   display: grid;
-  grid-template-columns: 120px auto;
+  grid-template-columns: 120px auto 30px;
   justify-items: center;
   align-items: start;
   border-bottom: 1px solid darkslategray;
@@ -116,8 +120,24 @@ const PageTitle = styled.h1`
   padding-left: 10px;
 `;
 
-export default function UserPage({ users, userID, posts, history }) {
+const ContextElipsis = styled.div`
+  color: white;
+  align-items: flex-start;
+  justify-items: center;
+`;
+
+export default function UserPage({
+  users,
+  userID,
+  activeUser,
+  posts,
+  onLogOut,
+  history,
+}) {
+  const [isContextMenuVisible, setContextMenuVisible] = useState(false);
+
   const user = users.find(user => user.username === userID);
+  console.log(userID, user.username);
 
   function getFilteredPosts() {
     return posts.filter(post => post.author.username === userID);
@@ -125,47 +145,65 @@ export default function UserPage({ users, userID, posts, history }) {
 
   const userPosts = getFilteredPosts();
 
+  function handleContextMenuVisible() {
+    setContextMenuVisible(!isContextMenuVisible);
+  }
+
   return (
     <Grid>
       <Header>
         <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
         <PageTitle>Profile</PageTitle>
       </Header>
-      <FeedGrid>
-        <UserInfo>
-          <div>
-            <ProfileAvatar src={user.avatar.src} alt={user.avatar.alt} />
-          </div>
-          <div>
-            <User>
-              {user.firstname} {user.lastname}
-            </User>
-            <Role>{user.role}</Role>
-            <Department>{user.department}</Department>
-          </div>
-        </UserInfo>
-        <MyIdeas>
-          <h2>My Ideas</h2>
-        </MyIdeas>
-        <UserPosts>
-          {userPosts.map(post => (
-            <UserPost
-              onClick={() => history.push(`/ideas/${post.id}/details`)}
-              key={post.id}
-            >
-              {post.title}
-              <span>
-                <Icon icon={faStar} />
-                <CardStats>{post.stars.length}</CardStats>
-              </span>
-              <span>
-                <Icon icon={faComment} />
-                <CardStats>{post.comments.length}</CardStats>
-              </span>
-            </UserPost>
-          ))}
-        </UserPosts>
-      </FeedGrid>
+      <OutsideClickHandler onOutsideClick={() => setContextMenuVisible(false)}>
+        <FeedGrid>
+          {isContextMenuVisible && (
+            <ContextMenuUserProfile
+              onContextClose={handleContextMenuVisible}
+              onLogOut={onLogOut}
+              history={history}
+            />
+          )}
+          <UserInfo>
+            <div>
+              <ProfileAvatar src={user.avatar.src} alt={user.avatar.alt} />
+            </div>
+            <div>
+              <User>
+                {user.firstname} {user.lastname}
+              </User>
+              <Role>{user.role}</Role>
+              <Department>{user.department}</Department>
+            </div>
+            <ContextElipsis>
+              {userID === activeUser.username && (
+                <Icon icon={faEllipsisH} onClick={handleContextMenuVisible} />
+              )}
+            </ContextElipsis>
+          </UserInfo>
+          <MyIdeas>
+            <h2>My Ideas</h2>
+          </MyIdeas>
+          <UserPosts>
+            {userPosts.map(post => (
+              <UserPost
+                onClick={() => history.push(`/ideas/${post.id}/details`)}
+                key={post.id}
+              >
+                {post.title}
+                <span>
+                  <Icon icon={faStar} />
+                  <CardStats>{post.stars.length}</CardStats>
+                </span>
+                <span>
+                  <Icon icon={faComment} />
+                  <CardStats>{post.comments.length}</CardStats>
+                </span>
+              </UserPost>
+            ))}
+          </UserPosts>
+        </FeedGrid>
+      </OutsideClickHandler>
     </Grid>
   );
 }

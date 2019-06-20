@@ -36,6 +36,7 @@ const usersList = [
       src: '/img/defaultAvatar.png',
       alt: 'default Avatar',
     },
+    pwd: '123',
   },
 ];
 
