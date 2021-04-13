@@ -15,7 +15,7 @@ const ideaEntries = [
       role: 'Pilot',
       department: 'outpost b19',
       avatar: {
-        src: '/img/macready.jpg',
+        src: '/images/macready.jpg',
         alt: 'MacReady Avatar',
       },
       pwd: '123',
@@ -54,7 +54,7 @@ const ideaEntries = [
           role: 'Pilot',
           department: 'outpost b19',
           avatar: {
-            src: '/img/macready.jpg',
+            src: '/images/macready.jpg',
             alt: 'MacReady Avatar',
           },
         },
@@ -71,7 +71,7 @@ const ideaEntries = [
           role: 'Pilot',
           department: 'outpost b19',
           avatar: {
-            src: '/img/macready.jpg',
+            src: '/images/macready.jpg',
             alt: 'MacReady Avatar',
           },
         },
@@ -95,7 +95,7 @@ const ideaEntries = [
       role: 'Helpdesk Technician',
       department: 'Helpdesk',
       avatar: {
-        src: '/img/leo.jpg',
+        src: '/images/leo.jpg',
         alt: 'Leo Avatar Image',
       },
     },
@@ -136,7 +136,7 @@ const ideaEntries = [
       role: 'software developer',
       department: 'python',
       avatar: {
-        src: '/img/defaultAvatar.png',
+        src: '/images/defaultAvatar.png',
         alt: 'default Avatar',
       },
     },

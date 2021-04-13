@@ -11,7 +11,7 @@ import {
 import Input from '../components/form/Input';
 import Label from '../components/form/Label';
 import SubmitButton from '../components/form/SubmitButton';
-import { FormGrid } from './Grids.elements';
+import { FormGrid } from '../components/Grids.elements';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
 
@@ -63,7 +63,7 @@ export default function Signup({ users, onSignUp, history }) {
         role: form.role.value,
         department: form.department.value,
         avatar: {
-          src: '/img/defaultAvatar.png',
+          src: '/images/defaultAvatar.png',
           alt: 'default Avatar',
         },
         pwd: form.password.value,

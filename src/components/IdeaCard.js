@@ -8,8 +8,8 @@ import {
   faStar,
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
-import { CardAvatar } from '../components/Avatar';
-import defaultAvatar from '../img/defaultAvatar.png';
+import { CardAvatar } from './Avatar';
+import defaultAvatar from '../images/defaultAvatar.png';
 import Tag from './IdeaTag';
 import ContextMenu from './ContextMenu';
 import DeleteModal from './DeleteModal';

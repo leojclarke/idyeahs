@@ -14,7 +14,7 @@ import {
   UserInfo,
   UserPost,
   UserPosts,
-} from './UserProfile.elements';
+} from '../components/UserProfile.elements';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
@@ -23,7 +23,7 @@ import {
   faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
 import { ProfileAvatar } from '../components/Avatar';
-import ContextMenuUserProfile from './ContextMenuUserProfile';
+import ContextMenuUserProfile from '../components/ContextMenuUserProfile';
 
 export default function UserPage({
   users,

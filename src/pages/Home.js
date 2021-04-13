@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { HomeGrid } from './Grids.elements';
-import { ButtonFilled, ButtonTransparent } from './Buttons.elements';
-import { Logo } from './Logos.elements';
+import { HomeGrid } from '../components/Grids.elements';
+import { ButtonFilled, ButtonTransparent } from '../components/Buttons.elements';
+import { Logo } from '../components/Logos.elements';
 
 const ButtonContainer = styled.section`
   display: grid;

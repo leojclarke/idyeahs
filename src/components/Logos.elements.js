@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../img/idyeahsLogoWhite.png';
+import logo from '../images/idyeahsLogoWhite.png';
 import { useSpring, animated } from 'react-spring';
 
 const LogoImg = styled(animated.img)`

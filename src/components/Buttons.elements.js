@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import SubmitButton from '../components/form/SubmitButton'
+import SubmitButton from './form/SubmitButton'
 
 export const ButtonTransparent = styled(SubmitButton)`
   background: transparent;

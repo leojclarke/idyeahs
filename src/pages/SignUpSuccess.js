@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import idyeahsLogoColor from '../img/idyeahsLogoColor.png';
+import idyeahsLogoColor from '../images/idyeahsLogoColor.png';
 import SubmitButton from '../components/form/SubmitButton';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';

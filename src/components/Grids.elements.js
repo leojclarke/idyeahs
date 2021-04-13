@@ -22,6 +22,15 @@ export const FeedGrid = styled.div`
   color: black;
 `;
 
+export const FeedGridIdeas = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #efefef;
+  overflow: scroll;
+  color: black;
+  padding: 0 5px;
+`;
+
 export const FormGrid = styled.div`
   display: grid;
   grid-template-rows: 150px auto;

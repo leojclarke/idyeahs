@@ -11,7 +11,7 @@ import {
 import SubmitButton from '../components/form/SubmitButton';
 import Input from '../components/form/Input';
 import Label from '../components/form/Label';
-import { FormGrid } from './Grids.elements';
+import { FormGrid } from '../components/Grids.elements';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
 

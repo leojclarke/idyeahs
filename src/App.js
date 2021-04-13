@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { getLocal, setLocal } from '../utils/services';
+import { getLocal, setLocal } from './utils/services';
 import {
   findIdeaByIndex,
   findCommentByIndex,
   findStarByUsername,
-} from '../utils/utils';
-import GlobalStyles from '../misc/GlobalStyles';
-import mockIdeas from '../data/MockIdeasData';
-import usersList from '../data/Users';
-import Home from './Home';
-import IdeasFeed from './IdeasFeed';
-import IdeaForm from './IdeaForm';
-import IdeaEdit from './IdeaEdit';
-import IdeaComment from './IdeaComment';
-import IdeaDetailsView from './IdeaDetailsView';
-import Login from './Login';
-import SignUp from './SignUp';
-import SignUpSuccess from './SignUpSuccess';
-import UserPage from './UserProfile';
+} from './utils/utils';
+import mockIdeas from './data/MockIdeasData';
+import usersList from './data/Users';
+import Home from './pages/Home';
+import IdeasFeed from './pages/IdeasFeed';
+import IdeaForm from './pages/IdeaForm';
+import IdeaEdit from './pages/IdeaEdit';
+import IdeaComment from './components/IdeaComment';
+import IdeaDetailsView from './pages/IdeaDetailsView';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import SignUpSuccess from './pages/SignUpSuccess';
+import UserPage from './pages/UserProfile';
 
 const Grid = styled.div`
   display: grid;
@@ -128,7 +127,6 @@ export default function App() {
 
   return (
     <Router>
-      <GlobalStyles />
       <Grid>
         <Route
           exact

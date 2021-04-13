@@ -11,7 +11,7 @@ import Label from '../components/form/Label';
 import Input from '../components/form/Input';
 import TextArea from '../components/form/TextArea';
 import SubmitButton from '../components/form/SubmitButton';
-import { MainGrid } from './Grids.elements';
+import { MainGrid } from '../components/Grids.elements';
 moment.locale('de');
 
 const Header = styled.header`
