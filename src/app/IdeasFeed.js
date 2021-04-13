@@ -3,11 +3,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import IdeaCard from './IdeaCard';
 import { AddButton } from '../components/FAB';
-
-const MainGrid = styled.div`
-  display: grid;
-  grid-template-rows: 18vh 82vh;
-`;
+import { MainGrid } from './Grids.elements';
 
 const FeedGrid = styled.div`
   display: flex;

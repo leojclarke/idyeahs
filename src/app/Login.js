@@ -7,20 +7,13 @@ import {
   faArrowRight,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
+
 import SubmitButton from '../components/form/SubmitButton';
 import Input from '../components/form/Input';
 import Label from '../components/form/Label';
+import { FormGrid } from './Grids.elements';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 150px auto;
-  padding: 20px;
-  align-items: start;
-  justify-items: center;
-  color: darkslategray;
-`;
 
 const Header = styled.header`
   display: grid;
@@ -60,7 +53,7 @@ export default function UserLogin({ users, onLogin, history }) {
   }
 
   return (
-    <Grid>
+    <FormGrid>
       <Header>
         <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
         <h1>LOG IN</h1>
@@ -82,6 +75,6 @@ export default function UserLogin({ users, onLogin, history }) {
         />
         <SubmitButton value="Log in" />
       </StyledForm>
-    </Grid>
+    </FormGrid>
   );
 }

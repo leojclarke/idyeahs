@@ -52,7 +52,7 @@ const CardTagsContainer = styled.div`
   display: flex;
   justify-items: flex-start;
   align-items: center;
-  color: darkslategray;
+  color: #fff;
   padding: 15px 20px;
 `;
 

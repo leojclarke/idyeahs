@@ -13,14 +13,6 @@ import Label from '../components/form/Label';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 150px auto;
-  padding: 20px;
-  align-items: start;
-  justify-items: center;
-  color: darkslategray;
-`;
 
 const Header = styled.header`
   display: grid;

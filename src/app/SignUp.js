@@ -11,17 +11,9 @@ import {
 import Input from '../components/form/Input';
 import Label from '../components/form/Label';
 import SubmitButton from '../components/form/SubmitButton';
+import { FormGrid } from './Grids.elements';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 150px auto;
-  padding: 20px;
-  align-items: start;
-  justify-items: center;
-  color: darkslategray;
-`;
 
 const Header = styled.header`
   display: grid;
@@ -82,7 +74,7 @@ export default function Signup({ users, onSignUp, history }) {
   }
 
   return (
-    <Grid>
+    <FormGrid>
       <Header>
         <StyledNavLink to="/">
           <Icon icon={faArrowLeft} />
@@ -151,6 +143,6 @@ export default function Signup({ users, onSignUp, history }) {
         />
         <SubmitButton value="Sign up" />
       </StyledForm>
-    </Grid>
+    </FormGrid>
   );
 }
