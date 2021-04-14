@@ -64,6 +64,13 @@ const CardBody = styled.div`
   font-size: 0.9rem;
 `;
 
+const CardTitle = styled.h2`
+  margin: 10px 0;
+`;
+
+const CardText = styled.p`
+  padding: 5px 0;
+`
 const CardTagsContainer = styled.div`
   display: flex;
   justify-items: flex-start;
@@ -190,8 +197,8 @@ export default function Card({
           </ContextElipsis>
         </CardHeader>
         <CardBody onClick={() => history.push(`/ideas/${id}/details`)}>
-          <h3>{title}</h3>
-          <p>{text}</p>
+          <CardTitle>{title}</CardTitle>
+          <CardText>{text}</CardText>
         </CardBody>
         <CardTagsContainer>
           {tags && tags.map(tag => <Tag key={uid()} tagName={tag} />)}

@@ -10,6 +10,7 @@ import { Avatar } from '../components/Avatar';
 
 const StyledHeader = styled.header`
   display: grid;
+  width: 100%;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 80px auto;
   border-bottom: 1px solid lightslategray;

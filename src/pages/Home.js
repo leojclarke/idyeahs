@@ -15,15 +15,16 @@ const ButtonContainer = styled.section`
   padding: 10px;
 `;
 
-
-
 const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
   width: 100%;
+   justify-content:center;
+
 `;
 
 const LogOut = styled.div`
+  display: flex;
   width: 100%;
+  justify-content: center;
 `;
 
 export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {

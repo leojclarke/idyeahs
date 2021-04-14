@@ -12,6 +12,8 @@ export const HomeGrid = styled.section`
 export const MainGrid = styled.div`
   display: grid;
   grid-template-rows: 18vh 82vh;
+  justify-content: center;
+  width: 100vw;
 `;
 
 export const FeedGrid = styled.div`
@@ -19,16 +21,22 @@ export const FeedGrid = styled.div`
   grid-template-rows: auto;
   background: white;
   overflow: scroll;
-  color: black;
+  color: black; 
 `;
 
 export const FeedGridIdeas = styled.div`
   display: flex;
+  background: black;
   flex-direction: column;
-  background: #efefef;
   overflow: scroll;
   color: black;
   padding: 0 5px;
+  justify-content: flex-start;
+
+  @media screen and (min-width: 757px) {
+    background: greenyellow;
+    width: 746px;
+  }
 `;
 
 export const FormGrid = styled.div`
