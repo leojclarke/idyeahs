@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { getLocal, setLocal } from '../utils/services';
+import { getLocal, setLocal } from './utils/services';
 import {
   findIdeaByIndex,
   findCommentByIndex,
   findStarByUsername,
-} from '../utils/utils';
-import GlobalStyles from '../misc/GlobalStyles';
-import mockIdeas from '../data/MockIdeasData';
-import feedback from '../data/Feedback';
-import responsesData from '../data/Responses';
-import usersList from '../data/Users';
-import Home from './Home';
-import IdeasFeed from './IdeasFeed';
-import IdeaForm from './IdeaForm';
-import IdeaEdit from './IdeaEdit';
-import IdeaComment from './IdeaComment';
-import IdeaDetailsView from './IdeaDetailsView';
-import Login from './Login';
-import SignUp from './SignUp';
-import SignUpSuccess from './SignUpSuccess';
-import FeedbackResultsPage from './FeedbackResults';
-import FeedbackForm from './FeedbackForm';
-import UserPage from './UserProfile';
+} from './utils/utils';
+import mockIdeas from './data/MockIdeasData';
+import usersList from './data/Users';
+import Home from './pages/Home';
+import IdeasFeed from './pages/IdeasFeed';
+import IdeaForm from './pages/IdeaForm';
+import IdeaEdit from './pages/IdeaEdit';
+import IdeaComment from './components/IdeaComment';
+import IdeaDetailsView from './pages/IdeaDetailsView';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import SignUpSuccess from './pages/SignUpSuccess';
+import UserPage from './pages/UserProfile';
 
 const Grid = styled.div`
   display: grid;
@@ -33,9 +28,6 @@ const Grid = styled.div`
 
 export default function App() {
   const [ideas, setIdeas] = useState(getLocal('ideas') || mockIdeas);
-  const [responses, setResponses] = useState(
-    getLocal('responses') || responsesData
-  );
   const [users, setUsers] = useState(getLocal('users') || usersList);
   const [isLoggedIn, setIsLoggedIn] = useState(getLocal('isLoggedIn') || false);
   const [activeUser, setActiveUser] = useState(getLocal('activeUser') || []);
@@ -44,7 +36,6 @@ export default function App() {
   useEffect(() => setLocal('users', users), [users]);
   useEffect(() => setLocal('isLoggedIn', isLoggedIn), [isLoggedIn]);
   useEffect(() => setLocal('ideas', ideas), [ideas]);
-  useEffect(() => setLocal('responses', responses), [responses]);
 
   function handleIdeaSubmit(newIdeas, history) {
     setIdeas(newIdeas);
@@ -113,14 +104,6 @@ export default function App() {
     setIdeas(newIdeas);
   }
 
-  function handleFeedbackSubmit(response, history) {
-    // const responsesSum = responses.map(
-    //   (number, index) => Number(number) + Number(answers[index])
-    // );
-    setResponses([...responses, response]);
-    history.push('/feedback');
-  }
-
   function handleLogin(loggedInUser, history) {
     setActiveUser(loggedInUser);
     setIsLoggedIn(true);
@@ -144,7 +127,6 @@ export default function App() {
 
   return (
     <Router>
-      <GlobalStyles />
       <Grid>
         <Route
           exact
@@ -242,31 +224,6 @@ export default function App() {
               onStarAdd={handleStarAdd}
               onStarRemove={handleStarRemove}
               activeUser={activeUser}
-            />
-          )}
-        />
-
-        <Route
-          exact
-          path="/feedback"
-          render={props => (
-            <FeedbackResultsPage
-              heading="Feedback"
-              responses={responses}
-              questions={feedback}
-              activeUser={activeUser}
-              history={props.history}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/feedback/add"
-          render={props => (
-            <FeedbackForm
-              questions={feedback}
-              handleFeedbackSubmit={handleFeedbackSubmit}
-              history={props.history}
             />
           )}
         />

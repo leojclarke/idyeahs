@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledButton = styled.button`
   display: flex;
-  width: 100%;
+  width: 362px;
   height: 40px;
   background: #008dff;
   color: white;
@@ -14,6 +14,11 @@ const StyledButton = styled.button`
   font-family: Rubik, Roboto, open, sans-serif;
   text-transform: uppercase;
   justify-content: center;
+  align-items: center;
+
+   @media screen and (max-width: 400px) {
+      width: 100%;
+    }
 
   a {
     text-decoration: none;

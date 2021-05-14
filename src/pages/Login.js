@@ -7,20 +7,13 @@ import {
   faArrowRight,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
+
 import SubmitButton from '../components/form/SubmitButton';
 import Input from '../components/form/Input';
 import Label from '../components/form/Label';
+import { FormGrid } from '../components/Grids.elements';
 
 library.add(faTimes, faArrowRight, faArrowLeft);
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 150px auto;
-  padding: 20px;
-  align-items: start;
-  justify-items: center;
-  color: darkslategray;
-`;
 
 const Header = styled.header`
   display: grid;
@@ -41,10 +34,12 @@ export default function UserLogin({ users, onLogin, history }) {
     event.preventDefault();
     const login = event.target;
 
-    const loginEmail = login.email.value;
+    const loginName = login.name.value;
     const loginPassword = login.password.value;
 
-    const loggedInUser = users.find(user => user.email === loginEmail);
+    const loggedInUser = users.find(
+      user => user.email === loginName || user.username === loginName
+    );
 
     try {
       if (loggedInUser.pwd === loginPassword) {
@@ -58,7 +53,7 @@ export default function UserLogin({ users, onLogin, history }) {
   }
 
   return (
-    <Grid>
+    <FormGrid>
       <Header>
         <Icon icon={faArrowLeft} onClick={() => history.goBack()} />
         <h1>LOG IN</h1>
@@ -66,8 +61,10 @@ export default function UserLogin({ users, onLogin, history }) {
       <StyledForm id="login" onSubmit={event => handleLogin(event)}>
         <Label
           form="login"
-          content={<Input name="email" placeholder="Email..." type="email" />}
-          label="Enter your email"
+          content={
+            <Input name="name" placeholder="Email or username..." type="text" />
+          }
+          label="Enter your email or username"
         />
         <Label
           form="login"
@@ -78,6 +75,6 @@ export default function UserLogin({ users, onLogin, history }) {
         />
         <SubmitButton value="Log in" />
       </StyledForm>
-    </Grid>
+    </FormGrid>
   );
 }

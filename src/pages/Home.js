@@ -1,18 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { useSpring, animated } from 'react-spring';
-import logo from '../img/idyeahsLogoWhite.png';
-import SubmitButton from '../components/form/SubmitButton';
-
-const HomeGrid = styled.section`
-  display: grid;
-  grid-template-rows: 1fr 180px;
-  padding: 10px;
-  align-items: center;
-  justify-items: center;
-  background-image: linear-gradient(to right bottom, #008dff, #34cae2, #a3ded8);
-`;
+import { HomeGrid } from '../components/Grids.elements';
+import { ButtonFilled, ButtonTransparent } from '../components/Buttons.elements';
+import { Logo } from '../components/Logos.elements';
 
 const ButtonContainer = styled.section`
   display: grid;
@@ -24,40 +15,23 @@ const ButtonContainer = styled.section`
   padding: 10px;
 `;
 
-const Logo = styled(animated.img)`
-  width: 200px;
-`;
-
-const ButtonTransparent = styled(SubmitButton)`
-  background: transparent;
-  border: 1px solid #008dff;
-  color: #008dff;
-`;
-
-const ButtonFilled = styled(SubmitButton)`
-  background: white;
-  color: #008dff;
-  border: none;
-`;
-
 const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
   width: 100%;
+   justify-content:center;
+
 `;
 
 const LogOut = styled.div`
+  display: flex;
   width: 100%;
+  justify-content: center;
 `;
 
 export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
-  const logoFadeIn = useSpring({
-    opacity: 1,
-    from: { opacity: 0 },
-    config: { duration: 1000 },
-  });
+  
   return (
     <HomeGrid>
-      <Logo src={logo} style={logoFadeIn} onClick={() => onProceed(history)} />
+      <Logo onClick={() => onProceed(history)} />
       <ButtonContainer>
         {!isLoggedIn && (
           <>

@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import {
   faLightbulb,
-  faComment,
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from '../components/Avatar';
 
 const StyledHeader = styled.header`
   display: grid;
+  width: 100%;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 80px auto;
   border-bottom: 1px solid lightslategray;
@@ -32,8 +32,8 @@ const Heading = styled.h1`
 
 const Navigation = styled.nav`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column: 1 / span 2;
   align-items: center;
   justify-items: center;
   padding: 0 0 10px;
@@ -65,9 +65,6 @@ export default function Header({ heading, activeUser, fab, history }) {
         <Navigation>
           <StyledNavLink to="/ideas">
             <Icon icon={faLightbulb} />
-          </StyledNavLink>
-          <StyledNavLink to="/feedback">
-            <Icon icon={faComment} />
           </StyledNavLink>
 
           <StyledNavLink to="/starred">

@@ -6,10 +6,10 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faStar, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { CardAvatar } from '../components/Avatar';
-import Tag from './IdeaTag';
-import ContextMenu from './ContextMenu';
-import DeleteModal from './DeleteModal';
-import Comment from './Comment';
+import Tag from '../components/IdeaTag';
+import ContextMenu from '../components/ContextMenu';
+import DeleteModal from '../components/DeleteModal';
+import Comment from '../components/Comment';
 moment.locale('de');
 
 const CardHeader = styled.header`
@@ -52,7 +52,7 @@ const CardTagsContainer = styled.div`
   display: flex;
   justify-items: flex-start;
   align-items: center;
-  color: darkslategray;
+  color: #fff;
   padding: 15px 20px;
 `;
 

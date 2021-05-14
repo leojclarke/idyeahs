@@ -11,12 +11,8 @@ import Label from '../components/form/Label';
 import Input from '../components/form/Input';
 import TextArea from '../components/form/TextArea';
 import SubmitButton from '../components/form/SubmitButton';
+import { MainGrid } from '../components/Grids.elements';
 moment.locale('de');
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 10vh 90vh;
-`;
 
 const Header = styled.header`
   display: flex;
@@ -87,7 +83,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
   }
 
   return (
-    <Grid>
+    <MainGrid>
       <Header>
         <StyledNavLink to="/ideas">
           <Icon icon={faArrowLeft} />
@@ -140,7 +136,7 @@ export default function IdeaForm({ posts, onIdeaSubmit, history, activeUser }) {
           <SubmitButton value="SUBMIT" />
         </StyledForm>
       </Main>
-    </Grid>
+    </MainGrid>
   );
 }
 IdeaForm.propTypes = {
