@@ -14,29 +14,26 @@ export const MainGrid = styled.div`
   grid-template-rows: 18vh 82vh;
   justify-content: center;
   width: 100vw;
+  background: #efefef;
+
 `;
 
 export const FeedGrid = styled.div`
   display: grid;
   grid-template-rows: auto;
-  background: white;
   overflow: scroll;
   color: black; 
+  background: #efefef;
 `;
 
 export const FeedGridIdeas = styled.div`
   display: flex;
-  background: black;
   flex-direction: column;
   overflow: scroll;
   color: black;
   padding: 0 5px;
   justify-content: flex-start;
-
-  @media screen and (min-width: 757px) {
-    background: greenyellow;
-    width: 746px;
-  }
+  width: 100vw;
 `;
 
 export const FormGrid = styled.div`
