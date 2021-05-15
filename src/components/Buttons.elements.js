@@ -6,6 +6,7 @@ export const ButtonTransparent = styled(SubmitButton)`
   border: 1px solid #008dff;
   color: #008dff;
   align-items: center;
+  text-decoration: none;
 `;
 
 export const ButtonFilled = styled(SubmitButton)`
@@ -13,4 +14,5 @@ export const ButtonFilled = styled(SubmitButton)`
   color: #008dff;
   border: none;
   align-items: center;
+  text-decoration: none;
 `;

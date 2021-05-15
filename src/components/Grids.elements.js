@@ -13,9 +13,7 @@ export const MainGrid = styled.div`
   display: grid;
   grid-template-rows: 18vh 82vh;
   justify-content: center;
-  width: 100vw;
   background: #efefef;
-
 `;
 
 export const FeedGrid = styled.div`
