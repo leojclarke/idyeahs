@@ -15,14 +15,16 @@ const StyledButton = styled.button`
   text-transform: uppercase;
   justify-content: center;
   align-items: center;
-
-   @media screen and (max-width: 400px) {
-      width: 100%;
-    }
-
+  
   a {
     text-decoration: none;
   }
+  
+  @media screen and (max-width: 400px) {
+      width: 100%;
+  }
+
+
 `;
 
 export default function SubmitButton({ value, className }) {

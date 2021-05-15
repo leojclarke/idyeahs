@@ -17,14 +17,16 @@ const ButtonContainer = styled.section`
 
 const StyledNavLink = styled(NavLink)`
   width: 100%;
-   justify-content:center;
-
+  justify-content:center;
+  text-decoration: none;
 `;
 
 const LogOut = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+
+  
 `;
 
 export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
