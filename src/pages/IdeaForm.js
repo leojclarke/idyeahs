@@ -25,6 +25,7 @@ const Header = styled.header`
 `;
 
 const Main = styled.div`
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   background: white;

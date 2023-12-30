@@ -24,9 +24,7 @@ const StyledNavLink = styled(NavLink)`
 const LogOut = styled.div`
   display: flex;
   width: 100%;
-  justify-content: center;
-
-  
+  justify-content: center;  
 `;
 
 export default function Home({ isLoggedIn, onLogOut, onProceed, history }) {
