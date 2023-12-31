@@ -6,19 +6,17 @@ import { ButtonFilled, ButtonTransparent } from '../components/Buttons.elements'
 import { Logo } from '../components/Logos.elements';
 
 const ButtonContainer = styled.section`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 10px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  align-items: center;
-  justify-items: center;
+  justify-content: center;
   padding: 10px;
 `;
 
 const StyledNavLink = styled(NavLink)`
-  width: 100%;
   justify-content:center;
   text-decoration: none;
+  padding: 10px 0;
 `;
 
 const LogOut = styled.div`

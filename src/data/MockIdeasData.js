@@ -3,10 +3,10 @@ import uid from 'uid';
 const ideaEntries = [
   {
     id: uid(),
-    title: 'My Great Idea',
-    text: 'Everything Begins With An Idea.',
+    title: 'Greater Employee Autonomy',
+    text: 'I think if we were able to make .',
     tags: ['sales', 'logistics'],
-    timestamp: '2018-09-08T08:02:17',
+    timestamp: '2021-09-08T08:02:17',
     author: {
       username: 'pilot',
       firstname: 'R.J.',
@@ -59,7 +59,7 @@ const ideaEntries = [
           },
         },
         comment: 'This is my comment',
-        timestamp: '2018-09-08T08:02:17-05:00',
+        timestamp: '2021-09-08T08:02:17-05:00',
       },
       {
         id: uid(),
@@ -76,7 +76,7 @@ const ideaEntries = [
           },
         },
         comment: 'I too have a comment.',
-        timestamp: '2018-09-08T08:02:17-05:00',
+        timestamp: '2021-09-08T08:02:17-05:00',
       },
     ],
   },
@@ -86,7 +86,7 @@ const ideaEntries = [
     text:
       'No Matter What People Tell You, Words And Ideas Can Change The World.',
     tags: ['events', 'service'],
-    timestamp: '2018-09-08T08:02:17',
+    timestamp: '2021-09-08T08:02:17',
     author: {
       username: 'leojclarke',
       firstname: 'Leo',
@@ -127,7 +127,7 @@ const ideaEntries = [
       If the implementation is easy to explain, it may be a good idea.\
       Namespaces are one honking great idea—let's do more of those!",
     tags: ['events', 'service'],
-    timestamp: '2018-09-08T08:02:17',
+    timestamp: '2021-09-08T08:02:17',
     author: {
       username: 'defaultUser',
       firstname: 'Tim',
