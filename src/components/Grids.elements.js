@@ -12,6 +12,7 @@ export const HomeGrid = styled.section`
 export const MainGrid = styled.div`
   display: grid;
   grid-template-rows: 18vh 82vh;
+  width: 100%;
   justify-content: center;
   background: #efefef;
 `;
